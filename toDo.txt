@@ -1,0 +1,89 @@
+DISEÑO:
+	MAIN PAGE:
+		-sidemenu link to other pages
+		-Pueblos
+		-galeria
+		-links to other pages in sub sections
+	BOLETIN/NOTICIAS:
+		TO CODE:
+		-Main Page
+			-Header
+				-menu
+			-div resumen noticia con y sin foto
+			-This month
+			-date
+		-sections	
+		-Searcher			
+		-Pagina de notica
+		-footer
+		RETOUCH:
+		DONE:
+	BLOGS:
+		TO CODE: 
+		-Main Page:
+			-galeria
+			-footer
+		-Negocios y productos Page:
+			-div negocio
+			-expanded page:
+				-header
+				-intro y contacto
+				-productos
+				-historia
+		-Galeria
+			-divs galeria
+			-galery page
+			-scroller
+		-Blog
+			-presentacion
+			-agenda cultural/fiestas
+			-historia
+			-div blog entry
+		-Data inserter
+		RETOUCH:	
+		DONE:
+	ALOJAMIENTO:
+		
+		TO CODE:
+			MAIN 
+			-Map and redirect page btns
+			- on hover btn show bellow some picts and desc AND FOCUS ON MAP
+			
+			SPECIFIC TOURISM PAGE
+			-header
+			-div donde comer
+			-div donde dormir
+			-menu
+			-lugares de interes div
+			-lugares de interes pic carrousel/ desc and map
+			
+		RETOUCH:
+		DONE:
+	
+	ALOJAMIENTO:
+		TO CODE: 
+		-Map
+		-btns
+		RETOUCH:
+		DONE:
+	PAGE INSERT DATA TO BLOG
+		-diseñar
+	PAGE INSERT DATA TO BOLETIN
+		-diseñar 
+BDD:
+	DISEÑAR LA BDD
+	IMPLEMENTAR METODOS
+	TESTING
+MISC 
+	PREGUNTAR AL PROFE
+	HACER PRESUPUESTO Y DIAGRAMA DE TIEMPO
+	COMPRAR LA URL
+	BUSCAR HOST
+	PONERSE EN CONTACTO CON LA ASOCIACION
+	DETERMINAR QUE PUEBLOS SON
+	BUSCAR UN MAPA DECENTE PARA ALOJAMIENTO
+	PLACEMENT
+	
+
+	
+		
