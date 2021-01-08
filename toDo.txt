@@ -19,10 +19,10 @@ DISEÑO:
 		RETOUCH:
 		DONE:
 	BLOGS:
-		TO CODE: 
+		TO CODE:
+		
 		-Main Page:
-			-galeria
-			-footer
+			-responsive 
 		-Negocios y productos Page:
 			-div negocio
 			-expanded page:
@@ -60,12 +60,6 @@ DISEÑO:
 		RETOUCH:
 		DONE:
 	
-	ALOJAMIENTO:
-		TO CODE: 
-		-Map
-		-btns
-		RETOUCH:
-		DONE:
 	PAGE INSERT DATA TO BLOG
 		-diseñar
 	PAGE INSERT DATA TO BOLETIN
