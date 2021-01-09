@@ -14,14 +14,7 @@ function loader(){
 		}  
 	}
 	
-	setInterval(function() {
-		if(!clicked){
-			AutoPlusSlides();
-			
-		}else{
-			clicked=false;
-		}
-	}, 10000);
+
 	//fade in
 	$("#overlay").delay(10000).animate({opacity: '0' });
 	$("#overlay").delay(10000).css("display", "none");
