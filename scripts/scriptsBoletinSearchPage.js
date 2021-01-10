@@ -1,5 +1,5 @@
-var isHidden=false;
-function manageHeader() {
+
+function manageHeader(isHidden) {
 	$.keyframe.define([{
 		name: 'show',
 		from: {
@@ -34,8 +34,8 @@ function manageHeader() {
 			//$("#headerButton").css("transform", "translate(0,"+height+")px");
 		}, 800);*/
 		$("#headerButton").css("visibility", "hidden");
+		$("#results").css("visibility", "hidden");
 		$("#header").removeClass( "show" );
-		 console.log("in");
 		//$("#headerButton").removeClass( "show" ).addClass( "hide" );
 		$("#header").playKeyframe({
 			name: 'hide',
@@ -44,8 +44,13 @@ function manageHeader() {
 			complete: function(){
 				$("#header").css("visibility", "hidden");
 				$("#header").css("transform", "translate(0,"+height+"px)");
+				
+				$("#results").css("visibility", "visible");
+				$("#results").css("transform", "translate(0,"+height+"px)");
+				
 				$("#headerButton").css("transform", "translate(0,"+height+"px)");
 				$("#headerButton").css("visibility", "visible");
+				$("#headerButton" ).attr("onclick","manageHeader(true)");
 				$("#headerButton").text("Abrir ᐯ");
 				isHidden=true;
 			}
@@ -63,7 +68,7 @@ function manageHeader() {
 		//$("#header").removeClass( "hide" ).addClass( "show" );
 		//$("#headerButton").removeClass( "hide" ).addClass( "show" );
 		$("#header").css("visibility", "visible");
-		console.log("out");
+		$("#results").css("visibility", "hidden");
 		$("#headerButton").css("visibility", "hidden");
 		$("#header").playKeyframe({
 			name: 'show',
@@ -71,10 +76,14 @@ function manageHeader() {
 			iterationCount: 1,
 			complete: function(){
 				$("#header").css("transform", "translate(0,0)");
-				$("#headerButton").css("transform", "translate(0,0)");
 				
+				$("#results").css("visibility", "visible");
+				$("#results").css("transform", "translate(0,0)");
+				
+				$("#headerButton").css("transform", "translate(0,0)");
 				$("#headerButton").text("Cerrar ˄");
 				$("#headerButton").css("visibility", "visible");
+				$("#headerButton" ).attr("onclick","manageHeader(false)");
 				isHidden=false;
 			}
 		});
@@ -82,4 +91,8 @@ function manageHeader() {
 		
 	}
     
+}
+function forceCloseHeader(){
+	manageHeader(false);
+	
 }
