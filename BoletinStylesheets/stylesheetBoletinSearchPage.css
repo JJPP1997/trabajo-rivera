@@ -1,0 +1,143 @@
+#header{
+	width:100%;
+	border-bottom: 4px solid #27496d;
+	background-color:#F0F0F0;
+	z-index:100;
+	min-height:100px;
+	top: 0;
+	
+}
+#textInput{
+	width:100%;
+	
+}
+#searchBar{
+	width: 80%;
+	margin-left:10%;
+	margin-right:10%;
+	margin-bottom:50px;
+}
+.container{
+	margin-right:10px;
+}
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+#submitBtn{
+	
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline;
+	cursor: pointer;
+	font-size: 1.2vw;
+	border:none;
+	background-color:#73c2fb;
+	font-weight:bold;
+}
+#submitBtn:hover{
+	border:1px solid black;
+	
+}
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+ 
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+
+input {
+  /* In order to define widths */
+  display: inline-block;
+ 
+  
+}
+
+label {
+  width: 30%;
+  /* Positions the label text beside the input */
+  text-align: right;
+  font-size:1.5vw;
+}
+
+label+input {
+  width: 30%;
+  /* Large margin-right to force the next element to the new-line
+           and margin-left to create a gutter between the label and input */
+  margin: 0 30% 0 4%;
+}
+/*BTN*/
+#headerButton{
+	width:100%;
+	background-color:#27496d;
+	cursor: pointer;
+	text-align:right;
+	font-size:2.5vw;
+	color:white;
+	font-weight:bold;
+	padding-right:50px;
+	
+	
+}
+.hide{
+	-webkit-animation-name: hide;
+	-webkit-animation-duration: 1s;
+	animation-name: hide;
+	animation-duration: 2s;
+}
+.show{
+	-webkit-animation-name: show;
+	-webkit-animation-duration: 1s;
+	animation-name: show;
+	animation-duration: 2s;
+}
+@-webkit-keyframes show {
+   from {
+    transform: translateY(-700px);
+   
+  }
+  to {
+    transform: translateY(0);
+   
+  }
+}
+
+@keyframes show {
+   from {
+    transform: translateY(-700px);
+   
+  }
+  to {
+    transform: translateY(0);
+   
+  }
+}
+@-webkit-keyframes hide {
+   from {
+    transform: translateY(0);
+   
+  }
+  to {
+     transform: translateY(-700px);
+  
+  }
+}
+
+@keyframes hide {
+from {
+    transform: translateY(0);
+   
+  }
+  to {
+     transform: translateY(-700px);
+   
+  }
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Boletinpage" content="Boletin">
+		<meta name="keywords" content="">
+		<meta name="author" content="Jose Juan Porras">
+		
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+		
+		<link rel="stylesheet"  href="BoletinStylesheets/stylesheetBoletinSearchPage.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	  
+	  <script type="text/javascript" src="scripts/scriptsBoletinSearchPage.js"></script> 
+	  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	  <script src='http://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
+	  <script type="text/javascript" src="jQuery.Keyframes-master/dist/jquery.keyframes.js"></script>
+	
+	</head>
+	<body>
+		<div id="header" class="show">
+			<form action="" id="searchBar" >
+				<h1>Texto a buscar:</h1>
+				<input type="text" id="textInput" name="ftext"></input>
+					
+				<h1>Filtrar por secciones:</h1>
+				<label class="container">Cultura
+				  <input type="checkbox">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Opinion
+				  <input type="checkbox">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Deportes
+				  <input type="checkbox">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Politica
+				  <input type="checkbox">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Entrevistas
+				  <input type="checkbox">
+				  <span class="checkmark"></span>
+				</label>
+				<br></br>
+				
+				<h1>Filtrar por fecha:</h1>
+				<label class="container">Buscar en un día:
+					<input type="date"></input>
+				</label>
+				<br></br>
+				<label class="container">Buscar en una semana:
+					<input type="week"></input>
+				</label>
+				<br></br>
+				<label class="container">Buscar en un mes:
+					<input type="month"></input>
+				</label>
+				<br></br>
+				
+				<h1>Filtrar por:</h1>
+				<label class="container">Autor
+				  <input type="checkbox" >
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Titulo
+				  <input type="checkbox">
+				  <span class="checkmark"></span>
+				</label>
+				<label class="container">Contenido
+				  <input type="checkbox">
+				  <span class="checkmark"></span>
+				</label>
+				<br></br>
+				
+				<input id="submitBtn" type="submit" value="Buscar"></input>
+			</form>
+		
+		</div>
+		<div id="headerButton" onclick="manageHeader() " class="show">
+				
+					Cerrar   ˄
+				
+			</div>
+		
+	</body>
+	</html>
