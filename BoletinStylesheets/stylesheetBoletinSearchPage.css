@@ -193,6 +193,7 @@ from {
 	padding:5px;
 	position:relative;
 	cursor: pointer;
+	min-width:400px;
 }
 .articleTags{
 	position:absolute;
@@ -253,6 +254,7 @@ from {
 #newsContainer{
 	width:80%;
 	margin:50px 10% 50px 10%;
+
 	
 }
 #newsContainer>.articleContainer{
@@ -263,6 +265,58 @@ from {
 	width:100%;
 }
 .articleContainer>h1{
+	
 	width:100%;
 	text-align:center;
+}
+/*footer*/
+#footer{
+	border-top:4px solid black;
+	width:100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color:#00416a;
+	margin-top:50px;
+	color:white;
+}
+.nameContainer{
+	font-size:1.5vw;
+	float:left;
+	max-height:200px;
+	margin:0px 0px 0px 0px;
+}
+.footerContainer{
+	float:left;
+	max-height:200px;
+	margin:10px 0px 10px 0px;
+	font-size:1.3vw;
+	padding:5px;
+}
+.contactContainer{
+	border-left:2px solid black;
+}
+.legalContainer{
+	border-left:2px solid black;
+
+}
+ul {
+  list-style-type: none;
+  padding:5px;
+}
+/*LINKS*/
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
 }
