@@ -1,5 +1,14 @@
 var clicked=false;
 function loader(){
+	$.keyframe.define([{
+		name: 'hide',
+		from: {
+			"opacity": "1"
+		},
+		to: {
+			"opacity": "0"
+		}
+	}]);
 	//get pertinent measurements
 	var width = $(window).width();
 	var height = $(window).height();
@@ -16,8 +25,14 @@ function loader(){
 	
 
 	//fade in
-	$("#overlay").delay(10000).animate({opacity: '0' });
-	$("#overlay").delay(10000).css("display", "none");
+	$("#overlay").playKeyframe({
+				name: 'hide',
+				duration: '1s',
+				iterationCount: 1,
+				complete: function(){
+					$("#overlay").css("display", "none"); 
+				}
+			});
 	//$("#overlay").delay(1000).display("none");
 	//fit buttons
 	

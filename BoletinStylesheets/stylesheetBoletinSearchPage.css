@@ -219,7 +219,7 @@ from {
 	align-items: center;
 	justify-content: center;
 }
-.imageContainer>img{
+.imgContainer>img{
 	max-width:90%;
 	max-height:400px;
 	
