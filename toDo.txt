@@ -1,12 +1,12 @@
 DISEÑO:
 	MAIN PAGE:
 		-links boletin
-		-hacer scripts reutilizables boletin
-		-hacer stylesheet reutilizables boletin
+		
 		-subsecciones indice
 		-Pueblos
 		-galeria
 		-mapa con botones
+		-fullscreen en boletin?
 	BOLETIN/NOTICIAS:
 		TO CODE:
 		-Main Page

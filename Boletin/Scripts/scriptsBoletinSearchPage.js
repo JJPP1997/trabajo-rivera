@@ -20,33 +20,38 @@ function manageHeader(isHidden) {
 		}
 		
 	}]);
-	var height = $("#header").height();
+	var height = $("#headerSearch").height();
 	height= (-height);
   /*var supportedFlag = $.keyframe.isSupported();*/
-  console.log($("#header").is(":visible"));
+
 	
 	if(!isHidden) {
 		/*setTimeout(
 		  function() 
 		  {
-			//$("#header").css("visibility", "hidden");
-			//$("#header").css("transform", "translate(0,"+height+")px");
+			//$("#headerSearch").css("visibility", "hidden");
+			//$("#headerSearch").css("transform", "translate(0,"+height+")px");
 			//$("#headerButton").css("transform", "translate(0,"+height+")px");
 		}, 800);*/
 		$("#headerButton").css("visibility", "hidden");
 		$("#results").css("visibility", "hidden");
-		$("#header").removeClass( "show" );
+		$("#footer").css("visibility", "hidden");
+
+		$("#headerSearch").removeClass( "show" );
 		//$("#headerButton").removeClass( "show" ).addClass( "hide" );
-		$("#header").playKeyframe({
+		$("#headerSearch").playKeyframe({
 			name: 'hide',
 			duration: '1s',
 			iterationCount: 1,
 			complete: function(){
-				$("#header").css("visibility", "hidden");
-				$("#header").css("transform", "translate(0,"+height+"px)");
+				$("#headerSearch").css("visibility", "hidden");
+				$("#headerSearch").css("transform", "translate(0,"+height+"px)");
 				
 				$("#results").css("visibility", "visible");
 				$("#results").css("transform", "translate(0,"+height+"px)");
+				
+				$("#footer").css("visibility", "visible");
+			//	$("#footer").css("transform", "translate(0,"+height+"px)");
 				
 				$("#headerButton").css("transform", "translate(0,"+height+"px)");
 				$("#headerButton").css("visibility", "visible");
@@ -61,24 +66,28 @@ function manageHeader(isHidden) {
 		
 			function() 
 			  {
-				$("#header").css("transform", "translate(0,0)");
+				$("#headerSearch").css("transform", "translate(0,0)");
 				$("#headerButton").css("transform", "translate(0,0)");
 			}, 800);*/	
 		
-		//$("#header").removeClass( "hide" ).addClass( "show" );
+		//$("#headerSearch").removeClass( "hide" ).addClass( "show" );
 		//$("#headerButton").removeClass( "hide" ).addClass( "show" );
-		$("#header").css("visibility", "visible");
+		$("#headerSearch").css("visibility", "visible");
 		$("#results").css("visibility", "hidden");
 		$("#headerButton").css("visibility", "hidden");
-		$("#header").playKeyframe({
+		$("#footer").css("visibility", "hidden");
+		$("#headerSearch").playKeyframe({
 			name: 'show',
 			duration: '1s',
 			iterationCount: 1,
 			complete: function(){
-				$("#header").css("transform", "translate(0,0)");
+				$("#headerSearch").css("transform", "translate(0,0)");
 				
 				$("#results").css("visibility", "visible");
 				$("#results").css("transform", "translate(0,0)");
+				
+				$("#footer").css("visibility", "visible");
+				//$("#footer").css("transform", "translate(0,0)");
 				
 				$("#headerButton").css("transform", "translate(0,0)");
 				$("#headerButton").text("Cerrar ˄");

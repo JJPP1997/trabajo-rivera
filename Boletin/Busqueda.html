@@ -11,6 +11,7 @@
 		<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 		
 		<link rel="stylesheet"  href="Stylesheets/stylesheetBoletinSearchPage.css">
+		<link rel="stylesheet"  href="Stylesheets/recurrentElementsBoletin.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	  
 	  <script type="text/javascript" src="Scripts/scriptsBoletinSearchPage.js"></script> 
@@ -20,58 +21,58 @@
 	
 	</head>
 	<body>
-		<div id="header" class="show">
+		<div id="headerSearch" class="show">
 			<form action="" id="searchBar" >
 				<h1>Texto a buscar:</h1>
 				<input type="text" id="textInput" name="ftext"></input>
 					
 				<h1>Filtrar por secciones:</h1>
-				<label class="container">Cultura
+				<label class="inputContainer">Cultura
 				  <input type="checkbox">
 				  <span class="checkmark"></span>
 				</label>
-				<label class="container">Opinion
+				<label class="inputContainer">Opinion
 				  <input type="checkbox">
 				  <span class="checkmark"></span>
 				</label>
-				<label class="container">Deportes
+				<label class="inputContainer">Deportes
 				  <input type="checkbox">
 				  <span class="checkmark"></span>
 				</label>
-				<label class="container">Politica
+				<label class="inputContainer">Politica
 				  <input type="checkbox">
 				  <span class="checkmark"></span>
 				</label>
-				<label class="container">Entrevistas
+				<label class="inputContainer">Entrevistas
 				  <input type="checkbox">
 				  <span class="checkmark"></span>
 				</label>
 				<br></br>
 				
 				<h1>Filtrar por fecha:</h1>
-				<label class="container">Buscar en un día:
+				<label class="inputContainer">Buscar en un día:
 					<input type="date"></input>
 				</label>
 				<br></br>
-				<label class="container">Buscar en una semana:
+				<label class="inputContainer">Buscar en una semana:
 					<input type="week"></input>
 				</label>
 				<br></br>
-				<label class="container">Buscar en un mes:
+				<label class="inputContainer">Buscar en un mes:
 					<input type="month"></input>
 				</label>
 				<br></br>
 				
 				<h1>Filtrar por:</h1>
-				<label class="container">Autor
+				<label class="inputContainer">Autor
 				  <input type="checkbox" >
 				  <span class="checkmark"></span>
 				</label>
-				<label class="container">Titulo
+				<label class="inputContainer">Titulo
 				  <input type="checkbox">
 				  <span class="checkmark"></span>
 				</label>
-				<label class="container">Contenido
+				<label class="inputContainer">Contenido
 				  <input type="checkbox">
 				  <span class="checkmark"></span>
 				</label>
@@ -85,7 +86,7 @@
 					Cerrar   ˄
 		</div>
 		<div id="results">
-			<div id="overlay">
+			<div id="ArticleOverlay">
 				<div class="loader"></div>
 			
 			</div>
