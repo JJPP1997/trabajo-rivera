@@ -1,8 +1,12 @@
 DISEÑO:
 	MAIN PAGE:
-		-sidemenu link to other pages
+		-links boletin
+		-hacer scripts reutilizables boletin
+		-hacer stylesheet reutilizables boletin
+		-subsecciones indice
 		-Pueblos
 		-galeria
+		-mapa con botones
 	BOLETIN/NOTICIAS:
 		TO CODE:
 		-Main Page
@@ -73,9 +77,8 @@ MISC
 	COMPRAR LA URL
 	BUSCAR HOST
 	PONERSE EN CONTACTO CON LA ASOCIACION
-	DETERMINAR QUE PUEBLOS SON
 	BUSCAR UN MAPA DECENTE PARA ALOJAMIENTO
-	PLACEMENT
+	PLACEMENT y meta tags
 	
 
 	
