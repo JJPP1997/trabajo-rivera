@@ -14,6 +14,7 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	  
 		<script type="text/javascript" src="scripts/scriptsBussinessesPage.js"></script>
+		<script type="text/javascript" src="scripts/reusableBlogScripts.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script src='http://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
 		<script type="text/javascript" src="jQuery.Keyframes-master/dist/jquery.keyframes.js"></script>
@@ -38,22 +39,24 @@
 					<button class="headerBtn">
 						Población
 					</button>
-					<button class="headerBtn">
-					<!--	<div  class="panel">
-							<button>
-								Donde Dormir
-							</button>
-							<button >
+					<li>
+						<button  class="headerBtn" onclick="toggleSubmenu();" >Turismo ᐯ</button>
+						<ul id="submenu">
+							<button class="">
 								Donde Comer
 							</button>
-
-							<button >
+							<button class="">
 								Donde Dormir
 							</button>
-						</div>-->
+							<button class="">
+								Negocios Locales
+							</button>
+							
+						</ul>
+					</li>
 					
 
-					</button>
+				
 					<button class="headerBtn">
 						Agenda Cultural
 					</button>
@@ -67,28 +70,11 @@
 			</div>
 		</div>
 		
+		
 		<h1 id="title">Donde comer</h1>
 		<div id="container">
 		
-		<li>
-			<a href="#" onclick="toggle(1);" >one</a>
-			<ul id="submenu">
-				<li><button class="headerBtn">
-						Agenda Cultural
-					</button>
-				</li>
-				<li>
-					<button class="headerBtn">
-						Agenda Cultural
-					</button>
-				</li>
-				<li>
-					<button class="headerBtn">
-						Agenda Cultural
-					</button>
-				</li>
-			</ul>
-		</li>
+		
 					
 
 			</button>

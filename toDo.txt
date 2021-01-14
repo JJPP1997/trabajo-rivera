@@ -3,7 +3,6 @@ DISEÑO:
 		-sidemenu link to other pages
 		-Pueblos
 		-galeria
-		-links to other pages in sub sections
 	BOLETIN/NOTICIAS:
 		TO CODE:
 		-Main Page

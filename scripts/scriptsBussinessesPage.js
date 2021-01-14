@@ -8,7 +8,10 @@ function loader(){
 			"opacity": "0"
 		}
 	}]);
-	
+	var maxWidth=0;
+	$('#submenu').children('button').each(function () {
+		this.wi
+	});
 	
 	//get pertinent measurements
 	var width = $(window).width();
@@ -35,19 +38,5 @@ function loader(){
 	
 }
 function scroller(){
-	
-	var header = document.getElementById("header");
-	var sticky = header.offsetTop;
-		 if (window.pageYOffset > sticky) {
-		header.classList.add("sticky");
-	  } else {
-		header.classList.remove("sticky");
-	  }
+	manageHeader();
 }
-function toggle() {
-    if(!$('#yourID').is(':visible')){
-		$("submenu").show();
-	}else{
-		$("submenu").hide();
-	}
-};

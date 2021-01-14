@@ -102,6 +102,39 @@
 .headerBtn:hover{
 	background-color:#DBDBDB;
 }
+ul {
+  list-style-type: none;
+  padding:5px;
+}
+li {
+  list-style-type: none;
+  width:15%;
+  display:inline;
+  float:left;
+}
+li>.headerBtn{
+	width:100%;
+	font-size: 1.1vw;
+}
+#submenu{
+	display:none;
+	
+}
+#submenu button{
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: block;
+	cursor: pointer;
+	font-size: 1.1vw;
+	border:none;
+	min-height:80px;
+	overflow:auto;
+	
+}
+#submenu button:hover{
+	background-color:#DBDBDB;
+}
 /*TITLE*/	
 #title_img{
 	width:100%;

@@ -101,9 +101,42 @@
 .headerBtn:hover{
 	background-color:#DBDBDB;
 }
-#accordion {
- 
-  transition: 0.4s;
+ul {
+  list-style-type: none;
+  padding:5px;
+}
+li {
+  list-style-type: none;
+  width:15%;
+  display:inline;
+  float:left;
+}
+li>.headerBtn{
+	width:100%;
+	font-size: 1.1vw;
+}
+#submenu{
+	display:none;
+	transition:1s;
+	position:relative;
+	top:0;
+	z-index:1000;
+	left:0;
+}
+#submenu button{
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: block;
+	cursor: pointer;
+	overflow:auto;
+	font-size: 1vw;
+	border:none;
+	min-height:80px;
+	
+}
+#submenu button:hover{
+	background-color:#DBDBDB;
 }
 
 .active, #accordion:hover {
@@ -268,10 +301,7 @@ margin-right:10%;
 	border-left:2px solid black;
 
 }
-ul {
-  list-style-type: none;
-  padding:5px;
-}
+
 /*LINKS*/
 a:link {
   text-decoration: none;
