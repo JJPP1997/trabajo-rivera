@@ -168,9 +168,7 @@ overlay{
 }
 .imageContainer{
 	width:100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	
 }
 .imageContainer>img{
 	max-width:90%;

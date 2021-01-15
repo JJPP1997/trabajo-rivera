@@ -1,9 +1,8 @@
 DISEÑO:
 	MAIN PAGE:
-		-links boletin
-		
+		-links blog
+		-disable on page link
 		-subsecciones indice
-		-Pueblos
 		-galeria
 		-mapa con botones
 		-fullscreen en boletin?
@@ -23,18 +22,13 @@ DISEÑO:
 		DONE:
 	BLOGS:
 		TO CODE:
-		
+		disapear and swpanw read more buttons deppending on the size of the text
 		-Main Page:
 			-responsive 
 		-Negocios y productos Page:
-			-div negocio
-			-expanded page:
-				-header
-				-intro y contacto
-				-productos
-				-historia
+			
 		-Galeria
-			-divs galeria
+		
 			-galery page
 			-scroller
 		-Blog
