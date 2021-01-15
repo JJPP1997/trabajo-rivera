@@ -1,0 +1,28 @@
+#galleryContainer{
+	width:80%;
+	margin:50px 10% 50px 10%;
+}
+.galleryThumbnail{
+	width:30%;
+	height:300px;
+	float:left;
+	margin:50px 1.5% 50px 1.5%;
+	display: inline-block;
+	
+}
+.galleryImgContainer{
+	border:solid 1px black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.galleryThumbnail img{
+	width:80%;
+
+}
+.galleryDesc{
+	width:100%;
+	text-align:center;
+	padding:5px;
+	border-bottom:solid 1px black;
+}

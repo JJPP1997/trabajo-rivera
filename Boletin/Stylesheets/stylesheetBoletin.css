@@ -26,20 +26,27 @@
 	
 }
 #allNews>.articleContainer{
-	display:inline-block;
+	
 	max-height:500px;
 	overflow-y:scroll;
 	overflow-x:hidden;
 	width:100%;
+	display: block;
+	align-items: center;
+	justify-content: center;
+}
+#allNews>.articleContainer .article{
+	width:45%;
+	margin:10px 2.5% 10px 2.5%;
 }
 .articleContainer>h1{
 	width:100%;
 	text-align:center;
 }
 .fixedSizeArticle{
-	width:30%;
-	float:left;
-	margin:10px 10px 10px 10px;
+	width:100%;
+	
+	margin:10px 0px 10px 21%;
 	text-align:center;
 	border-top:2px solid black;
 	border-left:2px solid black;
