@@ -2,6 +2,8 @@ DISEÑO:
 	MAIN PAGE:
 		-links blog
 		-disable on page link
+
+		-Anuncios
 		-subsecciones indice
 		-galeria
 		-mapa con botones

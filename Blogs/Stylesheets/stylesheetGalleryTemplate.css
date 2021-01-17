@@ -1,0 +1,88 @@
+
+
+#imagesContainer{
+	width:80%;
+	margin:50px 10% 50px 10%;
+	display:inline-block;
+}
+
+.polaroid {
+  width: 30%;
+  padding: 1% 1% 2% 1%;
+  border: 1px solid #BFBFBF;
+  background-color: white;
+  box-shadow: 10px 10px 5px #aaaaaa;
+  float:left;
+  margin:10px;
+}
+
+#focusImage{
+	width: 100%;
+	height:100%;
+	background-color: rgba(100, 100, 100, 0.5);
+	position: absolute;
+	z-index: 10;
+	display:inline;
+}
+.focusImageMargin{
+	width:10%;
+	/*background-color:#000000;*/
+	height:100%;
+	
+	-webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
+  -moz-box-flex: 1;         /* OLD - Firefox 19- */
+            /* For old syntax, otherwise collapses. */
+  -webkit-flex: 1;          /* Chrome */
+  -ms-flex: 1;              /* IE 10 */
+  flex: 1;   
+  text-align:center;
+}
+.focusImageMargin:hover{
+	border-style: inset;
+}
+.focusImagePolaroid{
+	width:90%;
+	margin-left:5%;
+	margin-right:5%;
+	padding: 1% 1% 2% 1%;
+	border: 1px solid #BFBFBF;
+	background-color: rgba(100, 100, 100, 0.5);
+	box-shadow: 10px 10px 5px #aaaaaa;
+	display: flex; 
+	height:100%;
+	display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+	display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+	display: -ms-flexbox;      /* TWEENER - IE 10 */
+	display: -webkit-flex;     /* NEW - Chrome */
+	display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+ }
+
+.caption{
+	text-align:center;
+	width:100%;
+	background-color:white;
+}
+.focusImagePolaroidContainer{
+	width:80%;
+	
+}
+.focusImagePolaroidContainer img{
+	max-width:100%;
+	display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.PolaroidImageContainer{
+	width:98%;
+	margin-left:1%;
+	margin-right:1%;
+	text-align:center;
+
+}
+
+.PolaroidImageContainer img{
+	max-width:100%;
+	display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
