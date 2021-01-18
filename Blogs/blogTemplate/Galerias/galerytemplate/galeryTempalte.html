@@ -69,13 +69,12 @@
 			</div>
 		</div>
 		<div id="focusImage">
-			
-			<div class="focusImagePolaroid ">
+			<div id="focusImagePolaroid">
 				<div class="focusImageMargin" onclick="plusImage(-1)">
 					<a class="prev">&#10094;</a>
 				</div>
-				<div class="focusImagePolaroidContainer">
-					<img src="Imagenes/placeholder1.gif"  >
+				<div id="focusImagePolaroidContainer">
+					<img  id="focusedImage" src="Imagenes/placeholder1.gif"  >
 					<p class="caption">descripcion de foto/nombre del lugar</p>
 				</div>
 				<div class="focusImageMargin" onclick="plusImage(1)">
@@ -90,42 +89,37 @@
 			
 		</div>
 		<div id="imagesContainer">
-			<div class="polaroid ">
+			<div class="polaroid " onclick="openImage('Imagenes/placeholder1.gif','descripcion de foto/nombre del lugar')">
 				<div class="PolaroidImageContainer">
-					<img src="Imagenes/placeholder1.gif"  >
+					<img class="PolaroidImage" src="Imagenes/placeholder1.gif"  >
 				</div>
 				<p class="caption">descripcion de foto/nombre del lugar</p>
 			</div>
-			<div class="polaroid ">
+			<div class="polaroid "  onclick="openImage('Imagenes/placeholder2.gif','descripcion de foto/nombre del lugar')">
 				<div class="PolaroidImageContainer">
-					<img src="Imagenes/placeholder1.gif"  >
+					<img class="PolaroidImage" src="Imagenes/placeholder2.gif"  >
 				</div>
 				<p class="caption">descripcion de foto/nombre del lugar</p>
 			</div>
-			<div class="polaroid" >
+			<div class="polaroid"  onclick="openImage('Imagenes/placeholder3.gif','descripcion de foto/nombre del lugar')" >
 				<div class="PolaroidImageContainer">
-					<img src="Imagenes/placeholder1.gif"  >
+					<img class="PolaroidImage" src="Imagenes/placeholder3.gif"  >
 				</div>
 				<p class="caption">descripcion de foto/nombre del lugar</p>
 			</div>
-			<div class="polaroid ">
+			<div class="polaroid "  onclick="openImage('Imagenes/placeholder4.jpg','descripcion de foto/nombre del lugar')">
 				<div class="PolaroidImageContainer">
-					<img src="Imagenes/placeholder1.gif"  >
+					<img class="PolaroidImage" src="Imagenes/placeholder4.jpg"  >
 				</div>
 				<p class="caption">descripcion de foto/nombre del lugar</p>
 			</div>
-			<div class="polaroid ">
+			<div class="polaroid "  onclick="openImage('Imagenes/placeholder5.jpg','descripcion de foto/nombre del lugar')">
 				<div class="PolaroidImageContainer">
-					<img src="Imagenes/placeholder1.gif"  >
+					<img class="PolaroidImage" src="Imagenes/placeholder5.jpg"  >
 				</div>
 				<p class="caption">descripcion de foto/nombre del lugar</p>
 			</div>
-			<div class="polaroid ">
-				<div class="PolaroidImageContainer">
-					<img src="Imagenes/placeholder1.gif"  >
-				</div>
-				<p class="caption">descripcion de foto/nombre del lugar</p>
-			</div>
+			
 		</div>
 		<div id="footer">
 				<div class="nameContainer">

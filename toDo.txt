@@ -1,11 +1,11 @@
 DISEÑO:
 	MAIN PAGE:
-		-links blog
-		-disable on page link
-
+		-links footer
 		-Anuncios
-		-subsecciones indice
+		-subsecciones boletin
 		-galeria
+			navegarla con botones
+			botton cerrar
 		-mapa con botones
 		-fullscreen en boletin?
 	BOLETIN/NOTICIAS:

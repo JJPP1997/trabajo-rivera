@@ -1,3 +1,4 @@
+var currentImg=0;
 function loader(){
 	$.keyframe.define([{
 		name: 'hide',
@@ -20,8 +21,16 @@ function loader(){
 	$("#overlay").width(width).height(height);
 	//hide slides
 	
-	
-	
+	/*
+   var anchors = document.getElementsByClassName('polaroid');
+	for(var i = 0; i < anchors.length; i++) {
+		var polaroid = anchors[i];
+		polaroid.onclick = function() {
+			var trial = polaroid.src;
+			$('#focusedImage').attr("src", trial);
+			$("#focusImage").show();
+		}
+	}*/
 	//fade in
 	
 		$("#overlay").playKeyframe({
@@ -37,4 +46,14 @@ function loader(){
 }
 function scroller(){
 	manageHeader();
+}
+function openImage(src,text){
+	
+	
+	$("#focusedImage").attr("src",src);
+	
+	$("#focusImagePolaroidContainer").next(".caption").text(text);
+	$("#focusImage").css("display", "inline");
+	
+	
 }
