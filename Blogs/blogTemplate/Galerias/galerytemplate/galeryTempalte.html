@@ -68,7 +68,8 @@
 				</div>
 			</div>
 		</div>
-		<div id="focusImage">
+		<div id="focusImage" >
+			<button id="closeBtn" onclick="closeFocusImg()">&times;</button>
 			<div id="focusImagePolaroid">
 				<div class="focusImageMargin" onclick="plusImage(-1)">
 					<a class="prev">&#10094;</a>
@@ -88,12 +89,13 @@
 			
 			
 		</div>
-		<div id="imagesContainer">
+		<div id="imagesContainer" >
 			<div class="polaroid " onclick="openImage('Imagenes/placeholder1.gif','descripcion de foto/nombre del lugar')">
 				<div class="PolaroidImageContainer">
 					<img class="PolaroidImage" src="Imagenes/placeholder1.gif"  >
 				</div>
 				<p class="caption">descripcion de foto/nombre del lugar</p>
+				<div class="clear"></div>
 			</div>
 			<div class="polaroid "  onclick="openImage('Imagenes/placeholder2.gif','descripcion de foto/nombre del lugar')">
 				<div class="PolaroidImageContainer">

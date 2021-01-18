@@ -3,9 +3,6 @@ DISEÑO:
 		-links footer
 		-Anuncios
 		-subsecciones boletin
-		-galeria
-			navegarla con botones
-			botton cerrar
 		-mapa con botones
 		-fullscreen en boletin?
 	BOLETIN/NOTICIAS:

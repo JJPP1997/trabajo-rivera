@@ -8,7 +8,7 @@
 
 .polaroid {
   width: 30%;
-  height:300px;
+  height:350px;
   padding: 1% 1% 2% 1%;
   border: 1px solid #BFBFBF;
   background-color: white;
@@ -18,20 +18,35 @@
 }
 
 #focusImage{
-	width: 80%;
-	height:500px;
+	width: 100%;
 	background-color: rgba(100, 100, 100, 0.5);
 	position: absolute;
 	z-index: 10;
-
+	
 	display:none;
+}
+#closeBtn {
+	position: absolute;
+	top: 0;
+	left: 0px;
+	font-size: 2vw;
+	margin-left: 5%;
+	background-color: rgba(100, 100, 100, 0.5);
+	width:100px;
+	height:50px;	
+}
+#background{
+	width:100%;
+	height:100%;
 }
 .focusImageMargin{
 	width:10%;
 	/*background-color:#000000;*/
 	height:100%;
 	display: table;
-	
+	z-index: 20;
+	color:white;
+	font-size:50px;
 	-webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
   -moz-box-flex: 1;         /* OLD - Firefox 19- */
             /* For old syntax, otherwise collapses. */
@@ -49,12 +64,11 @@
 }
 #focusImagePolaroid{
 	width:90%;
+	z-index: 15;
 	margin-left:5%;
 	margin-right:5%;
+	margin-top:50px;
 	padding: 1% 1% 2% 1%;
-	border: 1px solid #BFBFBF;
-	background-color: rgba(100, 100, 100, 0.5);
-	box-shadow: 10px 10px 5px #aaaaaa;
 	display: flex; 
 	height:100%;
 	display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
@@ -68,6 +82,8 @@
 	text-align:center;
 	width:100%;
 	background-color:white;
+	 border-radius: 25px;
+	 padding:5px;
 	
 }
 #focusImagePolaroidContainer{
@@ -90,7 +106,7 @@
 
 }
 
-.PolaroidImageContainer img{
+.PolaroidImage{
 	width:100%;
 	display: block;
 	margin-left: auto;
