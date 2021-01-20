@@ -14,12 +14,9 @@ function loader(){
 	var height = $(window).height();
 	var menubar=$("#wholeHeader").height();
 	//fit overlay
-	$("#title_overlay").height($("#title_background").height);
-	$("#title_overlay").css('top', menubar+5);
-	$("#title_background").width(width).height(height);
+	
+	fitTitleOverlay();
 	$("#overlay").width(width).height(height);
-	$("#overlay_center").width(width-100).height($("#title_background").height);
-	$(".overlay_margin").width(50).height($("#title_background").height);
 	//hide slides
 	var slides = document.getElementsByClassName("mySlides");
 	for (i = 0; i < slides.length; i++) {
@@ -73,7 +70,19 @@ showSlides(slideIndex);
 
 function AutoPlusSlides() {
   showSlides(slideIndex += 1);
-   triggerTitleAnimation();
+	offset=$("#description").offset();
+	margin=parseInt($("#description").css('marginTop').replace("px",""));
+	title=$("#description").first().height();
+	 console.log(margin);
+	if ($(window).scrollTop()<offset.top-margin-title){
+		$("#title").css("visibility", "visible");
+	  triggerTitleAnimation();
+	  console.log("in");
+
+	}else{
+		console.log("out");
+		$("#title").css("visibility", "hidden");
+	}
 	
 }
 function plusSlides(n) {
@@ -97,6 +106,31 @@ function showSlides(n) {
   }
   slides[slideIndex-1].style.display = "block";  
 
+}
+function fitTitleOverlay(){
+	var width = $(window).width();
+	var height = $(window).height();
+	var menubar=$("#wholeHeader").height();
+	
+	$("#title_background").width(width);
+	
+	if(width>651){
+		$("#title_background").height(height);
+		$("#overlay_center").width(width-100);
+		$("#title").width("50%");
+		$(".overlay_margin").width(50).height(height);
+			$("#overlay_center").height(height);
+	}else{
+		$("#title_background").height(200);
+		$("#overlay_center").width(width-200);
+		$("#title").width(width-200);
+		$(".overlay_margin").width(100).height(200);
+		$("#overlay_center").height(200);
+	}
+	
+	$("#title_overlay").height($("#title_background").height());
+	$("#title_overlay").css('top', menubar+5);
+	
 }
 function fadeBody(fade) {
 	//hides t shows the ovverlay to hide the loading of elements
@@ -132,11 +166,24 @@ function readMore(container,open){
 	}
 	
 }
+
 function resizer(){
-	
+	fitTitleOverlay();
+	var width=$(window).width();
+	if(width>651){
+			$("#header").css("background-color", "#F0F0F0"); 
+			resetSidenav();
+		
+	}else{
+		if($("#mySidenav").is(":visible") ){
+			setSidenavWith();
+			
+		}
+	}
 }
 
 function scroller(){
 	manageHeader();
+	
 }
 

@@ -60,12 +60,8 @@ function loader(){
 
 
 
-function openNav(x) {
-  x.classList.toggle("change");
-}
-function resizer(){
-	
-}
+
+
 
 function scroller(){
 	

@@ -8,3 +8,6 @@ function manageHeader(){
 		header.classList.remove("sticky");
 	  }
 }
+function openNav(x) {
+  x.classList.toggle("change");
+}
