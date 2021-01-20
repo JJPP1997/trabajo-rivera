@@ -70,19 +70,7 @@ showSlides(slideIndex);
 
 function AutoPlusSlides() {
   showSlides(slideIndex += 1);
-	offset=$("#description").offset();
-	margin=parseInt($("#description").css('marginTop').replace("px",""));
-	title=$("#description").first().height();
-	 console.log(margin);
-	if ($(window).scrollTop()<offset.top-margin-title){
-		$("#title").css("visibility", "visible");
 	  triggerTitleAnimation();
-	  console.log("in");
-
-	}else{
-		console.log("out");
-		$("#title").css("visibility", "hidden");
-	}
 	
 }
 function plusSlides(n) {
@@ -184,6 +172,18 @@ function resizer(){
 
 function scroller(){
 	manageHeader();
+	fitTitleOverlay();
+	offset=$("#description").offset();
+	margin=parseInt($("#description").css('marginTop').replace("px",""));
+	title=$("#description").first().height();
 	
+	if ($(window).scrollTop()<offset.top-margin-title-5){
+		$("#title").css("visibility", "visible");
+	
+
+	}else{
+		
+		$("#title").css("visibility", "hidden");
+	}
 }
 
