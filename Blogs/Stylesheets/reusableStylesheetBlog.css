@@ -119,8 +119,11 @@
 		background-color:#DBDBDB;
 	}
 	ul {
-	  list-style-type: none;
-	  padding:5px;
+		list-style-type: none;
+		padding-inline-start:0px;
+		margin-inline-start:0px;
+		margin-block-start:0px;
+   
 	}
 	#headerContainer>li {
 	  list-style-type: none;
@@ -138,7 +141,7 @@
 		transition:1s;
 		position:relative;
 		top:0;
-		z-index:1000;
+		z-index:2000;
 		left:0;
 	}
 	#submenu button{
@@ -150,7 +153,7 @@
 		overflow:hidden;
 		font-size: 2vw;
 		border:none;
-		height:33.333%;
+		height:90px;
 		width:100%;
 		
 	}
@@ -326,7 +329,12 @@
 	
 	ul {
 	  list-style-type: none;
-	  padding:5px;
+		list-style-type: none;
+		padding-inline-start:0px;
+		margin-inline-start:0px;
+		margin-block-start:0px;
+
+	 
 	}
 
 	#submenu{
