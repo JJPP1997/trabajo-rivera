@@ -97,19 +97,23 @@
 		
 	}
 	#headerContainer{
-
+		width:80%;
+		float:left;
 	}
 	.headerBtn{
 		
-		padding: 15px 32px;
+		
 		text-align: center;
 		text-decoration: none;
 		display: inline;
 		cursor: pointer;
-		width:20%;
-		font-size: 1.2vw;
+		width:24%;
+		font-size: 2vw;
 		border:none;
-		min-height:95px;
+		height:94px;
+	}
+	.smallFont{
+			
 	}
 	.headerBtn:hover{
 		background-color:#DBDBDB;
@@ -120,13 +124,14 @@
 	}
 	#headerContainer>li {
 	  list-style-type: none;
-	  width:15%;
+	  width:24%;
 	  display:inline;
 	  float:left;
+	  font-size: 2vw;
 	}
 	li>.headerBtn{
 		width:100%;
-		font-size: 1vw;
+		
 	}
 	#submenu{
 		display:none;
@@ -137,16 +142,17 @@
 		left:0;
 	}
 	#submenu button{
-		padding: 15px 32px;
+		
 		text-align: center;
 		text-decoration: none;
 		display: block;
 		cursor: pointer;
 		overflow:hidden;
-		font-size: 1vw;
+		font-size: 2vw;
 		border:none;
-		min-height:80px;
+		height:33.333%;
 		width:100%;
+		
 	}
 	#submenu button:disabled{
 		display:none;
@@ -154,6 +160,16 @@
 	}
 	#submenu button:hover{
 		background-color:#DBDBDB;
+	}
+	.seccionTitle{
+		font-size:3vw;
+		border-bottom: 4px solid #27496d;
+		text-align:center;
+		margin-left:10%;
+		margin-right:10%;
+		width:80%;
+		margin-bottom:50px;
+		
 	}
 
 	/*footer*/
@@ -351,7 +367,13 @@
 	  font-size: 36px;
 	  margin-left: 50px;
 	}
-	
+	.seccionTitle{
+		font-size:6vw;
+		border-bottom: 4px solid #27496d;
+		text-align:center;
+		margin:auto;
+		margin-bottom:30px;		
+	}
 	/*footer*/
 	#footer{
 		border-top:4px solid black;

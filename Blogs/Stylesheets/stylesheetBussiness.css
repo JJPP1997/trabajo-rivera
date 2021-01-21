@@ -1,67 +1,146 @@
+@media only screen and (min-width: 652px) {
 
+	/*sidenav*/
+	#sidenavBtn{
+		font-size:50px;
+		cursor:pointer;
+		color:#738276;
+		float:right;
+		margin-right:40px;
+	}
+	.active, .collapsible:hover {
+	  background-color: #555;
+	}
+	#container{
+		width:80%;
+		margin:20px 10% 20px 10%;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.bussinessContaner{
+		width:80%;
+		font-size:1.5vw; 
+		cursor: pointer;
+		margin-top:10px;
+		margin-bottom:50px;
+		margin-left:10%;
+		margin-right:10%;
+		border-right:solid 2px grey;
+		border-left:solid 2px grey;
+	}
+	.clearer {
+		 clear: both;
+	}
+	.bussinessContaner:hover{
+	 box-shadow: 2px 2px 2px 2px #888888;
 
-/*sidenav*/
-#sidenavBtn{
-	font-size:50px;
-	cursor:pointer ;
-	color:#738276;
-	float:right;
-	margin-right:40px;
+	}
+	.leftContainer{
+		float:left;
+		width:45%;
+		height:100%;
+		
+	}
+	.leftContainer img{
+		vertical-align: middle;
+		position: relative;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		height:100%;
+		width:70%;
+		
+	}
+	.rightContainer{
+		float:right;
+		width:55%;
+		border-left:dotted 2px grey;
+		padding-left:10px;
+		font-size:2vw;
+	}
+	.rightContainer h1{
+		font-size:4vw;
+	}
+	#title{
+		font-size:6vw;
+		margin-left:30%;
+		margin-right:30%;
+		text-align:center;
+		margin-bottom:50px;
+		border-bottom:solid 4px grey;
+		
+	}
 }
-.active, .collapsible:hover {
-  background-color: #555;
-}
-#container{
-width:80%;
-margin:20px 10% 20px 10%;
-display: block;
-margin-left: auto;
-margin-right: auto;
-}
-.bussinessContaner{
- width:80%;
-font-size:1.5vw; 
-cursor: pointer;
-min-height:250px;
-margin-top:10px;
-margin-bottom:10px;
-margin-left:10%;
-margin-right:10%;
-}
-.clearer {
-     clear: both;
-}
-.bussinessContaner:hover{
- box-shadow: 2px 2px 2px 2px #888888;
+@media only screen and (max-width: 652px) {
+	/*sidenav*/
+	#sidenavBtn{
+		font-size:50px;
+		cursor:pointer ;
+		color:#738276;
+		float:right;
+		margin-right:40px;
+	}
+	.active, .collapsible:hover {
+	  background-color: #555;
+	}
+	#container{
+		width:95%;
+		margin:20px 5% 20px 5%;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.bussinessContaner{
+		width:80%;
+		font-size:1.5vw; 
+		cursor: pointer;
+		
+		margin-top:10px;
+		margin-bottom:30px;
+		margin-left:10%;
+		margin-right:10%;
+		border-right:solid 2px grey;
+		border-left:solid 2px grey;
+	}
+	.clearer {
+		 clear: both;
+	}
+	.bussinessContaner:hover{
+		box-shadow: 2px 2px 2px 2px #888888;
 
-}
-.leftContainer{
-	float:left;
-	width:45%;
-	border-left:solid 2px grey;
-	border-right:dotted  1px grey;
-}
-.leftContainer>img{
-	vertical-align: middle;
-	position: relative;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+	}
+	.leftContainer{
+		float:left;
+		width:45%;
+		border-right:dotted  2px grey;
+		
+	}
+	.leftContainer>img{
 	
-}
-.rightContainer{
-	float:right;
-	width:45%;
-	border-right:solid 2px grey;
-}
-#title{
-	font-size:3vw;
-	margin-left:30%;
-	margin-right:30%;
-	text-align:center;
-	margin-bottom:50px;
-	border-bottom:solid 4px grey;
-	
+		margin-left: 10%;
+		margin-right: 10%;
+		width:80%;
+		
+	}
+	.rightContainer{
+		float:right;
+		width:55%;
+		font-size:3vw;
+		
+		padding-left:15px;
+		margin:auto;
+		
+	}
+	#title{
+		font-size:6vw;
+		margin-left:10%;
+		margin-right:10%;
+		text-align:center;
+		margin-bottom:50px;
+		border-bottom:solid 4px grey;
+		
+	}
 }
 /*SCRAPPED
 .sidenav {
