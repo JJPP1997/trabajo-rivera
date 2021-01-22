@@ -19,13 +19,13 @@
 		margin-right: auto;
 	}
 	.bussinessContaner{
-		width:80%;
+		width:60%;
 		font-size:1.5vw; 
 		cursor: pointer;
 		margin-top:10px;
 		margin-bottom:50px;
-		margin-left:10%;
-		margin-right:10%;
+		margin-left:20%;
+		margin-right:20%;
 		border-right:solid 2px grey;
 		border-left:solid 2px grey;
 	}
@@ -63,7 +63,7 @@
 		font-size:4vw;
 	}
 	#title{
-		font-size:6vw;
+		font-size:4vw;
 		margin-left:30%;
 		margin-right:30%;
 		text-align:center;

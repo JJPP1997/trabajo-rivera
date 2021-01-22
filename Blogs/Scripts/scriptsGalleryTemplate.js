@@ -20,7 +20,7 @@ function loader(){
 	var menubar=$("#wholeHeader").height();
 	
 	//fit overlay
-	$("#focusImage").width(width).height(Bheight);
+	//$("#focusImage").width(width).height(height);
 	$("#overlay").width(width).height(height);
 	//hide slides
 	
@@ -48,7 +48,11 @@ function loader(){
 	
 }
 function scroller(){
+		var menubar=$("#wholeHeader").height();
+	var offset=$(window).scrollTop()+menubar;
+	
 	manageHeader();
+	closeFocusImg();	$("#focusImage").css("top",offset+"px");
 }
 function openImage(src,text){
 	
@@ -69,7 +73,7 @@ function openImage(src,text){
 }
 function fitMargins(){
 	$(".focusImageMargin").height($("#focusedImage").height());
-		console.log("lol");
+	
 }
 function plusImage(num){
 	

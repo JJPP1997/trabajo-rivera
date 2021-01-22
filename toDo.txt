@@ -1,6 +1,6 @@
 DISEÑO:
 	MAIN PAGE:
-		
+		-modo movil boletin
 		-links footer
 		-subsecciones boletin
 		-mapa con botones
