@@ -45,7 +45,9 @@
 	#mySidenav{
 		display:none;
 	}
-	
+	button{
+		padding:0;
+	}
 @media only screen and (min-width: 652px) {
 	
 	/**HEADER**/
@@ -99,15 +101,15 @@
 	#headerContainer{
 		width:80%;
 		float:left;
+		display:flex;
 	}
 	.headerBtn{
-		
 		
 		text-align: center;
 		text-decoration: none;
 		display: inline;
 		cursor: pointer;
-		width:24%;
+		width:25%;
 		font-size: 2vw;
 		border:none;
 		height:94px;

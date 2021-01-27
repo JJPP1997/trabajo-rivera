@@ -1,61 +1,5 @@
 DISEÑO:
-	MAIN PAGE:
-		-modo movil boletin
-		-links footer
-		-subsecciones boletin
-		-mapa con botones
-		-fullscreen en boletin?
-	BOLETIN/NOTICIAS:
-		TO CODE:
-		-Main Page
-			-Header
-				-menu
-			-div resumen noticia con y sin foto
-			-This month
-			-date
-		-sections	
-		-Searcher			
-		-Pagina de notica
-		-footer
-		RETOUCH:
-		DONE:
-	BLOGS:
-		TO CODE:
-		disapear and swpanw read more buttons deppending on the size of the text
-		-Main Page:
-			-responsive 
-		-Negocios y productos Page:
-			
-		-Galeria
-		
-			-galery page
-			-scroller
-		-Blog
-			-presentacion
-			-agenda cultural/fiestas
-			-historia
-			-div blog entry
-		-Data inserter
-		RETOUCH:	
-		DONE:
-	ALOJAMIENTO:
-		
-		TO CODE:
-			MAIN 
-			-Map and redirect page btns
-			- on hover btn show bellow some picts and desc AND FOCUS ON MAP
-			
-			SPECIFIC TOURISM PAGE
-			-header
-			-div donde comer
-			-div donde dormir
-			-menu
-			-lugares de interes div
-			-lugares de interes pic carrousel/ desc and map
-			
-		RETOUCH:
-		DONE:
-	
+	REVISAR FONT Y TITULO, HACERLO IMAGEN SI ESO
 	PAGE INSERT DATA TO BLOG
 		-diseñar
 	PAGE INSERT DATA TO BOLETIN
@@ -73,6 +17,3 @@ MISC
 	BUSCAR UN MAPA DECENTE PARA ALOJAMIENTO
 	PLACEMENT y meta tags
 	
-
-	
-		

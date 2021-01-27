@@ -22,7 +22,7 @@
 	
 	</head>
 	
-	<body onload="loader()" onscroll="scroller()">
+	<body onload="loader()" onscroll="scroller()"  onresize="resizer()">
 		<div id="overlay">
 			<div class="loader"></div>
 		
@@ -52,8 +52,12 @@
 					<button class="headerBtn"  onclick="window.open('Busqueda.html');">
 							 Busqueda &#128270;
 					</button>
+					<button class="headerBtn">
+						Conoce Los Pueblos
+					</button>
 				</div>
-				<div class="container" onclick="openNav(this)">
+					
+				<div id="containerBtn" onclick="openNav(this)">
 					  <div class="bar1"></div>
 					  <div class="bar2"></div>
 					  <div class="bar3"></div>
@@ -65,8 +69,18 @@
 					</div>
 			</div>
 		</div>
-	
+		<div id="mySidenav" class="sidenav">
+		
+			<a href="DondeComer/.html">Cultura</a>
+			<a href="DondeDormir/Indice.html">Opinión</a>
+			<a href="NegociosLocales/Indice.html">Deportes</a>	
+			<a href="AgendaCultural.html">Politica</a>
+			<a href="Galeria.html">Entrevistas</a>
+			<a href="Busqueda.html"> Busqueda &#128270;</a>
+			<a href="Busqueda.html">Conoce Los Pueblos</a>
+		</div>
 		<div id="recentNews">
+		
 			<h1 class="seccionTitle">Noticias Recientes</h1>
 			<div class="articleContainer">
 				
@@ -81,6 +95,7 @@
 					<div class="articleData">
 						<p class="articleAutor">nombre del Autor </p>
 						<p class="articleDate">00/00/00</p>
+						
 					</div>	
 					<p class="articleSample">
 						Etiam magna arcu, rhoncus ut felis quis, porta facilisis orci. Nulla efficitur ullamcorper lacus non hendrerit. Cras ipsum nisi, pret

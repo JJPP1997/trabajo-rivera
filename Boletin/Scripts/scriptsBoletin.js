@@ -57,13 +57,30 @@ function loader(){
 	
 }
 
-
-
-
-
-
+function resizer(){
+	
+	setSidenavWith();
+	var width=$(window).width();
+	if(width>699){
+			$("#header").css("background-color", "#F0F0F0"); 
+			resetSidenav();
+		
+	}else{
+		if($("#mySidenav").is(":visible") ){
+			setSidenavWith();
+			
+		}
+	}
+}
 
 function scroller(){
-	
 	manageHeader();
+	
 }
+
+
+
+
+
+
+

@@ -1,220 +1,384 @@
-#headerSearch{
-	width:100%;
-	border-bottom: 4px solid #27496d;
-	background-color:#F0F0F0;
-	z-index:100;
-	min-height:100px;
-	top: 0;
+.regular-checkbox {
+	-webkit-appearance: none;
+	background-color: #fafafa;
+	border: 1px solid #cacece;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+	padding: 9px;
+	border-radius: 3px;
+	display: inline-block;
+	position: relative;
+	margin-right:5px;
 	
 }
-#textInput{
-	width:100%;
+.regular-checkbox:active, .regular-checkbox:checked:active {
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+
+
+.regular-checkbox:checked {
+	background-color: #e9ecee;
+	border: 1px solid #adb8c0;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+	color: #99a1a7;
+}
+.regular-checkbox:checked:after {
+	content: '\2716';
+	font-size: 15px;
+	position: absolute;
+	top: 0px;
+	left: 3px;
+	color: #73c2fb;
+}
+@media only screen and (min-width: 600px) {
+	#headerSearch{
+		width:100%;
+		border-bottom: 4px solid #27496d;
+		background-color:#F0F0F0;
+		z-index:100;
+		min-height:100px;
+		top: 0;
+		
+	}
+	#textInput{
+		width:100%;
+		
+	}
+	#searchBar{
+		width: 80%;
+		margin-left:10%;
+		margin-right:10%;
+		margin-bottom:50px;
+		
+	}
+	.inputContainer{
+		margin-right:10px;
+		font-size:20px;
+	}
+	/* Show the checkmark when checked */
+	.container input:checked ~ .checkmark:after {
+	  display: block;
+	}
+	#submitBtn{
+		
+		padding: 15px 32px;
+		text-align: center;
+		text-decoration: none;
+		display: inline;
+		cursor: pointer;
+		font-size: 1.2vw;
+		border:none;
+		background-color:#73c2fb;
+		font-weight:bold;
+	}
+	#submitBtn:hover{
+		border:1px solid black;
+		
+	}
+	/* Style the checkmark/indicator */
+	.container .checkmark:after {
+	  left: 9px;
+	  top: 5px;
+	 
+	  border: solid white;
+	  border-width: 0 3px 3px 0;
+	  -webkit-transform: rotate(45deg);
+	  -ms-transform: rotate(45deg);
+	  transform: rotate(45deg);
+	}
+
+
+
+	input {
+	  /* In order to define widths */
+	  display: inline-block;
+	 
+	  
+	}
+
+	label {
+	  width: 30%;
+	  /* Positions the label text beside the input */
+	  text-align: right;
+	  font-size:1.5vw;
+	}
+
+	label+input {
+	  width: 30%;
+	  /* Large margin-right to force the next element to the new-line
+			   and margin-left to create a gutter between the label and input */
+	  margin: 0 30% 0 4%;
+	}
+	/*BTN*/
+	#headerButton{
+		width:100%;
+		background-color:#27496d;
+		cursor: pointer;
+		text-align:right;
+		font-size:2.5vw;
+		color:white;
+		font-weight:bold;
+		padding-right:50px;
+		
+		
+	}
+	.hide{
+		-webkit-animation-name: hide;
+		-webkit-animation-duration: 1s;
+		animation-name: hide;
+		animation-duration: 2s;
+	}
+	.show{
+		-webkit-animation-name: show;
+		-webkit-animation-duration: 1s;
+		animation-name: show;
+		animation-duration: 2s;
+	}
+	@-webkit-keyframes show {
+	   from {
+		transform: translateY(-700px);
+	   
+	  }
+	  to {
+		transform: translateY(0);
+	   
+	  }
+	}
+
+	@keyframes show {
+	   from {
+		transform: translateY(-700px);
+	   
+	  }
+	  to {
+		transform: translateY(0);
+	   
+	  }
+	}
+	@-webkit-keyframes hide {
+	   from {
+		transform: translateY(0);
+	   
+	  }
+	  to {
+		 transform: translateY(-700px);
+	  
+	  }
+	}
+
+	@keyframes hide {
+	from {
+		transform: translateY(0);
+	   
+	  }
+	  to {
+		 transform: translateY(-700px);
+	   
+	  }
+	}
+	/*ARTICLES*/
+	#ArticleOverlay{
+		width:100%;
+		height:100%;
+		background:black;
+		z-index:1000;
+		opacity:1;
+		position:absolute;
+		top:0px;
+		left:0px;
+		color:white;
+		font-size:2vw;
+		user-select: none;
+		-moz-user-select: none;
+		-khtml-user-select: none;
+		-webkit-user-select: none;
+		-o-user-select: none;
+		display:none;
+	}
+	#newsContainer{
+		width:80%;
+		margin:50px 10% 50px 10%;
+
+		
+	}
+
 	
-}
-#searchBar{
-	width: 80%;
-	margin-left:10%;
-	margin-right:10%;
-	margin-bottom:50px;
-}
-.inputContainer{
-	margin-right:10px;
-}
-/* Show the checkmark when checked */
-.container input:checked ~ .checkmark:after {
-  display: block;
-}
-#submitBtn{
+}	
+@media only screen and (max-width: 600px) {
+	#headerSearch{
+		width:100%;
+		border-bottom: 4px solid #27496d;
+		background-color:#F0F0F0;
+		z-index:100;
+		min-height:100px;
+		top: 0;
+		
+	}
+	#textInput{
+		width:100%;
+		
+	}
+	#searchBar{
+		width: 98%;
+		margin-left:1%;
+		margin-right:1%;
+		margin-bottom:50px;
+		
+	}
+	.inputContainer{
+		width:100%;
+		float:left;
+		font-size:5vw;
+		text-align:left;
+		margin-left:10px;
+	}
+	/* Show the checkmark when checked */
+	.container input:checked ~ .checkmark:after {
+	  display: block;
+	}
+	#submitBtn{
+		width:90%;
+		margin-left:5%;
+		margin-right:5%;
+		text-align: center;
+		text-decoration: none;
+		display: inline;
+		cursor: pointer;
+		font-size: 25px;
+		border:none;
+		background-color:#73c2fb;
+		font-weight:bold;
+		margin-top:10px,
+	}
+	#submitBtn:hover{
+		border:1px solid black;
+		
+	}
+	/* Style the checkmark/indicator */
+	.container .checkmark:after {
+	  left: 9px;
+	  top: 5px;
+	 
+	  border: solid white;
+	  border-width: 0 3px 3px 0;
+	  -webkit-transform: rotate(45deg);
+	  -ms-transform: rotate(45deg);
+	  transform: rotate(45deg);
+	}
+
+
+
+	input {
+	  /* In order to define widths */
+	  display: inline-block;
+	 
+	  
+	}
+
+	label {
+	  width: 30%;
+	  /* Positions the label text beside the input */
+	  text-align: right;
+	  font-size:1.5vw;
+	}
+
+	label+input {
+	  width: 30%;
+	  /* Large margin-right to force the next element to the new-line
+			   and margin-left to create a gutter between the label and input */
+	  margin: 0 30% 0 4%;
+	}
+	/*BTN*/
+	#headerButton{
+		width:100%;
+		background-color:#27496d;
+		cursor: pointer;
+		text-align:right;
+		font-size:25px;
+		color:white;
+		font-weight:bold;
+		padding-right:50px;
+		
+		
+	}
+	.hide{
+		-webkit-animation-name: hide;
+		-webkit-animation-duration: 1s;
+		animation-name: hide;
+		animation-duration: 2s;
+	}
+	.show{
+		-webkit-animation-name: show;
+		-webkit-animation-duration: 1s;
+		animation-name: show;
+		animation-duration: 2s;
+	}
+	@-webkit-keyframes show {
+	   from {
+		transform: translateY(-700px);
+	   
+	  }
+	  to {
+		transform: translateY(0);
+	   
+	  }
+	}
+
+	@keyframes show {
+	   from {
+		transform: translateY(-700px);
+	   
+	  }
+	  to {
+		transform: translateY(0);
+	   
+	  }
+	}
+	@-webkit-keyframes hide {
+	   from {
+		transform: translateY(0);
+	   
+	  }
+	  to {
+		 transform: translateY(-700px);
+	  
+	  }
+	}
+
+	@keyframes hide {
+	from {
+		transform: translateY(0);
+	   
+	  }
+	  to {
+		 transform: translateY(-700px);
+	   
+	  }
+	}
+	/*ARTICLES*/
+	#ArticleOverlay{
+		width:100%;
+		height:100%;
+		background:black;
+		z-index:1000;
+		opacity:1;
+		position:absolute;
+		top:0px;
+		left:0px;
+		color:white;
+		font-size:2vw;
+		user-select: none;
+		-moz-user-select: none;
+		-khtml-user-select: none;
+		-webkit-user-select: none;
+		-o-user-select: none;
+		display:none;
+	}
+	#newsContainer{
+		width:80%;
+		margin:50px 10% 50px 10%;
+
+		
+	}
+
 	
-	padding: 15px 32px;
-	text-align: center;
-	text-decoration: none;
-	display: inline;
-	cursor: pointer;
-	font-size: 1.2vw;
-	border:none;
-	background-color:#73c2fb;
-	font-weight:bold;
-}
-#submitBtn:hover{
-	border:1px solid black;
-	
-}
-/* Style the checkmark/indicator */
-.container .checkmark:after {
-  left: 9px;
-  top: 5px;
- 
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-
-
-input {
-  /* In order to define widths */
-  display: inline-block;
- 
-  
-}
-
-label {
-  width: 30%;
-  /* Positions the label text beside the input */
-  text-align: right;
-  font-size:1.5vw;
-}
-
-label+input {
-  width: 30%;
-  /* Large margin-right to force the next element to the new-line
-           and margin-left to create a gutter between the label and input */
-  margin: 0 30% 0 4%;
-}
-/*BTN*/
-#headerButton{
-	width:100%;
-	background-color:#27496d;
-	cursor: pointer;
-	text-align:right;
-	font-size:2.5vw;
-	color:white;
-	font-weight:bold;
-	padding-right:50px;
-	
-	
-}
-.hide{
-	-webkit-animation-name: hide;
-	-webkit-animation-duration: 1s;
-	animation-name: hide;
-	animation-duration: 2s;
-}
-.show{
-	-webkit-animation-name: show;
-	-webkit-animation-duration: 1s;
-	animation-name: show;
-	animation-duration: 2s;
-}
-@-webkit-keyframes show {
-   from {
-    transform: translateY(-700px);
-   
-  }
-  to {
-    transform: translateY(0);
-   
-  }
-}
-
-@keyframes show {
-   from {
-    transform: translateY(-700px);
-   
-  }
-  to {
-    transform: translateY(0);
-   
-  }
-}
-@-webkit-keyframes hide {
-   from {
-    transform: translateY(0);
-   
-  }
-  to {
-     transform: translateY(-700px);
-  
-  }
-}
-
-@keyframes hide {
-from {
-    transform: translateY(0);
-   
-  }
-  to {
-     transform: translateY(-700px);
-   
-  }
-}
-/*ARTICLES*/
-#ArticleOverlay{
-	width:100%;
-	height:100%;
-	background:black;
-	z-index:1000;
-	opacity:1;
-	position:absolute;
-	top:0px;
-	left:0px;
-	color:white;
-	font-size:2vw;
-	user-select: none;
-	-moz-user-select: none;
-	-khtml-user-select: none;
-	-webkit-user-select: none;
-	-o-user-select: none;
-	display:none;
-}
-#newsContainer{
-	width:80%;
-	margin:50px 10% 50px 10%;
-
-	
-}
-
-/*footer*/
-#footer{
-	border-top:4px solid black;
-	width:100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color:#00416a;
-	margin-top:50px;
-	color:white;
-}
-.nameContainer{
-	font-size:1.5vw;
-	float:left;
-	max-height:200px;
-	margin:0px 0px 0px 0px;
-}
-.footerContainer{
-	float:left;
-	max-height:200px;
-	margin:10px 0px 10px 0px;
-	font-size:1.3vw;
-	padding:5px;
-}
-.contactContainer{
-	border-left:2px solid black;
-}
-.legalContainer{
-	border-left:2px solid black;
-
-}
-ul {
-  list-style-type: none;
-  padding:5px;
-}
-/*LINKS*/
-a:link {
-  text-decoration: none;
-}
-
-a:visited {
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-a:active {
-  text-decoration: underline;
 }
