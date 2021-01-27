@@ -1,4 +1,16 @@
+function resizer(){
+	
+	if($("#headerSearch").css("visibility")=="hidden"){
+	var height = $("#headerSearch").height();
+	height= (-height);
+	$("#headerSearch").css("visibility", "hidden");
+	$("#headerSearch").css("transform", "translate(0,"+height+"px)");
 
+	$("#results").css("transform", "translate(0,"+height+"px)");
+	$("#headerButton").css("transform", "translate(0,"+height+"px)");
+
+	}
+}
 function manageHeader(isHidden) {
 	$.keyframe.define([{
 		name: 'show',
