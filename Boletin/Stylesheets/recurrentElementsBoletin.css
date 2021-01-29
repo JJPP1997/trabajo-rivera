@@ -42,9 +42,7 @@ overlay{
 .clear{
 	clear: both;
 }
-#mySidenav{
-	display:none;
-}
+
 
 /**HEADER**/
 	button{
@@ -124,6 +122,64 @@ overlay{
 		to {background-color: white;}
 	  
 	}
+	/*MAPMENU*/
+	#mapMenu{
+		width:100%;
+		text-align:center;
+		display:none;
+	}
+	
+	#closeMapBtn {
+	position: absolute;
+	 
+	  right:10px;
+	  font-size: 50px;
+	  margin-left: 50px;
+	}
+	#mapMenu> img{
+		width:100%;
+	}	
+	#map{
+		border:solid 10px black;
+	}
+	
+	#mapSidenav{
+		display:none;
+		height:100%;
+		position: absolute;
+		z-index: 15;
+		
+		
+		background-color: white;
+		overflow-x: hidden;
+		transition: 0.5s;
+		padding-top: 30px;
+	}
+
+	#mapSidenav a {
+	   display: flex;
+	   justify-content: center;
+	   align-items: center;
+	   padding: 8px;
+	   text-decoration: none;
+	   font-size: 25px;
+	   color: black;
+		transition: 0.3s;
+		text-align:center;
+	}
+	#mapSidenav .closebtn {
+	  position: absolute;
+	  top: 0px;
+	  right: 25px;
+	  font-size: 36px;
+	  margin-left: 50px;
+	}
+
+	#mapSidenav  a:hover {
+	  color:grey;
+	}
+	
+	
 	  
 	  
 @media only screen and (min-width: 700px) {
@@ -131,9 +187,10 @@ overlay{
 		width:100%;
 		font-size: 5vw;
 		text-align:center;
-		
+		height:150px;
 		padding:0px 50px 10px 50px
 	}
+	
 	.headerBtn{
 		
 		text-align: center;
@@ -298,6 +355,7 @@ overlay{
 		display: none;
 	
 	}
+
 	#containerBtn {
 		float:right;
 		
@@ -320,14 +378,15 @@ overlay{
 		transition: 0.5s;
 		padding-top: 30px;
 	}
+	
 	.sidenav a {
-	   display: flex;
-	   justify-content: center;
-	   align-items: center;
-	   padding: 8px;
-	   text-decoration: none;
-	   font-size: 25px;
-	   color: #818181;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 8px;
+		text-decoration: none;
+		font-size: 25px;
+		color: #818181;
 		transition: 0.3s;
 		text-align:center;
 	}

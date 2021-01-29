@@ -16,8 +16,11 @@
 	  
 		<script type="text/javascript" src="Scripts/scriptsBoletin.js"></script> 
 		<script type="text/javascript" src="Scripts/reusableBoletinScripts.js"></script> 
+		
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script src='http://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
+		
+		<script type="text/javascript" src="../image-map-resizer-master/js/imageMapResizer.min.js"></script>
 		<script type="text/javascript" src="../jQuery.Keyframes-master/dist/jquery.keyframes.js"></script>
 	
 	</head>
@@ -52,7 +55,7 @@
 					<button class="headerBtn"  onclick="window.open('Busqueda.html');">
 							 Busqueda &#128270;
 					</button>
-					<button class="headerBtn">
+					<button  class="headerBtn mapBTN" onclick="openMap()">
 						Conoce Los Pueblos
 					</button>
 				</div>
@@ -64,9 +67,46 @@
 				</div>
 			</div>
 			
-			<div id="menu">
-					<div >
-					</div>
+			<div id="mapMenu">
+				<a href="javascript:void(0)" id="closeMapBtn" onclick="closeMap()">&times;</a>
+				<h1>Conoce Los Pueblos</h1>
+				<div onclick="openMapNav()" style="font-size:2vw;">Usa el mapa o haz click aqui para ver la lista de pueblos</div>
+				<div id="mapSidenav"  class="sidenav">
+					<a href="javascript:void(0)" class="closebtn" onclick="closeMapNav()">&times;</a>
+					<a href="../Blogs/blogTemplate/BlogTemplatePage.html">
+						Valdeolivas
+					</a>
+					<a href="../Blogs/blogTemplate/BlogTemplatePage.html">
+						Albendea
+					</a>
+					<a href="../Blogs/blogTemplate/BlogTemplatePage.html">
+						Priego
+					</a>
+					<a href="../Blogs/blogTemplate/BlogTemplatePage.html">
+						Cañamares
+					</button>
+					<a href="../Blogs/blogTemplate/BlogTemplatePage.html">
+						Fuertescusa
+					</a>
+					<a href="../Blogs/blogTemplate/BlogTemplatePage.html">
+						Poyatos
+					</a>
+					<a href="../Blogs/blogTemplate/BlogTemplatePage.html">
+						Villaconejos de Trabaque
+					</a>
+				</div>
+				<img id="mapBackground" src="Imagenes/plano_escabas.jpg" usemap="#rivermap"></img>
+				<map id="map" name="rivermap">
+					<area shape="rect" coords="0,0,200,71" alt="Valdeolivas" href="../Blogs/blogTemplate/BlogTemplatePage.html">
+					<area shape="rect" coords="0,71,200,142" alt="Albendea" href="../Blogs/blogTemplate/BlogTemplatePage.html">
+					<area shape="rect" coords="250,200,550,300" alt="Priego" href="../Blogs/blogTemplate/BlogTemplatePage.html">
+					<area shape="rect" coords="550,200,850,300" alt="Cañamares" href="../Blogs/blogTemplate/BlogTemplatePage.html">
+					<area shape="rect" coords="800,100,1000,200" alt="Fuertescusa" href="../Blogs/blogTemplate/BlogTemplatePage.html">
+					<area shape="rect" coords="1050,300,1300,450" alt="Poyatos" href="../Blogs/blogTemplate/BlogTemplatePage.html">
+					<area shape="rect" coords="0,300,250,400" alt="San Pedro Palmiches" href="../Blogs/blogTemplate/BlogTemplatePage.html">
+					<area shape="rect" coords="250,400,500,500" alt="Villaconejos de Trabaque" href="../Blogs/blogTemplate/BlogTemplatePage.html">
+				</map>
+				
 			</div>
 		</div>
 		<div id="mySidenav" class="sidenav">
@@ -77,7 +117,7 @@
 			<a href="AgendaCultural.html">Politica</a>
 			<a href="Galeria.html">Entrevistas</a>
 			<a href="Busqueda.html"> Busqueda &#128270;</a>
-			<a href="Busqueda.html">Conoce Los Pueblos</a>
+			<a href="javascript:void(0)" onclick="openMap()" >Conoce Los Pueblos</a>
 		</div>
 		<div id="recentNews">
 		
@@ -352,4 +392,6 @@
 					</ul>
 				</div>
 		</div>
+	
 	</body>
+	

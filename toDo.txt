@@ -1,5 +1,8 @@
 DISEÑO:
+	re diseñar articulos?	
+	meter espacio para anuncios
 	REVISAR FONT Y TITULO, HACERLO IMAGEN SI ESO
+	admin page
 	PAGE INSERT DATA TO BLOG
 		-diseñar
 	PAGE INSERT DATA TO BOLETIN

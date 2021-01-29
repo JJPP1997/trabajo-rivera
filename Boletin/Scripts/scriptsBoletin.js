@@ -1,5 +1,6 @@
 var clicked=false;
 function loader(){
+	imageMapResize();
 	$.keyframe.define([{
 		name: 'hide',
 		from: {
@@ -58,7 +59,7 @@ function loader(){
 }
 
 function resizer(){
-	
+	imageMapResize();
 	setSidenavWith();
 	var width=$(window).width();
 	if(width>699){

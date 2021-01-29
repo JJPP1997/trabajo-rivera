@@ -149,14 +149,14 @@ function openNav(x) {
 	setSidenavWith();
 	
 	$("#mySidenav").playKeyframe({
-			name: 'show',
-			duration: '1s',
-			iterationCount: 1,
-			complete: function(){
-				
-				$("#containerBtn" ).attr("onclick","closeNav(this)");
-			}
-		});
+		name: 'show',
+		duration: '1s',
+		iterationCount: 1,
+		complete: function(){
+			
+			$("#containerBtn" ).attr("onclick","closeNav(this)");
+		}
+	});
 	  
     
 

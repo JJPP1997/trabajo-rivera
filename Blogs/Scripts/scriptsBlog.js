@@ -157,6 +157,7 @@ function readMore(container,open){
 
 function resizer(){
 	fitTitleOverlay();
+	
 	var width=$(window).width();
 	if(width>651){
 			$("#header").css("background-color", "#F0F0F0"); 

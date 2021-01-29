@@ -13,7 +13,50 @@ function manageHeader(){
 	  }
 	
 }
-
+function closeMapNav(){
+	$.keyframe.define([{
+		name: 'hide',
+		
+		from: {
+			"transform": "translate(0px,0px)"
+		},
+		to: {
+			"transform": "translate(-100%,0px)"
+		}
+		
+	}]);
+	$("#mapSidenav").playKeyframe({
+			name: 'hide',
+			duration: '1s',
+			iterationCount: 1,
+			complete: function(){
+				document.getElementById("mapSidenav").style.display = "none";
+				
+			}
+		});  
+	
+}
+function openMapNav(){
+	resetSidenav();
+	
+	$("#header").css("background-color", "#F0F0F0"); 
+	$.keyframe.define([{
+		name: 'show',
+		from: {
+			"transform": "translate(-100%,0px)"
+		},
+		to: {
+			"transform": "translate(0px,0px)"
+		}
+	}]);
+	document.getElementById("mapSidenav").style.display = "inline";
+	$("#mapSidenav").playKeyframe({
+		name: 'show',
+		duration: '1s',
+		iterationCount: 1
+		
+	});
+}
 function resetSidenav(){
 	$("#header").css("background-color", "#F0F0F0"); 
 	$("#containerBtn" ).attr("onclick","openNav(this)");
@@ -38,6 +81,14 @@ function resetSidenav(){
 				$("#header").css("background-color", "#F0F0F0"); 
 			}
 		});
+}
+function setSidenavWith(){
+	var width=$(window).width();
+	if(width<400){
+		$("#mySidenav").width( width-($("#containerBtn").width()+10));
+	}else{
+		$("#mySidenav").width(300);
+	}
 }
 function closeNav(x) {
 	$("#containerBtn" ).attr("onclick","");
@@ -82,17 +133,8 @@ function closeNav(x) {
 		});  
     
 }
-function setSidenavWith(){
-	
-	var width=$(window).width();
-	if(width<400){
-		$("#mySidenav").width( width-($("#containerBtn").width()+10));
-	}else{
-		$("#mySidenav").width(300);
-	}
-}
-
 function openNav(x) {
+	document.getElementById("mapSidenav").style.display = "none";
 	$("#containerBtn" ).attr("onclick","");
 
 	
@@ -160,5 +202,16 @@ function alignSidenav(){
 		  }
 		
 	  }
+	
+}
+
+function openMap(){
+	document.getElementById("mapSidenav").style.display = "none";
+	document.getElementById("mapMenu").style.display = "inline";
+	resetSidenav();
+}
+function closeMap(){
+	document.getElementById("mapSidenav").style.display = "none";
+	document.getElementById("mapMenu").style.display = "none";
 	
 }
