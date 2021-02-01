@@ -209,6 +209,7 @@ function openMap(){
 	document.getElementById("mapSidenav").style.display = "none";
 	document.getElementById("mapMenu").style.display = "inline";
 	resetSidenav();
+	imageMapResize();
 }
 function closeMap(){
 	document.getElementById("mapSidenav").style.display = "none";

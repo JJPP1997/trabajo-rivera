@@ -1,0 +1,3 @@
+function checkCookie(){
+	return true;
+}

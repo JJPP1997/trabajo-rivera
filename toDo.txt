@@ -1,4 +1,9 @@
+bugs:
+	
+	arrows move left on blog main page
+	close html tags
 DISEÑO:
+
 	re diseñar articulos?	
 	meter espacio para anuncios
 	REVISAR FONT Y TITULO, HACERLO IMAGEN SI ESO
