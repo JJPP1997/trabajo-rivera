@@ -1,3 +1,4 @@
+
 bugs:
 	
 	arrows move left on blog main page
@@ -9,12 +10,16 @@ DISEÑO:
 	REVISAR FONT Y TITULO, HACERLO IMAGEN SI ESO
 	admin page
 	PAGE INSERT DATA TO BLOG
-		-diseñar
+		-implementar
 	PAGE INSERT DATA TO BOLETIN
-		-diseñar 
+		check cookies
+		limitar char
+		error text
 BDD:
-	DISEÑAR LA BDD
+	
 	IMPLEMENTAR METODOS
+		ahcer update article
+		insertar objetos
 	TESTING
 MISC 
 	PREGUNTAR AL PROFE

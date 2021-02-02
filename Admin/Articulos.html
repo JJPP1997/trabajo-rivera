@@ -22,26 +22,118 @@
 	
 	</head>
 	<body onload="checkCookie()">
-		
+		<button class="accordion" onclick="manageAccordion(this)">Nuevo Articulo</button>
+		<div class="panel" >
+			<form action="Scripts/phpConection.php" method="post"  enctype="multipart/form-data">
+				<label for="title">Titulo</label>
+				<input type="text"  name="title" placeholder="...">
 
-		<div>
-		  <form action="/action_page.php">
-			<label for="fname">Nombre</label>
-			<input type="text" id="fname" name="firstname" placeholder="...">
-
-			<label for="lname">Contraseña</label>
-			<input type="text" id="lname" name="lastname" placeholder="...">
-			<!--
-				<label for="country">Country</label>
-				<select id="country" name="country">
-				  <option value="australia">Australia</option>
-				  <option value="canada">Canada</option>
-				  <option value="usa">USA</option>
+				<label for="autor">Autor</label>
+				<input type="text"  name="autor" placeholder="...">
+				<label for="date">Fecha</label>
+				<input type="date"  name="date" placeholder="...">
+				<br></br>
+				<label for="fileToUpload">Imagen</label>
+				<br></br>
+				<input type="file" name="fileToUpload" id="fileToUpload">
+					<br></br>
+				<label for="section">Seccion</label>
+				<select  name="section">
+					<option value="cultura">Cultura</option>
+					<option value="opinion">Opinión</option>
+					<option value="deportes">Deportes</option>
+					<option value="politica">Politica</option>
+					<option value="entrevistas">Entrevistas</option>
+					
 				</select>
-			  -->
-			<input type="submit" value="Entrar">
+				<label for="text">Contenido</label>
+			    <textarea class="textBox" name="text" placeholder="Texto..." ></textarea>
+				<!--
+					<label for="country">Country</label>
+					<select id="country" name="country">
+					  <option value="australia">Australia</option>
+					  <option value="canada">Canada</option>
+					  <option value="usa">USA</option>
+					</select>
+				  -->
+				<input type="submit" value="Crear">
 		  </form>
+		
 		</div>
+		<button class="accordion" onclick="manageAccordion(this)">Editar y Borrar Articulos</button>
+		<div class="panel" >
+			<form>
+				<br>
+					<label for="deleteRB">Selecciona esta opción para borrar el articulo seleccionado</label>
+					<input type="radio" id="deleteRB" name="selector" value="Borrar">
+				</br>
+				<br>
+					<label for="editRB">Selecciona esta opción para cambiar el articulo seleccionado</label>
+					<input type="radio" id="editRB" name="selector" value="Editar">
+				</br>
+				<br></br>
+				<label for="ftext">Introduce el titulo del articulo para buscarlo en la lista:</label>
+				<input type="text" id="textInput" name="ftext"></input>
+			</form>
+			  <p>Seleciona el articulo:</p>
+				<div id="articleContainer">
+					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
+					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
+					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
+					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
+					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
+					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
+					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
+					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
+					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
+					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
+					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
+					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
+					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
+					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
+					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
+					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
+					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
+					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
+				</div>
+			<form action="/action_page.php">
+				<label for="title">Titulo</label>
+				<input type="text"  name="title" placeholder="...">
+
+				<label for="autor">Autor</label>
+				<input type="text"  name="autor" placeholder="...">
+				<label for="date">Fecha</label>
+				<input type="date"  name="date" placeholder="...">
+				<br></br>
+				<label for="fileToUpload">Imagen</label>
+				<br></br>
+				<input type="file" name="fileToUpload" id="fileToUpload">
+					<br></br>
+				<label for="section">Seccion</label>
+				<select  name="section">
+					<option value="cultura">Cultura</option>
+					<option value="opinion">Opinión</option>
+					<option value="deportes">Deportes</option>
+					<option value="politica">Politica</option>
+					<option value="entrevistas">Entrevistas</option>
+					
+				</select>
+				<label for="texto">Contenido</label>
+			    <textarea class="textBox" name="texto" placeholder="Texto..." ></textarea>
+				<!--
+					<label for="country">Country</label>
+					<select id="country" name="country">
+					  <option value="australia">Australia</option>
+					  <option value="canada">Canada</option>
+					  <option value="usa">USA</option>
+					</select>
+				  -->
+				<input type="submit" value="Crear">
+		  </form>
+			
+		</div>
+		
+		
 
 	</body>
 <html>

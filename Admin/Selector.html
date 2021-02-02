@@ -22,26 +22,23 @@
 	
 	</head>
 	<body onload="checkCookie()">
+		<button class="accordion" href="../Blogs/blogTemplate/BlogTemplatePage.html">
+			Editar/Crear Articulos
+		</button>
+		<button class="accordion" onclick="manageAccordion(this)">Editar las páginas de los pueblos</button>
+		<div class="panel" >
+				<h2> Elije un pueblo</h2>
+				<button class="villageSelector" onclick="openVillageEditor(0)">Valdeolivas</button>
+				<button class="villageSelector" onclick="openVillageEditor(1)">Albendea</button>
+				<button class="villageSelector" onclick="openVillageEditor(2)">Priego</button>
+				<button class="villageSelector" onclick="openVillageEditor(3)">Cañamares</button>
+				<button class="villageSelector" onclick="openVillageEditor(4)">Fuertescusa</button>
+				<button class="villageSelector" onclick="openVillageEditor(5)">Poyatos</button>
+				<button class="villageSelector" onclick="openVillageEditor(6)">Villaconejos de Trabaque</button>
 		
-
-		<div>
-		  <form action="/action_page.php">
-			<label for="name">Nombre</label>
-			<input type="text" id="name" name="name" placeholder="...">
-
-			<label for="pass">Contraseña</label>
-			<input type="password" id="pass" name="pass" placeholder="...">
-			<!--
-				<label for="country">Country</label>
-				<select id="country" name="country">
-				  <option value="australia">Australia</option>
-				  <option value="canada">Canada</option>
-				  <option value="usa">USA</option>
-				</select>
-			  -->
-			<input type="submit" value="Entrar">
-		  </form>
 		</div>
+
+		
 
 	</body>
 <html>
