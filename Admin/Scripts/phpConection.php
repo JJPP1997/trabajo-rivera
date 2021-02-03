@@ -5,6 +5,7 @@
 	$user="root";
 	$pasword="";
 	$fatherDir="";
+	$currentArticle=-1;
 	$currentMessages=0;
 	$currentBlogPage=-1;
 	/*	Valdeolivas =0
@@ -91,7 +92,10 @@
 				$GLOBALS["fatherDir"]="VillaconejosDeTrabaque/";
 			break;
 		}
-		echo $GLOBALS["currentBlogPage"]; 
+		echo $GLOBALS["currentArticle"]; 
+	}
+	function setCurrenArticle($num){
+		$GLOBALS["currentBlogPage"]=$num;
 	}
 	function checkDbAvailable(){
 			$mysqli = new mysqli($host,$user, $pasword);
@@ -406,7 +410,7 @@
 				//$stmt = $GLOBALS["conn"]->prepare($sql);		
 				
 				if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
-					$stmt->bind_param("sssssi",$_POST['articleUpdateTitle'],$_POST['articleUpdateText'],$path_parts['dirname'],$_POST['articleUpdateAutor'],$_POST['articleUpdateTag'],$id);	
+					$stmt->bind_param("sssssi",$_POST['articleUpdateTitle'],$_POST['articleUpdateText'],$path_parts['dirname'],$_POST['articleUpdateAutor'],$_POST['articleUpdateTag'],$GLOBALS["currentBlogPage"]);	
 					/* execute statement */
 					$stmt->execute();
 					echo "working";
