@@ -4,6 +4,7 @@
 	$bd="riveradb";//id13819712_db for hosting
 	$user="root";
 	$pasword="";
+	$fatherDir="";
 	$currentMessages=0;
 	$currentBlogPage=-1;
 	/*	Valdeolivas =0
@@ -28,8 +29,7 @@
 	if(isset($_POST['submit'])){
 
 		//uploadImage();
-		$path_parts = pathinfo($_FILES["fileToUpload"]);
-		insertArticle($_POST['title'],$_POST['text'],$path_parts['dirname'],$_POST['autor'],$_POST['section']);
+	
 	 
 	 }
 	}else{
@@ -45,7 +45,12 @@
 				break;
 				case 'insertArticle':
 					//return result of getChatbox
-					 insertArticle($_POST['arguments']);
+					 insertArticle();
+					
+				break;
+				case 'updateArticle':
+					//return result of getChatbox
+					 updateArticle();
 					
 				break;
 				case 'setCurrentVillage':
@@ -63,6 +68,29 @@
 	}
 	function setCurrentVillage($num){
 		$GLOBALS["currentBlogPage"]=$num;
+		switch($GLOBALS["currentBlogPage"]){
+			case 0:
+				$GLOBALS["fatherDir"]="Valdeolivas/";
+			break;
+			case 1:
+				$GLOBALS["fatherDir"]="Albendea/";
+			break;
+			case 2:
+				$GLOBALS["fatherDir"]="Priego/";
+			break;
+			case 3:
+				$GLOBALS["fatherDir"]="Canamares/";
+			break;
+			case 4:
+				$GLOBALS["fatherDir"]="Fuertescusa/";
+			break;
+			case 5:
+				$GLOBALS["fatherDir"]="Poyatos/";
+			break;
+			case 6:
+				$GLOBALS["fatherDir"]="VillaconejosDeTrabaque/";
+			break;
+		}
 		echo $GLOBALS["currentBlogPage"]; 
 	}
 	function checkDbAvailable(){
@@ -116,6 +144,9 @@
 				die("Connection failed: " . $GLOBALS["conn"]->connect_error);
 				
 			}else{
+				$direction="";
+				
+				uploadImage("",$_FILES["anouncementImage"])
 				$path_parts = pathinfo($_FILES["anouncementImage"]);
 				$sql="INSERT INTO `anouncement`(`id_blog`,`title`,`date`,`text`,`src`) VALUE (?,?,?,?);";	
 				//$stmt = $GLOBALS["conn"]->prepare($sql);		
@@ -333,20 +364,49 @@
 			echo "ERROR:".$e;
 		}
 	}
-	function insertArticle($title,$text,$image,$autor,$tag){
-		
+	function insertArticle(){
 		try{
-				
+			$path_parts = pathinfo($_FILES["articleImg"]);	
 			if (!$GLOBALS["conn"]) {
 				die("Connection failed: " . $GLOBALS["conn"]->connect_error);
 				
 			}else{
-			
+				
 				$sql="INSERT INTO `article`(`title`,`text`,`image_src`,`editor_name`,`tags`) VALUE (?,?,?,?,?);";	
 				//$stmt = $GLOBALS["conn"]->prepare($sql);		
 				
 				if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
-					$stmt->bind_param("sssss",$title,$text,$image,$autor,$tag);	
+					$stmt->bind_param("sssss",$_POST['articleTitle'],$_POST['articleText'],$path_parts['dirname'],$_POST['articleAutor'],$_POST['articleTag']);	
+					/* execute statement */
+					$stmt->execute();
+					echo "working";
+						
+				} else {
+					
+					echo "error"."connection failure";
+				}
+
+						
+
+			}
+		}catch(exception $e){
+			echo "error"." ".$e;
+		}
+		
+	}
+	function updateArticle($id){
+		try{
+			$path_parts = pathinfo($_FILES["articleImg"]);	
+			if (!$GLOBALS["conn"]) {
+				die("Connection failed: " . $GLOBALS["conn"]->connect_error);
+				
+			}else{
+				
+				$sql="UPDATE `article`SET`title`=?,`text`=?,`image_src`=?,`editor_name`=?,`tags=?`) WHERE `id_article`=?;";	
+				//$stmt = $GLOBALS["conn"]->prepare($sql);		
+				
+				if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
+					$stmt->bind_param("sssssi",$_POST['articleUpdateTitle'],$_POST['articleUpdateText'],$path_parts['dirname'],$_POST['articleUpdateAutor'],$_POST['articleUpdateTag'],$id);	
 					/* execute statement */
 					$stmt->execute();
 					echo "working";
@@ -400,49 +460,49 @@
 			echo "ERROR:".$e;
 		}
 	}
-	function uploadImage($dir){
-	$target_dir = $dir.concat("/");
-	$target_file = $target_dir . basename($_FILES["fileToUpload"]["tmp_name"]);
-	$uploadOk = 1;
-	$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-	$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-	if($check !== false) {
-		echo "File is an image - " . $check["mime"] . ".";
+	function uploadImage($dir,$img){
+		$target_dir = $dir.concat("/");
+		$target_file = $target_dir . basename($img["tmp_name"]);
 		$uploadOk = 1;
-	} else {
-		echo "File is not an image.";
-		$uploadOk = 0;
-	}
-	/*	// Check if file already exists
-	if (file_exists($target_file)) {
-	  echo "Sorry, file already exists.";
-	  $uploadOk = 0;
-	}*/
+		$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+		$check = getimagesize($img["tmp_name"]);
+		if($check !== false) {
+			echo "File is an image - " . $check["mime"] . ".";
+			$uploadOk = 1;
+		} else {
+			echo "File is not an image.";
+			$uploadOk = 0;
+		}
+			// Check if file already exists
+		if (file_exists($target_file)) {
+		  echo "ERROR, EL ARCHIVO YA EXISTE";
+		  $uploadOk = 0;
+		}
 
-	// Check file size
-	/*if ($_FILES["fileToUpload"]["size"] > 500000) {
-	  echo "Sorry, your file is too large.";
-	  $uploadOk = 0;
-	}*/
+		// Check file size
+		/*if ($_FILES["fileToUpload"]["size"] > 500000) {
+		  echo "Sorry, your file is too large.";
+		  $uploadOk = 0;
+		}*/
 
-	// Allow certain file formats
-	if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-	&& $imageFileType != "gif" ) {
-	  echo "Solo se permiten archivos: JPG, JPEG, PNG y GIF.";
-	  $uploadOk = 0;
-	}
+		// Allow certain file formats
+		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+		&& $imageFileType != "gif" ) {
+		  echo "Solo se permiten archivos: JPG, JPEG, PNG y GIF.";
+		  $uploadOk = 0;
+		}
 
-	// Check if $uploadOk is set to 0 by an error
-	if ($uploadOk == 0) {
-	  echo "ERROR AL SUBIR ARCHIVO.";
-	// if everything is ok, try to upload file
-	} else {
-	  if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-		
-	  } else {
+		// Check if $uploadOk is set to 0 by an error
+		if ($uploadOk == 0) {
 		  echo "ERROR AL SUBIR ARCHIVO.";
-	  }
-	}
+		// if everything is ok, try to upload file
+		} else {
+		  if (move_uploaded_file($img["tmp_name"], $target_file)) {
+			
+		  } else {
+			  echo "ERROR AL SUBIR ARCHIVO.";
+		  }
+		}
 	
 	}
 	

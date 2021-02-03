@@ -13,6 +13,7 @@ function manageAccordion(obj){
  
 }
 function editArticles(btn){
+	$("#updateArticle").show();
 	if($("#deleteRB").is(":checked")) {
 		btn.remove();
 	}

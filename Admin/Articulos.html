@@ -24,21 +24,21 @@
 	<body onload="checkCookie()">
 		<button class="accordion" onclick="manageAccordion(this)">Nuevo Articulo</button>
 		<div class="panel" >
-			<form action="Scripts/phpConection.php" method="post"  enctype="multipart/form-data">
-				<label for="title">Titulo</label>
-				<input type="text" maxlength="500" name="title" placeholder="...">
+			<form action="Scripts/phpConection.php" method="post"  action="insertArticle()" enctype="multipart/form-data">
+				<label for="articleTitle">Titulo</label>
+				<input type="text" maxlength="500" name="articleTitle" placeholder="...">
 
-				<label for="autor">Autor</label>
-				<input type="text"   maxlength="200" name="autor" placeholder="...">
-				<label for="date">Fecha</label>
-				<input type="date"  name="date" placeholder="...">
+				<label for="articleAutor">Autor</label>
+				<input type="text"   maxlength="200" name="articleAutor" placeholder="...">
+				<label for="articleDate">Fecha</label>
+				<input type="date"  name="articleDate" placeholder="...">
 				<br></br>
-				<label for="fileToUpload">Imagen</label>
+				<label for="articleImg">Imagen</label>
 				<br></br>
-				<input type="file" name="fileToUpload" id="fileToUpload">
+				<input type="file" name="articleImg" id="articleImg">
 					<br></br>
-				<label for="section">Seccion</label>
-				<select  name="section">
+				<label for="articleTag">Seccion</label>
+				<select  name="articleTag">
 					<option value="cultura">Cultura</option>
 					<option value="opinion">Opinión</option>
 					<option value="deportes">Deportes</option>
@@ -46,8 +46,8 @@
 					<option value="entrevistas">Entrevistas</option>
 					
 				</select>
-				<label for="text">Contenido</label>
-			    <textarea class="textBox" name="text" placeholder="Texto..." ></textarea>
+				<label for="articleText">Contenido</label>
+			    <textarea class="textBox" name="articleText" placeholder="Texto..." ></textarea>
 				<!--
 					<label for="country">Country</label>
 					<select id="country" name="country">
@@ -96,44 +96,44 @@
 					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
 					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
 				</div>
-			<form action="/action_page.php">
-				<label for="title">Titulo</label>
-				<input type="text" maxlength="500" name="title" placeholder="...">
-
-				<label for="autor">Autor</label>
-				<input type="text" maxlength="200"  name="autor" placeholder="...">
-				<label for="date">Fecha</label>
-				<input type="date"  name="date" placeholder="...">
-				<br></br>
-				<label for="fileToUpload">Imagen</label>
-				<br></br>
-				<input type="file" name="fileToUpload" id="fileToUpload">
-					<br></br>
-				<label for="section">Seccion</label>
-				<select  name="section">
-					<option value="cultura">Cultura</option>
-					<option value="opinion">Opinión</option>
-					<option value="deportes">Deportes</option>
-					<option value="politica">Politica</option>
-					<option value="entrevistas">Entrevistas</option>
+			<div id="updateArticle">	
+				<form action="Scripts/phpConection.php" method="post"  action="updateArticle()" enctype="multipart/form-data">
 					
-				</select>
-				<label for="texto">Contenido</label>
-			    <textarea class="textBox" name="texto" placeholder="Texto..." ></textarea>
-				<!--
-					<label for="country">Country</label>
-					<select id="country" name="country">
-					  <option value="australia">Australia</option>
-					  <option value="canada">Canada</option>
-					  <option value="usa">USA</option>
+					<label for="articleUpdateTitle">Titulo</label>
+					<input type="text" maxlength="500" name="articleUpdateTitle" placeholder="...">
+
+					<label for="articleUpdateAutor">Autor</label>
+					<input type="text"   maxlength="200" name="articleUpdateAutor" placeholder="...">
+					<label for="articleUpdateDate">Fecha</label>
+					<input type="date"  name="articleUpdateDate" placeholder="...">
+					<br></br>
+					<label for="articleUpdateImg">Imagen</label>
+					<br></br>
+					<input type="file" name="articleUpdateImg" id="articleUpdateImg">
+						<br></br>
+					<label for="articleUpdateTag">Seccion</label>
+					<select  name="articleUpdateTag">
+						<option value="cultura">Cultura</option>
+						<option value="opinion">Opinión</option>
+						<option value="deportes">Deportes</option>
+						<option value="politica">Politica</option>
+						<option value="entrevistas">Entrevistas</option>
+						
 					</select>
-				  -->
-				<input type="submit" value="Crear">
-		  </form>
-			
+					<label for="articleUpdateText">Contenido</label>
+					<textarea class="textBox" name="articleUpdateText" placeholder="Texto..." ></textarea>
+					<!--
+						<label for="country">Country</label>
+						<select id="country" name="country">
+						  <option value="australia">Australia</option>
+						  <option value="canada">Canada</option>
+						  <option value="usa">USA</option>
+						</select>
+					  -->
+					<input type="submit" value="Editar">
+			  </form>
 		</div>
 		
 		
-
 	</body>
 <html>
