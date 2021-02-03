@@ -17,24 +17,24 @@
 		
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script src='http://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
-		
+		<script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		
 	
 	</head>
 	<body onload="checkCookie()">
-		<button class="accordion" href="../Blogs/blogTemplate/BlogTemplatePage.html">
+		<button class="accordion"onclick="window.open('Articulos.html');">
 			Editar/Crear Articulos
 		</button>
 		<button class="accordion" onclick="manageAccordion(this)">Editar las páginas de los pueblos</button>
 		<div class="panel" >
 				<h2> Elije un pueblo</h2>
-				<button class="villageSelector" onclick="openVillageEditor(0)">Valdeolivas</button>
-				<button class="villageSelector" onclick="openVillageEditor(1)">Albendea</button>
-				<button class="villageSelector" onclick="openVillageEditor(2)">Priego</button>
-				<button class="villageSelector" onclick="openVillageEditor(3)">Cañamares</button>
-				<button class="villageSelector" onclick="openVillageEditor(4)">Fuertescusa</button>
-				<button class="villageSelector" onclick="openVillageEditor(5)">Poyatos</button>
-				<button class="villageSelector" onclick="openVillageEditor(6)">Villaconejos de Trabaque</button>
+				<button class="villageSelector" onclick="setCurrentVillage(0)">Valdeolivas</button>
+				<button class="villageSelector" onclick="setCurrentVillage(1)">Albendea</button>
+				<button class="villageSelector" onclick="setCurrentVillage(2)">Priego</button>
+				<button class="villageSelector" onclick="setCurrentVillage(3)">Cañamares</button>
+				<button class="villageSelector" onclick="setCurrentVillage(4)">Fuertescusa</button>
+				<button class="villageSelector" onclick="setCurrentVillage(5)">Poyatos</button>
+				<button class="villageSelector" onclick="setCurrentVillage(6)">Villaconejos de Trabaque</button>
 		
 		</div>
 

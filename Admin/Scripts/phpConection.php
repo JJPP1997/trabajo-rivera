@@ -5,6 +5,15 @@
 	$user="root";
 	$pasword="";
 	$currentMessages=0;
+	$currentBlogPage=-1;
+	/*	Valdeolivas =0
+		Albendea=1
+		Priego=2
+		Cañamares=3
+		Fuertescusa=4
+		Poyatos=5
+		Villaconejos=6
+	*/
 	//mysqli_report(MYSQLI_REPORT_ALL);
 	error_reporting(-1);
 	//ini_set(‘display_errors’, ‘true’);
@@ -17,14 +26,12 @@
 		
 	}
 	if(isset($_POST['submit'])){
-		 if(isset($_POST['idArticle'])){
-			 
-		 }else{
-			
-			uploadImage();
-			$path_parts = pathinfo($_FILES["fileToUpload"]);
-			insertArticle($_POST['title'],$_POST['text'],$path_parts['dirname'],$_POST['autor'],$_POST['section']);
-		 }
+
+		//uploadImage();
+		$path_parts = pathinfo($_FILES["fileToUpload"]);
+		insertArticle($_POST['title'],$_POST['text'],$path_parts['dirname'],$_POST['autor'],$_POST['section']);
+	 
+	 }
 	}else{
 		if( !isset($_POST['functionname']) ) { 
 			$aResult['error'] = 'No function name!'; 
@@ -41,6 +48,11 @@
 					 insertArticle($_POST['arguments']);
 					
 				break;
+				case 'setCurrentVillage':
+					//return result of getChatbox
+					 setCurrentVillage($_POST['arguments']);
+					
+				break;
 				case 'getAllArticles':
 					//return result of getChatbox
 					 getAllArticles();
@@ -49,7 +61,10 @@
 			}
 		}
 	}
-	
+	function setCurrentVillage($num){
+		$GLOBALS["currentBlogPage"]=$num;
+		echo $GLOBALS["currentBlogPage"]; 
+	}
 	function checkDbAvailable(){
 			$mysqli = new mysqli($host,$user, $pasword);
 			if ($mysqli->connect_errno) {
@@ -65,6 +80,184 @@
 			
 			}
 	}
+	function editMeetTheVillageText(){
+			try{
+				
+			if (!$GLOBALS["conn"]) {
+				die("Connection failed: " . $GLOBALS["conn"]->connect_error);
+				
+			}else{
+			
+				$sql="UPDATE `blog` SET `village_desc`=? WHERE `id_blog`= ?;";	
+				//$stmt = $GLOBALS["conn"]->prepare($sql);		
+				
+				if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
+					$stmt->bind_param("si",$_POST['meetTheVillageText'],$GLOBALS["currentBlogPage"]);	
+					/* execute statement */
+					$stmt->execute();
+					echo "working";
+						
+				} else {
+					
+					echo "error"."connection failure";
+				}
+
+						
+
+			}
+		}catch(exception $e){
+			echo "error"." ".$e;
+		}
+	}
+	function addAgendaEntry(){
+		try{
+				
+			if (!$GLOBALS["conn"]) {
+				die("Connection failed: " . $GLOBALS["conn"]->connect_error);
+				
+			}else{
+				$path_parts = pathinfo($_FILES["anouncementImage"]);
+				$sql="INSERT INTO `anouncement`(`id_blog`,`title`,`date`,`text`,`src`) VALUE (?,?,?,?);";	
+				//$stmt = $GLOBALS["conn"]->prepare($sql);		
+				
+				if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
+					$stmt->bind_param("isss",$GLOBALS["currentBlogPage"],$_POST['anouncementTitle'],$_POST['anouncementDate'],$_POST['anouncementText'],$path_parts['dirname']);	
+					/* execute statement */
+					$stmt->execute();
+					echo "working";
+						
+				} else {
+					
+					echo "error"."connection failure";
+				}
+
+						
+
+			}
+		}catch(exception $e){
+			echo "error"." ".$e;
+		}
+		
+	}
+	function addBusinessEntry(){
+		try{
+				
+			if (!$GLOBALS["conn"]) {
+				die("Connection failed: " . $GLOBALS["conn"]->connect_error);
+				
+			}else{
+				$path_parts = pathinfo($_FILES["businessImage"]);
+				$sql="INSERT INTO `business`(`name`,`telf`,`descrpition`,`src`,`type`,`addres`,`id_blog`) VALUE (?,?,?,?,?,?,?);";	
+				//$stmt = $GLOBALS["conn"]->prepare($sql);		
+				
+				if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
+					$stmt->bind_param("ssss",$_POST['businessName'],$_POST['businessText'],$path_parts['dirname'],$_POST['businessTipe'],$_POST['businessDir'],$GLOBALS["currentBlogPage"]);	
+					/* execute statement */
+					$stmt->execute();
+					echo "working";
+						
+				} else {
+					
+					echo "error"."connection failure";
+				}
+
+						
+
+			}
+		}catch(exception $e){
+			echo "error"." ".$e;
+		}
+		
+	}
+	function editHistoryText(){
+			try{
+				
+			if (!$GLOBALS["conn"]) {
+				die("Connection failed: " . $GLOBALS["conn"]->connect_error);
+				
+			}else{
+			
+				$sql="UPDATE `blog` SET `history`=? WHERE `id_blog`= ?;";	
+				//$stmt = $GLOBALS["conn"]->prepare($sql);		
+				
+				if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
+					$stmt->bind_param("si",$_POST['historyText'],$GLOBALS["currentBlogPage"]);	
+					/* execute statement */
+					$stmt->execute();
+					echo "working";
+						
+				} else {
+					
+					echo "error"."connection failure";
+				}
+
+						
+
+			}
+		}catch(exception $e){
+			echo "error"." ".$e;
+		}
+	}
+	function editPOIText(){
+			try{
+				
+			if (!$GLOBALS["conn"]) {
+				die("Connection failed: " . $GLOBALS["conn"]->connect_error);
+				
+			}else{
+			
+				$sql="UPDATE `blog` SET `POI_text`=? WHERE `id_blog`= ?;";	
+				//$stmt = $GLOBALS["conn"]->prepare($sql);		
+				
+				if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
+					$stmt->bind_param("si",$_POST['POIText'],$GLOBALS["currentBlogPage"]);	
+					/* execute statement */
+					$stmt->execute();
+					echo "working";
+						
+				} else {
+					
+					echo "error"."connection failure";
+				}
+
+						
+
+			}
+		}catch(exception $e){
+			echo "error"." ".$e;
+		}
+	}
+	function addPOI(){
+		try{
+				
+			if (!$GLOBALS["conn"]) {
+				die("Connection failed: " . $GLOBALS["conn"]->connect_error);
+				
+			}else{
+				$path_parts = pathinfo($_FILES["POIImage"]);
+				$sql="INSERT INTO `interest_place`(`id_blog`,`text`,`src`) VALUE (?,?,?);";	
+				//$stmt = $GLOBALS["conn"]->prepare($sql);		
+				
+				if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
+					$stmt->bind_param("iss",$GLOBALS["currentBlogPage"],$_POST['POIText'],$path_parts['dirname']);	
+					/* execute statement */
+					$stmt->execute();
+					echo "working";
+						
+				} else {
+					
+					echo "error"."connection failure";
+				}
+
+						
+
+			}
+		}catch(exception $e){
+			echo "error"." ".$e;
+		}
+		
+	}
+	/*ARTICLES*/
 	function getArticle($id){
 		try{
 			if (!$GLOBALS["conn"]) {

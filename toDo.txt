@@ -1,10 +1,10 @@
 
 bugs:
-	
+	 village list height = map
 	arrows move left on blog main page
 	close html tags
 DISEÑO:
-
+		
 	re diseñar articulos?	
 	meter espacio para anuncios
 	REVISAR FONT Y TITULO, HACERLO IMAGEN SI ESO
@@ -13,13 +13,13 @@ DISEÑO:
 		-implementar
 	PAGE INSERT DATA TO BOLETIN
 		check cookies
-		limitar char
 		error text
 BDD:
 	
 	IMPLEMENTAR METODOS
-		ahcer update article
-		insertar objetos
+		hacer update article
+		insertar en objetos
+		
 	TESTING
 MISC 
 	PREGUNTAR AL PROFE

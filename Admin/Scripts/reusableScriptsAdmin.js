@@ -21,6 +21,29 @@ function editArticles(btn){
 	}
 }
 //BDD
+function setCurrentVillage(num){
+	window.open("Pueblos.html");
+	$.ajax({
+		type: "POST",
+		url: "phpConection.php", //the page containing php script
+		dataType: 'json',
+		data: {
+			functionname: "setCurrentVillage",
+			arguments: num,
+			
+		},
+		success: function (response) {
+		   window.open("Pueblos.html");
+		   console.log(response);
+		},
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
+			alert("Status: " + textStatus);
+			alert("Error: " + errorThrown);
+		}
+
+    });
+	
+}
 function getAllArticles(){
 	   $.ajax({
         type: "POST",
@@ -44,7 +67,7 @@ function getAllArticles(){
 
     });
 }
-}
+
 function updateElement(id, rawHTML) {
 
     var element = document.getElementById(id);
