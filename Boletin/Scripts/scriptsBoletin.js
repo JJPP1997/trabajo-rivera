@@ -55,11 +55,13 @@ function loader(){
 		}
 	});*/
 	//fadeBody(true);
-	
+	fitVerticalAds();
 }
 
 function resizer(){
 	imageMapResize();
+	fitVerticalAds();
+	fitMapSidenav();
 	setSidenavWith();
 	var width=$(window).width();
 	if(width>699){
@@ -76,7 +78,7 @@ function resizer(){
 
 function scroller(){
 	manageHeader();
-	
+	fitVerticalAds();
 }
 
 

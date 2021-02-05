@@ -14,10 +14,15 @@
 		
 	}
 	#recentNews>.articleContainer{
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		display:block;
 	}
+	#recentNews>.articleContainer .article:first-of-type{
+		width:80%;
+		margin:10px 10% 50px 10%;
+	
+		
+	}
+	
 
 	/*MONTHLY*/
 	#allNews{
@@ -27,7 +32,7 @@
 	}
 	#allNews>.articleContainer{
 		
-		max-height:500px;
+		max-height:1000px;
 		overflow-y:scroll;
 		overflow-x:hidden;
 		width:100%;
@@ -82,8 +87,6 @@
 		
 	}
 	#allNews>.articleContainer{
-		
-	
 		width:100%;
 		display: block;
 		align-items: center;

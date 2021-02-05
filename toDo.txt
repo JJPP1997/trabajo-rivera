@@ -1,14 +1,10 @@
 
 bugs:
-	 village list height = map
-	arrows move left on blog main page
-	fit arrows
-	close html tags
+	-- equivale a <n>
+cambair nombre archivos
+
 DISEÑO:
-	cambair nombre archivos
-	cambiar titulo a El periodico de la Ribera del Escabas	
-	re diseñar articulos?	
-	meter espacio para anuncios
+	
 	REVISAR FONT Y TITULO, HACERLO IMAGEN SI ESO
 	admin page
 	PAGE INSERT DATA TO BLOG
@@ -24,11 +20,10 @@ BDD:
 		
 	TESTING
 MISC 
-	PREGUNTAR AL PROFE
-	HACER PRESUPUESTO Y DIAGRAMA DE TIEMPO
+	hacer documentacion 
 	COMPRAR LA URL
 	BUSCAR HOST
 	PONERSE EN CONTACTO CON LA ASOCIACION
-	BUSCAR UN MAPA DECENTE PARA ALOJAMIENTO
+
 	PLACEMENT y meta tags
 	

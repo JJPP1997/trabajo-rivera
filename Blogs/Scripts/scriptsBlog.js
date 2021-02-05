@@ -106,18 +106,21 @@ function fitTitleOverlay(){
 		$("#title_background").height(height);
 		$("#overlay_center").width(width-100);
 		$("#title").width("50%");
-		$(".overlay_margin").width(50).height(height);
-			$("#overlay_center").height(height);
+		$(".overlay_margin").width(50).height($("#title_img").height());
+		$("#overlay_center").height(height);
+		
+		
 	}else{
 		$("#title_background").height(200);
 		$("#overlay_center").width(width-200);
 		$("#title").width(width-200);
 		$(".overlay_margin").width(100).height(200);
 		$("#overlay_center").height(200);
+		
 	}
 	
 	$("#title_overlay").height($("#title_background").height());
-	$("#title_overlay").css('top', menubar+5);
+	$("#title_overlay").css('top', menubar);
 	
 }
 function fadeBody(fade) {
@@ -157,7 +160,6 @@ function readMore(container,open){
 
 function resizer(){
 	fitTitleOverlay();
-	
 	var width=$(window).width();
 	if(width>651){
 			$("#header").css("background-color", "#F0F0F0"); 
