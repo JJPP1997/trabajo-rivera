@@ -8,7 +8,15 @@
 	$currentArticle=-1;
 	$currentMessages=0;
 	$currentBlogPage=-1;
+	$ilegalChars = array(
+		"#","%","&","{","}","\\","<",">","*","?","/","+","`","|","=","$","!","¿","¡","'",'"',":","@"
+	);
+	$ilegalWords = array(
+		"select","delete","where","all","and","any","between","exists"
+	);
+	
 	/*	Valdeolivas =0
+	
 		Albendea=1
 		Priego=2
 		Cañamares=3
@@ -16,9 +24,9 @@
 		Poyatos=5
 		Villaconejos=6
 	*/
-	//mysqli_report(MYSQLI_REPORT_ALL);
+	mysqli_report(MYSQLI_REPORT_ALL);
 	error_reporting(-1);
-	//ini_set(‘display_errors’, ‘true’);
+	ini_set("display_errors", "true");
 	try{
 		$conn=mysqli_connect($host,$user,$pasword,$bd);
 		//echo $conn;
@@ -28,12 +36,12 @@
 		
 	}
 	if(isset($_POST['submit'])){
-
-		//uploadImage();
-	
-	 
+		if(isset($_POST['articleTitle'])){
+			insertArticle();
+		}
+	 	
 	 }
-	}else{
+	else{
 		if( !isset($_POST['functionname']) ) { 
 			$aResult['error'] = 'No function name!'; 
 		 } 
@@ -150,13 +158,14 @@
 			}else{
 				$direction="";
 				
-				uploadImage("",$_FILES["anouncementImage"])
-				$path_parts = pathinfo($_FILES["anouncementImage"]);
+				uploadImage("",$_FILES["anouncementImage"]);
+				$name = $_FILES ['anouncementImage']['name'];
+				
 				$sql="INSERT INTO `anouncement`(`id_blog`,`title`,`date`,`text`,`src`) VALUE (?,?,?,?);";	
 				//$stmt = $GLOBALS["conn"]->prepare($sql);		
 				
 				if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
-					$stmt->bind_param("isss",$GLOBALS["currentBlogPage"],$_POST['anouncementTitle'],$_POST['anouncementDate'],$_POST['anouncementText'],$path_parts['dirname']);	
+					$stmt->bind_param("issss",$GLOBALS["currentBlogPage"],$_POST['anouncementTitle'],$_POST['anouncementDate'],$_POST['anouncementText'],$name);	
 					/* execute statement */
 					$stmt->execute();
 					echo "working";
@@ -181,12 +190,13 @@
 				die("Connection failed: " . $GLOBALS["conn"]->connect_error);
 				
 			}else{
-				$path_parts = pathinfo($_FILES["businessImage"]);
+				$name = $_FILES ['businessImage']['name'];
+				
 				$sql="INSERT INTO `business`(`name`,`telf`,`descrpition`,`src`,`type`,`addres`,`id_blog`) VALUE (?,?,?,?,?,?,?);";	
 				//$stmt = $GLOBALS["conn"]->prepare($sql);		
 				
 				if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
-					$stmt->bind_param("ssss",$_POST['businessName'],$_POST['businessText'],$path_parts['dirname'],$_POST['businessTipe'],$_POST['businessDir'],$GLOBALS["currentBlogPage"]);	
+					$stmt->bind_param("ssss",$_POST['businessName'],$_POST['businessText'],$name,$_POST['businessTipe'],$_POST['businessDir'],$GLOBALS["currentBlogPage"]);	
 					/* execute statement */
 					$stmt->execute();
 					echo "working";
@@ -269,12 +279,12 @@
 				die("Connection failed: " . $GLOBALS["conn"]->connect_error);
 				
 			}else{
-				$path_parts = pathinfo($_FILES["POIImage"]);
+				$name = $_FILES ['POIImage']['name'];
 				$sql="INSERT INTO `interest_place`(`id_blog`,`text`,`src`) VALUE (?,?,?);";	
 				//$stmt = $GLOBALS["conn"]->prepare($sql);		
 				
 				if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
-					$stmt->bind_param("iss",$GLOBALS["currentBlogPage"],$_POST['POIText'],$path_parts['dirname']);	
+					$stmt->bind_param("iss",$GLOBALS["currentBlogPage"],$_POST['POIText'],$name);	
 					/* execute statement */
 					$stmt->execute();
 					echo "working";
@@ -370,24 +380,50 @@
 	}
 	function insertArticle(){
 		try{
-			$path_parts = pathinfo($_FILES["articleImg"]);	
+			$allOK=true;
+			
 			if (!$GLOBALS["conn"]) {
 				die("Connection failed: " . $GLOBALS["conn"]->connect_error);
 				
+				
 			}else{
+				$articleFileName=strtolower($_POST['articleTitle']);
+				$articleFileName=trim($articleFileName," ");
+				$articleFileName=trim($articleFileName,'"');
+				$articleFileName=str_replace(" ","-",$articleFileName);
+				$articleFileName=str_replace ($GLOBALS["ilegalChars"],"",$articleFileName); 
+				
+				
+				$dir="E:\\xampp\\htdocs\\trabajo-rivera\\Boletin\\Secciones\\";
+				$fulldir=$dir. ucfirst($_POST['articleTag'])."\\".$articleFileName;
+				echo $fulldir;
+				$name = $_FILES ['articleImg']['name'];
+				if(!uploadImage($fulldir,$_FILES ['articleImg'])){
+					$allOK=false;
+				}
+				if(!createArticle("articulo",$fulldir)){
+					$allOK=false;
+					echo "fallo al crear la pagina del articulo";
+				}
+				
+				//$size = $_FILES ['articleImg']['size'];
+				//$type = $_FILES ['articleImg']['type'];
+				//$tmp_name = $_FILES ['articleImg']['tmp_name'];
+				//$error = $_FILES ['articleImg']['error'];
+			
 				
 				$sql="INSERT INTO `article`(`title`,`text`,`image_src`,`editor_name`,`tags`) VALUE (?,?,?,?,?);";	
 				//$stmt = $GLOBALS["conn"]->prepare($sql);		
-				
-				if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
-					$stmt->bind_param("sssss",$_POST['articleTitle'],$_POST['articleText'],$path_parts['dirname'],$_POST['articleAutor'],$_POST['articleTag']);	
-					/* execute statement */
+				//$placeholder="lol.png";
+				if ($stmt =  $GLOBALS["conn"]->prepare($sql) && $allOK) {
+					
+					$stmt->bind_param("sssss",$_POST['articleTitle'],$_POST['articleText'],$name,$_POST['articleAutor'],$_POST['articleTag']);	
 					$stmt->execute();
-					echo "working";
+					echo "<br>Los datos del articulo han sido insertados</br>";
 						
 				} else {
 					
-					echo "error"."connection failure";
+					echo "<br>error"."no hay conexion</br>";
 				}
 
 						
@@ -405,12 +441,12 @@
 				die("Connection failed: " . $GLOBALS["conn"]->connect_error);
 				
 			}else{
-				
+				$name = $_FILES ['articleUpdateImg']['name'];
 				$sql="UPDATE `article`SET`title`=?,`text`=?,`image_src`=?,`editor_name`=?,`tags=?`) WHERE `id_article`=?;";	
 				//$stmt = $GLOBALS["conn"]->prepare($sql);		
 				
 				if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
-					$stmt->bind_param("sssssi",$_POST['articleUpdateTitle'],$_POST['articleUpdateText'],$path_parts['dirname'],$_POST['articleUpdateAutor'],$_POST['articleUpdateTag'],$GLOBALS["currentBlogPage"]);	
+					$stmt->bind_param("sssssi",$_POST['articleUpdateTitle'],$_POST['articleUpdateText'],$name,$_POST['articleUpdateAutor'],$_POST['articleUpdateTag'],$GLOBALS["currentBlogPage"]);	
 					/* execute statement */
 					$stmt->execute();
 					echo "working";
@@ -464,23 +500,43 @@
 			echo "ERROR:".$e;
 		}
 	}
+	function createArticle($name,$target_file){
+		$html = file_get_contents('E:\\xampp\\htdocs\\trabajo-rivera\\Boletin\\Secciones\\articleExample\\articleTemplate.html',1);
+		$pdfHtml = $name.'.html';
+
+		file_put_contents($pdfHtml, $html);
+		
+		// or you have the option to do nothing and assume it is made
+		if (file_exists($pdfHtml)) {
+			$res= move_uploaded_file ( $pdfHtml, $target_file );
+			
+			echo"lol:". $res;
+			echo "<br>Success :  has been made</br>";
+			return $res;
+		} else {
+			
+			echo "<br>Failure:  does not exist</br>";
+			return false;
+		}
+	}
 	function uploadImage($dir,$img){
-		$target_dir = $dir.concat("/");
-		$target_file = $target_dir . basename($img["tmp_name"]);
+		mkdir($dir, 0777);
+		$target_file = $dir .'\\'. basename($img["name"]);
 		$uploadOk = 1;
 		$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 		$check = getimagesize($img["tmp_name"]);
 		if($check !== false) {
-			echo "File is an image - " . $check["mime"] . ".";
+			echo "<br>El archivo es una imagen- " . $check["mime"] . ". </br>";
 			$uploadOk = 1;
 		} else {
-			echo "File is not an image.";
+			echo "<br>El archivo no es una imagen</br> ";
 			$uploadOk = 0;
 		}
 			// Check if file already exists
 		if (file_exists($target_file)) {
-		  echo "ERROR, EL ARCHIVO YA EXISTE";
+		  echo "<br>ERROR, EL ARCHIVO YA EXISTE</br>";
 		  $uploadOk = 0;
+		  
 		}
 
 		// Check file size
@@ -489,22 +545,26 @@
 		  $uploadOk = 0;
 		}*/
 
+		
 		// Allow certain file formats
+		
 		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
 		&& $imageFileType != "gif" ) {
-		  echo "Solo se permiten archivos: JPG, JPEG, PNG y GIF.";
+		  echo "<br>Solo se permiten archivos: JPG, JPEG, PNG y GIF.</br>";
 		  $uploadOk = 0;
 		}
-
+		
 		// Check if $uploadOk is set to 0 by an error
 		if ($uploadOk == 0) {
-		  echo "ERROR AL SUBIR ARCHIVO.";
+		  echo "<br>ERROR AL SUBIR ARCHIVO.</br>";
+		  return false;
 		// if everything is ok, try to upload file
 		} else {
 		  if (move_uploaded_file($img["tmp_name"], $target_file)) {
-			
+			 return true;
 		  } else {
-			  echo "ERROR AL SUBIR ARCHIVO.";
+			  echo "<br>ERROR AL SUBIR ARCHIVO.</br>";
+			    return false;
 		  }
 		}
 	

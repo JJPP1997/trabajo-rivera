@@ -24,7 +24,7 @@
 	<body onload="checkCookie()">
 		<button class="accordion" onclick="manageAccordion(this)">Nuevo Articulo</button>
 		<div class="panel" >
-			<form action="Scripts/phpConection.php" method="post"  action="insertArticle()" enctype="multipart/form-data">
+			<form action="Scripts/phpConection.php" method="post" enctype="multipart/form-data">
 				<label for="articleTitle">Titulo</label>
 				<input type="text" maxlength="500" name="articleTitle" placeholder="...">
 
@@ -56,7 +56,7 @@
 					  <option value="usa">USA</option>
 					</select>
 				  -->
-				<input type="submit" value="Crear">
+				<input type="submit" name="submit" value="Crear">
 		  </form>
 		
 		</div>
@@ -97,7 +97,7 @@
 					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
 				</div>
 			<div id="updateArticle">	
-				<form action="Scripts/phpConection.php" method="post"  action="updateArticle()" enctype="multipart/form-data">
+				<form action="Scripts/phpConection.php" method="post"  enctype="multipart/form-data">
 					
 					<label for="articleUpdateTitle">Titulo</label>
 					<input type="text" maxlength="500" name="articleUpdateTitle" placeholder="...">
