@@ -381,57 +381,85 @@
 	function insertArticle(){
 		try{
 			$allOK=true;
-			
-			if (!$GLOBALS["conn"]) {
-				die("Connection failed: " . $GLOBALS["conn"]->connect_error);
-				
-				
+			if(empty($_POST['articleTitle']) || empty($_POST['articleAutor']) || empty($_POST['articleDate']) ||
+				empty($_POST['articleTag']) || empty($_POST['articleText'])){
+				echo "rellena todos los campos obligatorios ";
 			}else{
-				$articleFileName=strtolower($_POST['articleTitle']);
-				$articleFileName=trim($articleFileName," ");
-				$articleFileName=trim($articleFileName,'"');
-				$articleFileName=str_replace(" ","-",$articleFileName);
-				$articleFileName=str_replace ($GLOBALS["ilegalChars"],"",$articleFileName); 
-				
-				
-				$dir="E:\\xampp\\htdocs\\trabajo-rivera\\Boletin\\Secciones\\";
-				$fulldir=$dir. ucfirst($_POST['articleTag'])."\\".$articleFileName;
-				echo $fulldir;
-				$name = $_FILES ['articleImg']['name'];
-				if(!uploadImage($fulldir,$_FILES ['articleImg'])){
-					$allOK=false;
-				}
-				if(!createArticle("articulo",$fulldir)){
-					$allOK=false;
-					echo "fallo al crear la pagina del articulo";
-				}
-				
-				//$size = $_FILES ['articleImg']['size'];
-				//$type = $_FILES ['articleImg']['type'];
-				//$tmp_name = $_FILES ['articleImg']['tmp_name'];
-				//$error = $_FILES ['articleImg']['error'];
-			
-				
-				$sql="INSERT INTO `article`(`title`,`text`,`image_src`,`editor_name`,`tags`) VALUE (?,?,?,?,?);";	
-				//$stmt = $GLOBALS["conn"]->prepare($sql);		
-				//$placeholder="lol.png";
-				if ($stmt =  $GLOBALS["conn"]->prepare($sql) && $allOK) {
+				if (!$GLOBALS["conn"]) {
+					die("Connection failed: " . $GLOBALS["conn"]->connect_error);
 					
-					$stmt->bind_param("sssss",$_POST['articleTitle'],$_POST['articleText'],$name,$_POST['articleAutor'],$_POST['articleTag']);	
-					$stmt->execute();
-					echo "<br>Los datos del articulo han sido insertados</br>";
+					
+				}else{
+					$articleFileName=strtolower($_POST['articleTitle']);
+					$articleFileName=trim($articleFileName," ");
+					$articleFileName=trim($articleFileName,'"');
+					$articleFileName=str_replace(" ","-",$articleFileName);
+					$articleFileName=str_replace ($GLOBALS["ilegalChars"],"",$articleFileName); 
+					
+					
+					$dir="E:\\xampp\\htdocs\\trabajo-rivera\\Boletin\\Secciones\\";
+					$fulldir=$dir. ucfirst($_POST['articleTag'])."\\".$articleFileName;
+					echo $fulldir;
+					
+					
+					$name="";
+					$title="";
+					
+					if(!empty($_POST['articleImg'])){
+						$name = $_FILES ['articleImg']['name'];
+					}else{
+						$name=null;
+					}
+					if(isset($_POST['articleTitle'])){
+						$title=$_POST['articleTitle'];
+					}else{
+						$title=null;
+					}
+					$name = $_FILES ['articleImg']['name'];
+					if (!file_exists($fulldir)) {
+						mkdir($fulldir, 0777);
+						if(!$name==null){
+							if(!uploadImage($fulldir,$_FILES ['articleImg'])){
+								$allOK=false;
+							}
+						}
+						if(!createArticle("articulo",$fulldir)){
+							$allOK=false;
+							echo "<br>fallo al crear la pagina del articulo</br>";
+						}
+					}else{
+						$allOK=false;
+						echo "<br>fallo al crear el directorio</br>";
+					}
+					
+					
+					//$size = $_FILES ['articleImg']['size'];
+					//$type = $_FILES ['articleImg']['type'];
+					//$tmp_name = $_FILES ['articleImg']['tmp_name'];
+					//$error = $_FILES ['articleImg']['error'];				
+					
+					//$stmt = $GLOBALS["conn"]->prepare($sql);		
+					//$placeholder="lol.png";
+					
+					$sql="INSERT INTO `article`(`date`,`title`,`text`,`image_src`,`image_desc`,`editor_name`,`tags`) VALUE (?,?,?,?,?,?,?);";	
+					if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
 						
-				} else {
-					
-					echo "<br>error"."no hay conexion</br>";
-				}
+						$stmt->bind_param("sssssss",$_POST['articleDate'],$_POST['articleTitle'],$_POST['articleText'],$name,$title,$_POST['articleAutor'],$_POST['articleTag']);	
+						if($allOK){
+							$stmt->execute();
+							echo "<br>Los datos del articulo han sido insertados</br>";
+						}else {					
+							echo "<br>error "."articulo no creado</br>";
+						}
+					}
 
 						
-
+				}
 			}
 		}catch(exception $e){
 			echo "error"." ".$e;
 		}
+		
 		
 	}
 	function updateArticle($id){
@@ -502,25 +530,40 @@
 	}
 	function createArticle($name,$target_file){
 		$html = file_get_contents('E:\\xampp\\htdocs\\trabajo-rivera\\Boletin\\Secciones\\articleExample\\articleTemplate.html',1);
-		$pdfHtml = $name.'.html';
-
-		file_put_contents($pdfHtml, $html);
+		$pdfHtml = $target_file."\\".$name.'.html';
+		$html=insertDataToFile($html);
 		
 		// or you have the option to do nothing and assume it is made
-		if (file_exists($pdfHtml)) {
-			$res= move_uploaded_file ( $pdfHtml, $target_file );
-			
-			echo"lol:". $res;
+		if (file_put_contents($pdfHtml, $html)!==false) {
 			echo "<br>Success :  has been made</br>";
-			return $res;
+			return true;
 		} else {
-			
 			echo "<br>Failure:  does not exist</br>";
 			return false;
 		}
 	}
+	function insertDataToFile($file){
+	//	$file = file_get_contents('articulo.html');
+		$file = str_replace('%TITLE%', $_POST['articleTitle'],$file);
+		
+		if (!empty($_FILES['articleImg']['name'])) {
+			$file = str_replace("%IMAGESRC%",$_FILES ['articleImg']['name'],$file);
+			$file = str_replace('%IMAGEDESC%', $_POST['articleImageDesc'],$file);
+		}else{
+			$file = str_replace('<img src="%IMAGESRC%"></img>'," ",$file);
+			$file = str_replace('%IMAGEDESC%'," ",$file);
+		//	$file = str_replace('<p> %IMAGEDESC%</p>',"",$file);
+		}
+		$date=date_create($_POST['articleDate']);
+		$file = str_replace('%DATE%',date_format($date,"d/m/Y"),$file);
+		$file = str_replace('%TEXT%', $_POST['articleText'],$file);
+		$file = str_replace('%TAG%', ucfirst($_POST['articleTag']),$file);
+		$file = str_replace('%AUTOR%', $_POST['articleAutor'],$file);
+		//$file = str_replace('%DATE%', $_POST['articleText']);
+		
+		return $file;
+	}
 	function uploadImage($dir,$img){
-		mkdir($dir, 0777);
 		$target_file = $dir .'\\'. basename($img["name"]);
 		$uploadOk = 1;
 		$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));

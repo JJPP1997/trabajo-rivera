@@ -12,6 +12,8 @@ DISEÑO:
 	PAGE INSERT DATA TO BOLETIN
 		check cookies
 		error text
+		
+		 
 BDD:
 	
 	IMPLEMENTAR METODOS
