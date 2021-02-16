@@ -8,8 +8,6 @@
 	$articlesFatherDir="E:\\xampp\\htdocs\\trabajo-rivera\\Boletin\\Secciones\\";
 	$currentArticle=-1;
 	
-	$currentMessages=0;
-	$currentBlogPage=-1;
 	$ilegalChars = array(
 		"#","%","&","{","}","\\","<",">","*","?","/","+","`","|","=","$","!","¿","¡","'",'"',":","@"
 	);
@@ -83,6 +81,7 @@
 		
 		
 		public function jsonSerialize(){
+			
 			return 
 			json_encode( [
 				"id"=>$this->getId(),
@@ -97,7 +96,7 @@
 			],JSON_UNESCAPED_UNICODE);
 		}
 	}
-	
+		
 	/*	Valdeolivas =0
 	
 		Albendea=1
@@ -119,89 +118,54 @@
 		
 	}
 	
-	if(isset($_POST['submit'])){
-		echo "ion";
-		if(isset($_POST['articleTitle'])){
-				echo "ion";
-			insertArticle();
-		}
-		if(isset($_POST['articleUpdateTitle'])){
-			
-			updateArticle();
-		
-		}
-	 	
-	 }
-	else{
-		if( !isset($_POST['functionname']) ) { 
-			$aResult['error'] = 'No function name!'; 
-		 } 
-		else{
-			switch($_POST['functionname']) {
-				case 'getArticle':
-					//return result of getChatbox
-					 getArticle($_POST['arguments']);
-					
-				break;
-				case 'insertArticle':
-					//return result of getChatbox
-					 insertArticle();
-					
-				break;
-				case 'updateArticle':
-					//return result of getChatbox
-					 updateArticle();
-					
-				break;
-				case 'setCurrentVillage':
-					//return result of getChatbox
-					 setCurrentVillage($_POST['arguments']);
-					
-				break;
-				case 'getAllArticles':
-					//return result of getChatbox
-					 getAllArticles();
-					
-				break;
-				case 'setCurrentArticle':
-					//return result of getChatbox
-					 setCurrentArticle($_POST['arguments']);
-					
-				break;
-			}
-		}
-	}
 	
-	function setCurrentVillage($num){
-		$GLOBALS["currentBlogPage"]=$num;
-		switch($GLOBALS["currentBlogPage"]){
-			case 0:
-				$GLOBALS["fatherDir"]="Valdeolivas/";
+	
+	if(isset($_POST['submitInsertArticle'])){
+	
+		insertArticle();
+	}
+	if(isset($_POST['submitUpdateArticle'])){
+		
+		updateArticle();
+	
+	}	
+	
+		
+	
+	if( !isset($_POST['functionname']) ) { 
+		$aResult['error'] = 'No function name!'; 
+	 } 
+	else{
+		switch($_POST['functionname']) {
+			case 'getArticle':
+				
+				 getArticle($_POST['arguments']);
+				
 			break;
-			case 1:
-				$GLOBALS["fatherDir"]="Albendea/";
+			case 'insertArticle':
+			
+				 insertArticle();
+				
 			break;
-			case 2:
-				$GLOBALS["fatherDir"]="Priego/";
+			case 'updateArticle':
+			
+				 updateArticle();
+				
 			break;
-			case 3:
-				$GLOBALS["fatherDir"]="Canamares/";
+			case 'getAllArticles':
+				
+				 getAllArticles();				
 			break;
-			case 4:
-				$GLOBALS["fatherDir"]="Fuertescusa/";
+			
+			case 'setCurrentArticle':
+				
+				 setCurrentArticle($_POST['arguments']);			
 			break;
-			case 5:
-				$GLOBALS["fatherDir"]="Poyatos/";
-			break;
-			case 6:
-				$GLOBALS["fatherDir"]="VillaconejosDeTrabaque/";
+			case 'deleteArticle':
+								
+				 deleteArticle($_POST['arguments'][0],$_POST['arguments'][1],$_POST['arguments'][2]);				
 			break;
 		}
-		echo $GLOBALS["currentArticle"]; 
-	}
-	function setCurrentArticle($num){
-		$GLOBALS["currentArticle"]=$num;
-	 echo 	$GLOBALS["currentArticle"];
 	}
 	
 	function checkDbAvailable(){
@@ -219,188 +183,39 @@
 			
 			}
 	}
-	function editMeetTheVillageText(){
-			try{
-				
-			if (!$GLOBALS["conn"]) {
-				die("Connection failed: " . $GLOBALS["conn"]->connect_error);
-				
-			}else{
-			
-				$sql="UPDATE `blog` SET `village_desc`=? WHERE `id_blog`= ?;";	
-				//$stmt = $GLOBALS["conn"]->prepare($sql);		
-				
-				if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
-					$stmt->bind_param("si",$_POST['meetTheVillageText'],$GLOBALS["currentBlogPage"]);	
-					/* execute statement */
-					$stmt->execute();
-					echo "working";
-						
-				} else {
-					
-					echo "error"."connection failure";
-				}
-
-						
-
-			}
-		}catch(exception $e){
-			echo "error"." ".$e;
+	
+	function setCurrentVillage($num){
+		$GLOBALS["currentBlogPage"]=$num;
+		switch($GLOBALS["currentBlogPage"]){
+			case 0:
+				$GLOBALS["currentVillageDir"]="Valdeolivas/";
+			break;
+			case 1:
+				$GLOBALS["currentVillageDir"]="Albendea/";
+			break;
+			case 2:
+				$GLOBALS["currentVillageDir"]="Priego/";
+			break;
+			case 3:
+				$GLOBALS["currentVillageDir"]="Canamares/";
+			break;
+			case 4:
+				$GLOBALS["currentVillageDir"]="Fuertescusa/";
+			break;
+			case 5:
+				$GLOBALS["currentVillageDir"]="Poyatos/";
+			break;
+			case 6:
+				$GLOBALS["currentVillageDir"]="VillaconejosDeTrabaque/";
+			break;
 		}
+		echo $GLOBALS["currentBlogPage"]; 
 	}
-	function addAgendaEntry(){
-		try{
-				
-			if (!$GLOBALS["conn"]) {
-				die("Connection failed: " . $GLOBALS["conn"]->connect_error);
-				
-			}else{
-				$direction="";
-				
-				uploadImage("",$_FILES["anouncementImage"]);
-				$name = $_FILES ['anouncementImage']['name'];
-				
-				$sql="INSERT INTO `anouncement`(`id_blog`,`title`,`date`,`text`,`src`) VALUE (?,?,?,?);";	
-				//$stmt = $GLOBALS["conn"]->prepare($sql);		
-				
-				if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
-					$stmt->bind_param("issss",$GLOBALS["currentBlogPage"],$_POST['anouncementTitle'],$_POST['anouncementDate'],$_POST['anouncementText'],$name);	
-					/* execute statement */
-					$stmt->execute();
-					echo "working";
-						
-				} else {
-					
-					echo "error"."connection failure";
-				}
-
-						
-
-			}
-		}catch(exception $e){
-			echo "error"." ".$e;
-		}
-		
+	function setCurrentArticle($num){
+		$GLOBALS["currentArticle"]=$num;
+	  	
 	}
-	function addBusinessEntry(){
-		try{
-				
-			if (!$GLOBALS["conn"]) {
-				die("Connection failed: " . $GLOBALS["conn"]->connect_error);
-				
-			}else{
-				$name = $_FILES ['businessImage']['name'];
-				
-				$sql="INSERT INTO `business`(`name`,`telf`,`descrpition`,`src`,`type`,`addres`,`id_blog`) VALUE (?,?,?,?,?,?,?);";	
-				//$stmt = $GLOBALS["conn"]->prepare($sql);		
-				
-				if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
-					$stmt->bind_param("ssss",$_POST['businessName'],$_POST['businessText'],$name,$_POST['businessTipe'],$_POST['businessDir'],$GLOBALS["currentBlogPage"]);	
-					/* execute statement */
-					$stmt->execute();
-					echo "working";
-						
-				} else {
-					
-					echo "error"."connection failure";
-				}
-
-						
-
-			}
-		}catch(exception $e){
-			echo "error"." ".$e;
-		}
-		
-	}
-	function editHistoryText(){
-			try{
-				
-			if (!$GLOBALS["conn"]) {
-				die("Connection failed: " . $GLOBALS["conn"]->connect_error);
-				
-			}else{
-			
-				$sql="UPDATE `blog` SET `history`=? WHERE `id_blog`= ?;";	
-				//$stmt = $GLOBALS["conn"]->prepare($sql);		
-				
-				if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
-					$stmt->bind_param("si",$_POST['historyText'],$GLOBALS["currentBlogPage"]);	
-					/* execute statement */
-					$stmt->execute();
-					echo "working";
-						
-				} else {
-					
-					echo "error"."connection failure";
-				}
-
-						
-
-			}
-		}catch(exception $e){
-			echo "error"." ".$e;
-		}
-	}
-	function editPOIText(){
-			try{
-				
-			if (!$GLOBALS["conn"]) {
-				die("Connection failed: " . $GLOBALS["conn"]->connect_error);
-				
-			}else{
-			
-				$sql="UPDATE `blog` SET `POI_text`=? WHERE `id_blog`= ?;";	
-				//$stmt = $GLOBALS["conn"]->prepare($sql);		
-				
-				if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
-					$stmt->bind_param("si",$_POST['POIText'],$GLOBALS["currentBlogPage"]);	
-					/* execute statement */
-					$stmt->execute();
-					echo "working";
-						
-				} else {
-					
-					echo "error"."connection failure";
-				}
-
-						
-
-			}
-		}catch(exception $e){
-			echo "error"." ".$e;
-		}
-	}
-	function addPOI(){
-		try{
-				
-			if (!$GLOBALS["conn"]) {
-				die("Connection failed: " . $GLOBALS["conn"]->connect_error);
-				
-			}else{
-				$name = $_FILES ['POIImage']['name'];
-				$sql="INSERT INTO `interest_place`(`id_blog`,`text`,`src`) VALUE (?,?,?);";	
-				//$stmt = $GLOBALS["conn"]->prepare($sql);		
-				
-				if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
-					$stmt->bind_param("iss",$GLOBALS["currentBlogPage"],$_POST['POIText'],$name);	
-					/* execute statement */
-					$stmt->execute();
-					echo "working";
-						
-				} else {
-					
-					echo "error"."connection failure";
-				}
-
-						
-
-			}
-		}catch(exception $e){
-			echo "error"." ".$e;
-		}
-		
-	}
+	
 	/*ARTICLES*/
 	function getArticle($id){
 		try{
@@ -428,7 +243,7 @@
 						
 					
 					} else {
-						echo "ERROR DATABASE NOT RESPONDING, CONTACT AN ADMIN ";
+					//	echo "ERROR DATABASE NOT RESPONDING, CONTACT AN ADMIN ";
 					}
 
 				}
@@ -462,7 +277,7 @@
 						
 					
 					} else {
-						echo "ERROR DATABASE NOT RESPONDING, CONTACT AN ADMIN ";
+						//echo "ERROR DATABASE NOT RESPONDING, CONTACT AN ADMIN ";
 					}
 
 				}
@@ -494,7 +309,7 @@
 						
 					
 					} else {
-						echo "ERROR DATABASE NOT RESPONDING, CONTACT AN ADMIN ";
+						//echo "ERROR DATABASE NOT RESPONDING, CONTACT AN ADMIN ";
 					}
 
 				}
@@ -719,7 +534,7 @@
 						$data = rtrim($data, ",");
 						$data=$data."]}";	
 						echo json_encode($data,JSON_UNESCAPED_UNICODE);
-						
+						//echo $data;
 					} else {
 						echo "ERROR DATABASE NOT RESPONDING, CONTACT AN ADMIN ";
 					}
@@ -765,14 +580,17 @@
 		return $file;
 	}
 	function deleteArticle($id,$tag,$title){
-		$dir=getArticleDir($title);
-		$fulldir=$dir. ucfirst($tag)."\\".$articleFileName;
-		if (file_exists($res[1])) {
+		$dir=titleToDir($title);
+		echo "<br> dir:".$dir;
+		$fulldir= $GLOBALS["articlesFatherDir"]. ucfirst($tag)."\\".$dir;
+		if (file_exists($fulldir) ){
+			echo "<br> full:".$fulldir;
 			rrmdir($fulldir);
 			
-			if (file_exists($res[1])) {
+			/*if (file_exists($fulldir)) {
+				echo $fulldir;
 				unlink($fulldir);
-			}
+			}*/
 		}
 		try{
 			if (!$GLOBALS["conn"]) {
@@ -784,19 +602,20 @@
 					$sql="DELETE FROM `article` WHERE `article`.`id_article` = ?";	
 					
 					if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
-						$stmt->bind_param("i",$GLOBALS["currentArticle"]);	
+						$stmt->bind_param("i",$id);	
 						/* execute statement */
 						$stmt->execute();
 						/* bind result variables */
-						
+							
+						echo "<br>Los datos del articulo han sido borrados</br>";
 					
 					} else {
-						echo "ERROR DATABASE NOT RESPONDING, CONTACT AN ADMIN ";
+						echo "ERROR el articulo no existe ";
 					}
 
 				}
 		}catch(exception $e){
-			echo "ERROR:".$e;
+			//echo "ERROR:".$e;
 		}
 		
 		
@@ -809,7 +628,9 @@
 		$articleFileName=str_replace ($GLOBALS["ilegalChars"],"",$articleFileName);
 		return $articleFileName;
 	}
+	/*multy use*/
 	function rrmdir($dir) { 
+		//echo $dir;
 	   if (is_dir($dir)) { 
 		 $objects = scandir($dir);
 		 foreach ($objects as $object) { 
@@ -817,6 +638,7 @@
 			 if (is_dir($dir. DIRECTORY_SEPARATOR .$object) && !is_link($dir."/".$object))
 			   rrmdir($dir. DIRECTORY_SEPARATOR .$object);
 			 else
+				//echo "<br>removing : ".$dir. DIRECTORY_SEPARATOR .$object;
 			   unlink($dir. DIRECTORY_SEPARATOR .$object); 
 		   } 
 		 }
@@ -874,4 +696,4 @@
 	}
 	
 	
-	
+?>
