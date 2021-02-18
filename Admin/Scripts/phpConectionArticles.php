@@ -8,8 +8,6 @@
 	$articlesFatherDir="E:\\xampp\\htdocs\\trabajo-rivera\\Boletin\\Secciones\\";
 	$currentArticle=-1;
 	
-	$currentMessages=0;
-	$currentBlogPage=-1;
 	$ilegalChars = array(
 		"#","%","&","{","}","\\","<",">","*","?","/","+","`","|","=","$","!","¿","¡","'",'"',":","@"
 	);
@@ -83,6 +81,7 @@
 		
 		
 		public function jsonSerialize(){
+			
 			return 
 			json_encode( [
 				"id"=>$this->getId(),
@@ -97,7 +96,7 @@
 			],JSON_UNESCAPED_UNICODE);
 		}
 	}
-	
+		
 	/*	Valdeolivas =0
 	
 		Albendea=1
@@ -118,90 +117,60 @@
 		$myfile = fopen("debug.txt", "w") ;
 		
 	}
+	if(!isset($_COOKIE["CurrentArticle"])) {
+	 // echo "seleccione un pueblo para editar";
+	} else {
+	  
+		$GLOBALS["currentArticle"]= $_COOKIE["CurrentArticle"];
+	}
 	
-	if(isset($_POST['submit'])){
-		echo "ion";
-		if(isset($_POST['articleTitle'])){
-				echo "ion";
-			insertArticle();
-		}
-		if(isset($_POST['articleUpdateTitle'])){
-			
-			updateArticle();
+	
+	if(isset($_POST['submitInsertArticle'])){
+	
+		insertArticle();
+	}
+	if(isset($_POST['submitUpdateArticle'])){
 		
-		}
-	 	
-	 }
-	else{
-		if( !isset($_POST['functionname']) ) { 
-			$aResult['error'] = 'No function name!'; 
-		 } 
-		else{
-			switch($_POST['functionname']) {
-				case 'getArticle':
-					//return result of getChatbox
-					 getArticle($_POST['arguments']);
-					
-				break;
-				case 'insertArticle':
-					//return result of getChatbox
-					 insertArticle();
-					
-				break;
-				case 'updateArticle':
-					//return result of getChatbox
-					 updateArticle();
-					
-				break;
-				case 'setCurrentVillage':
-					//return result of getChatbox
-					 setCurrentVillage($_POST['arguments']);
-					
-				break;
-				case 'getAllArticles':
-					//return result of getChatbox
-					 getAllArticles();
-					
-				break;
-				case 'setCurrentArticle':
-					//return result of getChatbox
-					 setCurrentArticle($_POST['arguments']);
-					
-				break;
-			}
-		}
-	}
+		updateArticle();
 	
-	function setCurrentVillage($num){
-		$GLOBALS["currentBlogPage"]=$num;
-		switch($GLOBALS["currentBlogPage"]){
-			case 0:
-				$GLOBALS["fatherDir"]="Valdeolivas/";
+	}	
+	
+		
+	
+	if( !isset($_POST['functionname']) ) { 
+		$aResult['error'] = 'No function name!'; 
+	 } 
+	else{
+		switch($_POST['functionname']) {
+			case 'getArticle':
+				
+				 getArticle($_POST['arguments']);
+				
 			break;
-			case 1:
-				$GLOBALS["fatherDir"]="Albendea/";
+			case 'insertArticle':
+			
+				 insertArticle();
+				
 			break;
-			case 2:
-				$GLOBALS["fatherDir"]="Priego/";
+			case 'updateArticle':
+			
+				 updateArticle();
+				
 			break;
-			case 3:
-				$GLOBALS["fatherDir"]="Canamares/";
+			case 'getAllArticles':
+				
+				 getAllArticles();				
 			break;
-			case 4:
-				$GLOBALS["fatherDir"]="Fuertescusa/";
+			
+			case 'setCurrentArticle':
+				
+				 setCurrentArticle($_POST['arguments']);			
 			break;
-			case 5:
-				$GLOBALS["fatherDir"]="Poyatos/";
-			break;
-			case 6:
-				$GLOBALS["fatherDir"]="VillaconejosDeTrabaque/";
+			case 'deleteArticle':
+								
+				 deleteArticle($_POST['arguments'][0],$_POST['arguments'][1],$_POST['arguments'][2]);				
 			break;
 		}
-		echo $GLOBALS["currentArticle"]; 
-	}
-	function setCurrentArticle($num){
-		$GLOBALS["currentArticle"]=$num;
-	 echo 	$GLOBALS["currentArticle"];
 	}
 	
 	function checkDbAvailable(){
@@ -219,188 +188,7 @@
 			
 			}
 	}
-	function editMeetTheVillageText(){
-			try{
-				
-			if (!$GLOBALS["conn"]) {
-				die("Connection failed: " . $GLOBALS["conn"]->connect_error);
-				
-			}else{
-			
-				$sql="UPDATE `blog` SET `village_desc`=? WHERE `id_blog`= ?;";	
-				//$stmt = $GLOBALS["conn"]->prepare($sql);		
-				
-				if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
-					$stmt->bind_param("si",$_POST['meetTheVillageText'],$GLOBALS["currentBlogPage"]);	
-					/* execute statement */
-					$stmt->execute();
-					echo "working";
-						
-				} else {
-					
-					echo "error"."connection failure";
-				}
-
-						
-
-			}
-		}catch(exception $e){
-			echo "error"." ".$e;
-		}
-	}
-	function addAgendaEntry(){
-		try{
-				
-			if (!$GLOBALS["conn"]) {
-				die("Connection failed: " . $GLOBALS["conn"]->connect_error);
-				
-			}else{
-				$direction="";
-				
-				uploadImage("",$_FILES["anouncementImage"]);
-				$name = $_FILES ['anouncementImage']['name'];
-				
-				$sql="INSERT INTO `anouncement`(`id_blog`,`title`,`date`,`text`,`src`) VALUE (?,?,?,?);";	
-				//$stmt = $GLOBALS["conn"]->prepare($sql);		
-				
-				if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
-					$stmt->bind_param("issss",$GLOBALS["currentBlogPage"],$_POST['anouncementTitle'],$_POST['anouncementDate'],$_POST['anouncementText'],$name);	
-					/* execute statement */
-					$stmt->execute();
-					echo "working";
-						
-				} else {
-					
-					echo "error"."connection failure";
-				}
-
-						
-
-			}
-		}catch(exception $e){
-			echo "error"." ".$e;
-		}
-		
-	}
-	function addBusinessEntry(){
-		try{
-				
-			if (!$GLOBALS["conn"]) {
-				die("Connection failed: " . $GLOBALS["conn"]->connect_error);
-				
-			}else{
-				$name = $_FILES ['businessImage']['name'];
-				
-				$sql="INSERT INTO `business`(`name`,`telf`,`descrpition`,`src`,`type`,`addres`,`id_blog`) VALUE (?,?,?,?,?,?,?);";	
-				//$stmt = $GLOBALS["conn"]->prepare($sql);		
-				
-				if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
-					$stmt->bind_param("ssss",$_POST['businessName'],$_POST['businessText'],$name,$_POST['businessTipe'],$_POST['businessDir'],$GLOBALS["currentBlogPage"]);	
-					/* execute statement */
-					$stmt->execute();
-					echo "working";
-						
-				} else {
-					
-					echo "error"."connection failure";
-				}
-
-						
-
-			}
-		}catch(exception $e){
-			echo "error"." ".$e;
-		}
-		
-	}
-	function editHistoryText(){
-			try{
-				
-			if (!$GLOBALS["conn"]) {
-				die("Connection failed: " . $GLOBALS["conn"]->connect_error);
-				
-			}else{
-			
-				$sql="UPDATE `blog` SET `history`=? WHERE `id_blog`= ?;";	
-				//$stmt = $GLOBALS["conn"]->prepare($sql);		
-				
-				if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
-					$stmt->bind_param("si",$_POST['historyText'],$GLOBALS["currentBlogPage"]);	
-					/* execute statement */
-					$stmt->execute();
-					echo "working";
-						
-				} else {
-					
-					echo "error"."connection failure";
-				}
-
-						
-
-			}
-		}catch(exception $e){
-			echo "error"." ".$e;
-		}
-	}
-	function editPOIText(){
-			try{
-				
-			if (!$GLOBALS["conn"]) {
-				die("Connection failed: " . $GLOBALS["conn"]->connect_error);
-				
-			}else{
-			
-				$sql="UPDATE `blog` SET `POI_text`=? WHERE `id_blog`= ?;";	
-				//$stmt = $GLOBALS["conn"]->prepare($sql);		
-				
-				if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
-					$stmt->bind_param("si",$_POST['POIText'],$GLOBALS["currentBlogPage"]);	
-					/* execute statement */
-					$stmt->execute();
-					echo "working";
-						
-				} else {
-					
-					echo "error"."connection failure";
-				}
-
-						
-
-			}
-		}catch(exception $e){
-			echo "error"." ".$e;
-		}
-	}
-	function addPOI(){
-		try{
-				
-			if (!$GLOBALS["conn"]) {
-				die("Connection failed: " . $GLOBALS["conn"]->connect_error);
-				
-			}else{
-				$name = $_FILES ['POIImage']['name'];
-				$sql="INSERT INTO `interest_place`(`id_blog`,`text`,`src`) VALUE (?,?,?);";	
-				//$stmt = $GLOBALS["conn"]->prepare($sql);		
-				
-				if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
-					$stmt->bind_param("iss",$GLOBALS["currentBlogPage"],$_POST['POIText'],$name);	
-					/* execute statement */
-					$stmt->execute();
-					echo "working";
-						
-				} else {
-					
-					echo "error"."connection failure";
-				}
-
-						
-
-			}
-		}catch(exception $e){
-			echo "error"." ".$e;
-		}
-		
-	}
+	
 	/*ARTICLES*/
 	function getArticle($id){
 		try{
@@ -422,13 +210,51 @@
 						/* fetch values */
 						$stmt->fetch();
 						$e=new Article($id,$date,$title,$text,$image,$imageDesc,$autor,$tag);
-						$data=$data.json_decode(json_encode($e->jsonSerialize(),JSON_UNESCAPED_UNICODE)).",";
-						echo json_encode($data,JSON_UNESCAPED_UNICODE);
+						$data=json_decode(json_encode($e->jsonSerialize(),JSON_UNESCAPED_UNICODE)).",";
+						return json_encode($data,JSON_UNESCAPED_UNICODE);
 					/* fetch values */
 						
 					
 					} else {
-						echo "ERROR DATABASE NOT RESPONDING, CONTACT AN ADMIN ";
+					//	echo "ERROR DATABASE NOT RESPONDING, CONTACT AN ADMIN ";
+					}
+
+				}
+		}catch(exception $e){
+			echo "ERROR:".$e;
+		}
+	}
+	function getArticleForUpdate(){
+		try{
+			if (!$GLOBALS["conn"]) {
+					
+					die("Connection failed: " . $GLOBALS["conn"]->connect_error);
+					echo "Connection failed: " . $GLOBALS["conn"]->connect_error;
+				}
+				else{
+					$sql="SELECT * FROM `article` WHERE `id_article`=?";	
+					
+					if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
+						$stmt->bind_param("i",$GLOBALS["currentArticle"]);	
+						/* execute statement */
+						$stmt->execute();
+						/* bind result variables */
+						$stmt->bind_result( $id,$date,$title,$text,$image,$imageDesc,$autor,$tag);
+
+						/* fetch values */
+						$stmt->fetch();
+						echo "<br>title".$title;
+						echo "<br>tag".$tag;
+						echo "<br>id".$GLOBALS["currentArticle"];
+						echo "<br>text".$tag;
+						$data = array("tag"=>$tag, "title"=>$title);
+					
+						return $data;
+					/* fetch values */
+						
+					
+					} else {
+					//	echo "ERROR DATABASE NOT RESPONDING, CONTACT AN ADMIN ";
 					}
 
 				}
@@ -462,7 +288,7 @@
 						
 					
 					} else {
-						echo "ERROR DATABASE NOT RESPONDING, CONTACT AN ADMIN ";
+						//echo "ERROR DATABASE NOT RESPONDING, CONTACT AN ADMIN ";
 					}
 
 				}
@@ -494,7 +320,7 @@
 						
 					
 					} else {
-						echo "ERROR DATABASE NOT RESPONDING, CONTACT AN ADMIN ";
+						//echo "ERROR DATABASE NOT RESPONDING, CONTACT AN ADMIN ";
 					}
 
 				}
@@ -557,17 +383,17 @@
 					
 					
 					$name="";
-					$title="";
+					$imgDesc="";
 					
 					if(!empty($_POST['articleImg'])){
 						$name = $_FILES ['articleImg']['name'];
 					}else{
 						$name=null;
 					}
-					if(isset($_POST['articleTitle'])){
-						$title=$_POST['articleTitle'];
+					if(isset($_POST['articleImageDesc'])){
+						$imgDesc=$_POST['articleImageDesc'];
 					}else{
-						$title=null;
+						$imgDesc=null;
 					}
 					$name = $_FILES ['articleImg']['name'];
 					if (!file_exists($fulldir)) {
@@ -598,7 +424,7 @@
 					$sql="INSERT INTO `article`(`date`,`title`,`text`,`image_src`,`image_desc`,`editor_name`,`tags`) VALUE (?,?,?,?,?,?,?);";	
 					if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
 						
-						$stmt->bind_param("sssssss",$_POST['articleDate'],$_POST['articleTitle'],$_POST['articleText'],$name,$title,$_POST['articleAutor'],$_POST['articleTag']);	
+						$stmt->bind_param("sssssss",$_POST['articleDate'],$_POST['articleTitle'],$_POST['articleText'],$name,$imgDesc,$_POST['articleAutor'],$_POST['articleTag']);	
 						if($allOK){
 							$stmt->execute();
 							echo "<br>Los datos del articulo han sido insertados</br>";
@@ -628,6 +454,10 @@
 					die("Connection failed: " . $GLOBALS["conn"]->connect_error);
 					
 				}else{
+					$oldArticle=getArticleForUpdate($GLOBALS["currentArticle"]);
+					deleteArticle($GLOBALS["currentArticle"],$oldArticle["tag"],$oldArticle["title"]);
+					echo "<br>title: ".$oldArticle["title"];
+					echo "<br>tag: ".$oldArticle["tag"];
 					$articleFileName=strtolower($_POST['articleUpdateTitle']);
 					$articleFileName=trim($articleFileName," ");
 					$articleFileName=trim($articleFileName,'"');
@@ -641,17 +471,17 @@
 					
 					
 					$name="";
-					$title="";
+					$imgDesc="";
 					
 					if(!empty($_POST['articleUpdateImg'])){
 						$name = $_FILES ['articleUpdateImg']['name'];
 					}else{
 						$name=null;
 					}
-					if(isset($_POST['articleUpdateTitle'])){
-						$title=$_POST['articleUpdateTitle'];
+					if(isset($_POST['articleUpdateImageDesc'])){
+						$imgDesc=$_POST['articleUpdateImageDesc'];
 					}else{
-						$title=null;
+						$imgDesc=null;
 					}
 					$name = $_FILES ['articleUpdateImg']['name'];
 					if (!file_exists($fulldir)) {
@@ -670,14 +500,14 @@
 						echo "<br>fallo al crear el directorio</br>";
 					}
 					
-					$sql="UPDATE `article`SET`title`=?,`text`=?,`image_src`=?,`editor_name`=?,`tags=?`) WHERE `id_article`=?;";	
+					$sql="INSERT INTO `article`(`date`,`title`,`text`,`image_src`,`image_desc`,`editor_name`,`tags`) VALUE (?,?,?,?,?,?,?);";	
 					//$stmt = $GLOBALS["conn"]->prepare($sql);		
 					
 					if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
-						$stmt->bind_param("sssssi",$_POST['articleUpdateTitle'],$_POST['articleUpdateText'],$name,$_POST['articleUpdateAutor'],$_POST['articleUpdateTag'],$GLOBALS["currentBlogPage"]);	
+						$stmt->bind_param("sssssss",$_POST['articleUpdateDate'],$_POST['articleUpdateTitle'],$_POST['articleUpdateText'],$name,$imgDesc,$_POST['articleUpdateAutor'],$_POST['articleUpdateTag']);	
 						/* execute statement */
 						$stmt->execute();
-						echo "working";
+						echo "articulo editado";
 						
 						
 					} else {
@@ -719,7 +549,7 @@
 						$data = rtrim($data, ",");
 						$data=$data."]}";	
 						echo json_encode($data,JSON_UNESCAPED_UNICODE);
-						
+						//echo $data;
 					} else {
 						echo "ERROR DATABASE NOT RESPONDING, CONTACT AN ADMIN ";
 					}
@@ -745,34 +575,50 @@
 	}
 	function insertDataToFile($file){
 	//	$file = file_get_contents('articulo.html');
-		$file = str_replace('%TITLE%', $_POST['articleTitle'],$file);
-		
-		if (!empty($_FILES['articleImg']['name'])) {
-			$file = str_replace("%IMAGESRC%",$_FILES ['articleImg']['name'],$file);
-			$file = str_replace('%IMAGEDESC%', $_POST['articleImageDesc'],$file);
-		}else{
-			$file = str_replace('<img src="%IMAGESRC%"></img>'," ",$file);
-			$file = str_replace('%IMAGEDESC%'," ",$file);
-		//	$file = str_replace('<p> %IMAGEDESC%</p>',"",$file);
+		if(isset($_POST['submitInsertArticle'])){
+			$file = str_replace('%TITLE%', $_POST['articleTitle'],$file);
+			if (!empty($_FILES['articleImg']['name'])) {
+				$file = str_replace("%IMAGESRC%",$_FILES ['articleImg']['name'],$file);
+				$file = str_replace('%IMAGEDESC%', $_POST['articleImageDesc'],$file);
+			}else{
+				$file = str_replace('<img src="%IMAGESRC%"></img>'," ",$file);
+				$file = str_replace('%IMAGEDESC%'," ",$file);
+			//	$file = str_replace('<p> %IMAGEDESC%</p>',"",$file);
+			}
+			$date=date_create($_POST['articleDate']);
+			$file = str_replace('%DATE%',date_format($date,"d/m/Y"),$file);
+			$file = str_replace('%TEXT%', $_POST['articleText'],$file);
+			$file = str_replace('%TAG%', ucfirst($_POST['articleTag']),$file);
+			$file = str_replace('%AUTOR%', $_POST['articleAutor'],$file);
 		}
-		$date=date_create($_POST['articleDate']);
-		$file = str_replace('%DATE%',date_format($date,"d/m/Y"),$file);
-		$file = str_replace('%TEXT%', $_POST['articleText'],$file);
-		$file = str_replace('%TAG%', ucfirst($_POST['articleTag']),$file);
-		$file = str_replace('%AUTOR%', $_POST['articleAutor'],$file);
-		//$file = str_replace('%DATE%', $_POST['articleText']);
+		if(isset($_POST['submitUpdateArticle'])){
+			$file = str_replace('%TITLE%', $_POST['articleUpdateTitle'],$file);
+			if (!empty($_FILES['articleUpdateImg']['name'])) {
+				$file = str_replace("%IMAGESRC%",$_FILES ['articleUpdateImg']['name'],$file);
+				$file = str_replace('%IMAGEDESC%', $_POST['articleUpdateImageDesc'],$file);
+			}else{
+				$file = str_replace('<img src="%IMAGESRC%"></img>'," ",$file);
+				$file = str_replace('%IMAGEDESC%'," ",$file);
+			//	$file = str_replace('<p> %IMAGEDESC%</p>',"",$file);
+			}
+			$date=date_create($_POST['articleUpdateDate']);
+			$file = str_replace('%DATE%',date_format($date,"d/m/Y"),$file);
+			$file = str_replace('%TEXT%', $_POST['articleUpdateText'],$file);
+			$file = str_replace('%TAG%', ucfirst($_POST['articleUpdateTag']),$file);
+			$file = str_replace('%AUTOR%', $_POST['articleUpdateAutor'],$file);
+		
+		}	
+		
 		
 		return $file;
 	}
 	function deleteArticle($id,$tag,$title){
-		$dir=getArticleDir($title);
-		$fulldir=$dir. ucfirst($tag)."\\".$articleFileName;
-		if (file_exists($res[1])) {
+		$dir=titleToDir($title);
+		echo "<br> dir:".$dir;
+		$fulldir= $GLOBALS["articlesFatherDir"]. ucfirst($tag)."\\".$dir;
+		if (file_exists($fulldir) ){
+			echo "<br> full:".$fulldir;
 			rrmdir($fulldir);
-			
-			if (file_exists($res[1])) {
-				unlink($fulldir);
-			}
 		}
 		try{
 			if (!$GLOBALS["conn"]) {
@@ -784,19 +630,20 @@
 					$sql="DELETE FROM `article` WHERE `article`.`id_article` = ?";	
 					
 					if ($stmt =  $GLOBALS["conn"]->prepare($sql)) {
-						$stmt->bind_param("i",$GLOBALS["currentArticle"]);	
+						$stmt->bind_param("i",$id);	
 						/* execute statement */
 						$stmt->execute();
 						/* bind result variables */
-						
+							
+						echo "<br>Los datos del articulo han sido borrados</br>";
 					
 					} else {
-						echo "ERROR DATABASE NOT RESPONDING, CONTACT AN ADMIN ";
+						echo "ERROR el articulo no existe ";
 					}
 
 				}
 		}catch(exception $e){
-			echo "ERROR:".$e;
+			//echo "ERROR:".$e;
 		}
 		
 		
@@ -809,7 +656,9 @@
 		$articleFileName=str_replace ($GLOBALS["ilegalChars"],"",$articleFileName);
 		return $articleFileName;
 	}
+	/*multy use*/
 	function rrmdir($dir) { 
+		//echo $dir;
 	   if (is_dir($dir)) { 
 		 $objects = scandir($dir);
 		 foreach ($objects as $object) { 
@@ -817,6 +666,7 @@
 			 if (is_dir($dir. DIRECTORY_SEPARATOR .$object) && !is_link($dir."/".$object))
 			   rrmdir($dir. DIRECTORY_SEPARATOR .$object);
 			 else
+				//echo "<br>removing : ".$dir. DIRECTORY_SEPARATOR .$object;
 			   unlink($dir. DIRECTORY_SEPARATOR .$object); 
 		   } 
 		 }
@@ -874,4 +724,4 @@
 	}
 	
 	
-	
+?>
