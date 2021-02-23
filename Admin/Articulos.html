@@ -15,28 +15,30 @@
 		<!--<script type="text/javascript" src="Scripts/scriptsBoletin.js"></script>--> 
 		<script type="text/javascript" src="Scripts/reusableScriptsAdmin.js"></script> 
 		
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<script src='http://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
 		
+		<script src='http://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
+		<script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		
 	
 	</head>
-	<body onload="checkCookie()">
+	<body onload="articleLoader()">
 		<button class="accordion" onclick="manageAccordion(this)">Nuevo Articulo</button>
 		<div class="panel" >
-			<form action="Scripts/phpConection.php" method="post"  action="insertArticle()" enctype="multipart/form-data">
+			<form action="Scripts/phpConectionArticles.php" method="post" enctype="multipart/form-data">
 				<label for="articleTitle">Titulo</label>
 				<input type="text" maxlength="500" name="articleTitle" placeholder="...">
-
 				<label for="articleAutor">Autor</label>
 				<input type="text"   maxlength="200" name="articleAutor" placeholder="...">
-				<label for="articleDate">Fecha</label>
+				<label for="articleDate"  placeholder="dd-mm-yyyy">Fecha</label>
 				<input type="date"  name="articleDate" placeholder="...">
 				<br></br>
 				<label for="articleImg">Imagen</label>
 				<br></br>
 				<input type="file" name="articleImg" id="articleImg">
-					<br></br>
+				<br></br>
+				<label for="articleImageDesc">Descripcion imagen</label>
+				<input type="text"   maxlength="1000" name="articleImageDesc" placeholder="...">
+				<br></br>
 				<label for="articleTag">Seccion</label>
 				<select  name="articleTag">
 					<option value="cultura">Cultura</option>
@@ -56,13 +58,13 @@
 					  <option value="usa">USA</option>
 					</select>
 				  -->
-				<input type="submit" value="Crear">
+				<input type="submit" name="submitInsertArticle" value="Crear">
 		  </form>
 		
 		</div>
 		<button class="accordion" onclick="manageAccordion(this)">Editar y Borrar Articulos</button>
 		<div class="panel" >
-			<form>
+			<form >
 				<br>
 					<label for="deleteRB">Selecciona esta opción para borrar el articulo seleccionado</label>
 					<input type="radio" id="deleteRB" name="selector" value="Borrar">
@@ -72,45 +74,33 @@
 					<input type="radio" id="editRB" name="selector" value="Editar">
 				</br>
 				<br></br>
-				<label for="ftext">Introduce el titulo del articulo para buscarlo en la lista:</label>
-				<input type="text" id="textInput" name="ftext"></input>
-			</form>
+				</form>
+				<label for="SearchArticleInput">Introduce el titulo del articulo para buscarlo en la lista:</label>
+				<input type="text" id="SearchArticleInput" name="SearchArticleInput"></input>
+			
 			  <h1>Seleciona el articulo:</h1>
-				<div id="articleContainer">
-					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
-					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
-					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
-					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
-					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
-					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
-					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
-					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
-					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
-					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
-					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
-					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
-					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
-					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
-					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
-					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
-					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
-					<button class="articleBTN" onclick="editArticles(this)">Titulo del articulo</button>
+				<div id="articleContainer" class="deleteContainer">
+					
 				</div>
 			<div id="updateArticle">	
-				<form action="Scripts/phpConection.php" method="post"  action="updateArticle()" enctype="multipart/form-data">
+				<form action="Scripts/phpConectionArticles.php" method="post"  enctype="multipart/form-data">
 					
 					<label for="articleUpdateTitle">Titulo</label>
-					<input type="text" maxlength="500" name="articleUpdateTitle" placeholder="...">
-
+					<input type="text" maxlength="500" name="articleUpdateTitle" id="articleUpdateTitle" placeholder="...">
 					<label for="articleUpdateAutor">Autor</label>
-					<input type="text"   maxlength="200" name="articleUpdateAutor" placeholder="...">
+					<input type="text"   maxlength="200" name="articleUpdateAutor" id="articleUpdateAutor" placeholder="...">
 					<label for="articleUpdateDate">Fecha</label>
-					<input type="date"  name="articleUpdateDate" placeholder="...">
+					<input type="date" id="articleUpdateDate" name="articleUpdateDate" placeholder="...">
 					<br></br>
-					<label for="articleUpdateImg">Imagen</label>
+					<label id="previousImg" for="articleUpdateImg"><br>no hay imagen en este articulo</br></label>
+					<br></br>
+					<label for="articleUpdateImg">Nueva Imagen</label>
 					<br></br>
 					<input type="file" name="articleUpdateImg" id="articleUpdateImg">
-						<br></br>
+					<br></br>
+					<label for="articleImageDesc">Descripcion imagen</label>
+					<input type="text"   maxlength="1000" name="articleUpdateImageDesc" placeholder="...">
+					<br></br>
 					<label for="articleUpdateTag">Seccion</label>
 					<select  name="articleUpdateTag">
 						<option value="cultura">Cultura</option>
@@ -121,19 +111,41 @@
 						
 					</select>
 					<label for="articleUpdateText">Contenido</label>
-					<textarea class="textBox" name="articleUpdateText" placeholder="Texto..." ></textarea>
-					<!--
-						<label for="country">Country</label>
-						<select id="country" name="country">
-						  <option value="australia">Australia</option>
-						  <option value="canada">Canada</option>
-						  <option value="usa">USA</option>
-						</select>
-					  -->
-					<input type="submit" value="Editar">
+					<textarea class="textBox" name="articleUpdateText" id="articleUpdateText" placeholder="Texto..." ></textarea>
+					
+					<input type="submit" name="submitUpdateArticle" value="Editar">
 			  </form>
 		</div>
+		</div>
+		<button class="accordion" onclick="manageAccordion(this)">Nuevo Anuncio</button>
+		<div class="panel" >
+			<form action="Scripts/phpConectionArticles.php" method="post" enctype="multipart/form-data">
+				<label for="adText">Texto</label>
+				<input type="text" maxlength="200" name="adText" placeholder="...">
+				
+				<br></br>
+				<label for="adImg">Imagen</label>
+				<br></br>
+				<input type="file" name="adImg" id="adImg">
+				<br></br>
+			
+				<input type="submit" name="submitInsertAd" value="Crear">
+		  </form>
 		
+		</div>
+		<button class="accordion" onclick="manageAccordion(this)">Borrar Anuncios</button>
+		<div class="panel" >
+			
+			<label for="SearchAdInput">Introduce el texto del anuncio para buscarlo en la lista:</label>
+			<input type="text" id="SearchAdInput" name="SearchAdInput"></input>
+
+			<h1>Seleciona el anuncio:</h1>
+				<div id="adContainer" class="deleteContainer">
+					
+				</div>
 		
+			
+		</div>
 	</body>
+	
 <html>
