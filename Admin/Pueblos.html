@@ -15,112 +15,228 @@
 		<!--<script type="text/javascript" src="Scripts/scriptsBoletin.js"></script>--> 
 		<script type="text/javascript" src="Scripts/reusableScriptsAdmin.js"></script> 
 		
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<script src='http://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
+		<script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src='http://code.jquery.com/jquery-3.3.1.min.js'></script>
 		
 		
 	
 	</head>
-	<body onload="checkCookie()">
-		<button class="accordion" onclick="manageAccordion(this)">Añade una imagen al carrusel de la pagina</button>
-		<div class="panel" >
-			<form action="Scripts/phpConection.php" method="post" action="addImageToHeader()" enctype="multipart/form-data">
-				<label for="headerImageText">Texto que acompaña la imagen</label>
-				<input type="text"  maxlength="200" name="headerImageText" placeholder="...">
-				<br></br>
-				<label for="fileToUpload">Imagen</label>
-				<br></br>
-				<input type="file" name="fileToUpload" id="fileToUpload">
-				<br></br>
-				
-				<input type="submit" value="Subir Imagen">
-			</form>
+	<body onload="villageLoader()">
+			
+		<form>
+			<br>
+				<label for="selectVillage">Valdeolivas</label>
+				<input type="radio" class="selectVillage" name="selectVillage" value=0>
+			</br>
+			<br>
+				<label for="selectVillage">Albendea</label>
+				<input type="radio" class="selectVillage" name="selectVillage" value=1>
+			</br>
+			<br>
+				<label for="selectVillage">Priego</label>
+				<input type="radio" class="selectVillage" name="selectVillage" value=2>
+			</br>
+			<br>
+				<label for="selectVillage">Cañamares</label>
+				<input type="radio" class="selectVillage" name="selectVillage" value=3>
+			</br>
+			<br>
+				<label for="selectVillage">Fuertescusa</label>
+				<input type="radio" class="selectVillage" name="selectVillage" value=4>
+			</br>
+			<br>
+				<label for="selectVillage">Poyatos</label>
+				<input type="radio" class="selectVillage" name="selectVillage" value=5>
+			</br>
+			<br>
+				<label for="selectVillage">Villaconejos de Trabaque</label>
+				<input type="radio" class="selectVillage" name="selectVillage" value=6>
+			</br>
+		</form>
 		
-		</div>
-		<button class="accordion" onclick="manageAccordion(this)">Editar el apartado "Conoce el Pueblo"</button>
-		<div class="panel" >
-			<form action="Scripts/phpConection.php" method="post" action="editMeetTheVillageText()" enctype="multipart/form-data">
-				<label for="meetTheVillageText">Contenido</label>
-			    <textarea class="textBox"   name="meetTheVillageText" placeholder="Texto..." ></textarea>
-				<input type="submit" value="Subir Texto">
-			</form>
-		</div>
-		<button class="accordion" onclick="manageAccordion(this)">Añade un nuevo anuncio a la Agenda Cultural</button>
-		<div class="panel" >
-			<form action="Scripts/phpConection.php" method="post" action="addAgendaEntry()" enctype="multipart/form-data">
-				<label for="anouncementTitle">Titulo del anuncio</label>
-				<input type="text"  maxlength="500"  name="anouncementTitle" placeholder="...">
-				<br></br>
-				<label for="anouncementImage">Imagen</label>
-				<br></br>
-				<input type="file" name="anouncementImage" id="anouncementImage">
-				<br></br>
-				<label for="anouncementDate">Fecha</label>
-				<input type="date"  name="anouncementDate" placeholder="...">
-				<label for="anouncementText">Contenido</label>
-			    <textarea class="textBox"  name="anouncementText" placeholder="Texto..." ></textarea>
+		<div id="changesPanel" style="display:none;"> 
+			<h1>Carrusel de Imagenes</h1>
+			<button class="accordion" onclick="manageAccordion(this)">Añade una imagen al carrusel de la pagina</button>
+			<div class="panel" >
+				<form action="Scripts/phpConectionVillages.php" method="post"  enctype="multipart/form-data">
+					<label for="carrouselImageText">Texto que acompaña la imagen</label>
+					<input type="text"  maxlength="200" name="carrouselImageText" placeholder="...">
+					<br></br>
+					<label for="carrouselImage">Imagen</label>
+					<br></br>
+					<input type="file" name="carrouselImage" id="carrouselImage">
+					<br></br>
+					
+					<input type="submit" name="addImageCarrousel" value="Subir Imagen">
+				</form>
+			
+			</div>
+			<button class="accordion" onclick="manageAccordion(this)">Borrar imagenes del carrusel de la pagina</button>
+			<div class="panel" >
+				<h1>Seleciona la imagen:</h1>
+				<div id="carruselContainer" class="deleteContainer">
+					
+				</div>
+			</div>
+			<h1>Conoce el Pueblo</h1>
+			<button class="accordion" onclick="manageAccordion(this)">Editar el apartado "Conoce el Pueblo"</button>
+			<div class="panel" >
+				<form action="Scripts/phpConectionVillages.php" method="post"  enctype="multipart/form-data">
+					<label for="meetTheVillageText">Contenido</label>
+					<textarea class="textBox"  id="meetTheVillageText" name="meetTheVillageText" placeholder="Texto..." ></textarea>
+					<input type="submit" name="updateMeetTheVillage" value="Subir Texto">
+				</form>
+			</div>
+			<h1>Agenda Cultural</h1>
+			<button class="accordion" onclick="manageAccordion(this)">Añade un nuevo anuncio a la Agenda Cultural</button>
+			<div class="panel" >
+				<form action="Scripts/phpConectionVillages.php" method="post"  enctype="multipart/form-data">
+					<label for="anouncementTitle">Titulo del anuncio</label>
+					<input type="text"  maxlength="500"  name="anouncementTitle" placeholder="...">
+					<br></br>
+					<label for="anouncementImage">Imagen</label>
+					<br></br>
+					<input type="file" name="anouncementImage" id="anouncementImage">
+					<br></br>
+					<label for="anouncementDate">Fecha</label>
+					<input type="date"  name="anouncementDate" placeholder="...">
+					<label for="anouncementText">Contenido</label>
+					<textarea class="textBox"  name="anouncementText" placeholder="Texto..." ></textarea>
+					
+					<input type="submit" name="updateAgendaEntry" value="Subir Anuncio">
+				</form>
+			
+			</div>
+			<button class="accordion" onclick="manageAccordion(this)">Borrar anuncios de la agenda cultural</button>
+			<div class="panel" >
+				<h1>Seleciona el articulo:</h1>
+				<div id="agendaContainer" class="deleteContainer">
+					
+				</div>
+			</div>
+			<h1>Negocios</h1>
+			<button class="accordion" onclick="manageAccordion(this)">Añade un nuevo negocio</button>
+			<div class="panel">
+				<form action="Scripts/phpConectionVillages.php" method="post"  enctype="multipart/form-data">
+					<label for="businessName">Nombre del negocio</label>
+					<input type="text"  maxlength="200" name="businessName" placeholder="...">
+					<label for="businessDir">Dirección del negocio</label>
+					<input type="text" maxlength="500"  name="businessDir" placeholder="...">
+					<label for="businessPhone">Teléfono del negocio</label>
+					<input type="tel"  maxlength="9" id="businessPhone" name="businessPhone" pattern="[0-9]{9}">
+					<br></br>
+					<label for="businessImage">Logo del negocio</label>
+					<br></br>
+					<input type="file" name="businessImage" id="businessImage">
+					<br></br>
+					<label for="businessText">Descripción breve del negocio</label>
+					<textarea class="textBox" name="businessText" placeholder="..." ></textarea>
+					<label for="businessTipe">Especialización del negocio</label>
+					<select  name="businessTipe">
+						<option value="hotel">Hospedaje</option>
+						<option value="restaurant">Restauración</option>
+						<option value="other">Otro</option>
+					</select>
+					<input type="submit" name="insertBussines" value="Subir Anuncio">
+				</form>
+			
+			</div>
+			<button class="accordion" onclick="manageAccordion(this)">Borrar un negocio</button>
+			<div class="panel" >
+				<h1>Seleciona el negocio:</h1>
+				<div id="bussinesContainer" class="deleteContainer">
+					
+				</div>
+			</div>
+			<h1>Historia</h1>
+			<button class="accordion" onclick="manageAccordion(this)">Editar el apartado "Historia"</button>
+			<div class="panel" >
+				<form action="Scripts/phpConectionVillages.php" method="post" action="editHistory()" enctype="multipart/form-data">
+					<label for="historyText">Contenido</label>
+					<textarea class="textBox" id="historyText" name="historyText" placeholder="Texto..." ></textarea>
+					<input type="submit" name="updateHistory" value="Subir Texto">
+				</form>
+			</div>
+			<h1>Lugares de Interes</h1>
+			<button class="accordion" onclick="manageAccordion(this)">Editar el text de el apartado "Lugares de Interes"</button>
+			<div class="panel" >
+				<form action="Scripts/phpConectionVillages.php" method="post"  enctype="multipart/form-data">
+					<label for="POIText">Contenido</label>
+					<textarea class="textBox" name="POIText" id="POIText" placeholder="Texto..." ></textarea>
+					<input type="submit" name="updatePOIText" value="Subir Texto">
+				</form>
+			</div>
+			<button class="accordion" onclick="manageAccordion(this)">Añadir un lugar de interes al tablon de fotos</button>
+			<div class="panel" >
+				<form action="Scripts/phpConectionVillages.php" method="post"  enctype="multipart/form-data">
+					<label for="POIText">Descripción/Pie de pagina breve de la foto</label>
+					<input type="text"  name="POIText" placeholder="...">
+					<br></br>
+					<label for="POIImage">Imagen</label>
+					<br></br>
+					<input type="file" name="POIImage" id="POIImage">
+					<br></br>
+					
+					<input type="submit" name="insertPOI" value="Subir Anuncio">
+				</form>
+			</div>
+			<h1>Galerias</h1>
+			<button class="accordion" onclick="manageAccordion(this)">Añadir una galeria nueva</button>
+			<div class="panel" >
+				<form action="Scripts/phpConectionVillages.php" method="post"  enctype="multipart/form-data">
+					<label for="newGaleryTitle">Nombre de la galeria</label>
+					<input type="text"  name="newGaleryTitle" placeholder="...">
+					<br></br>
+					<label for="addGaleryDate">Fecha</label>
+					<input type="date"  name="addGaleryDate" placeholder="...">
+					<br></br>
+					<label for="newGaleryDirname">Dirección de la galeria</label>
+					<input type="text"  name="newGaleryDirname" placeholder="...">
+
+					<br></br>
+					
+					<input type="submit" name="insertNewGalery" value="Añadir Galeria">
+				</form>
+			</div>
+			<button class="accordion" onclick="manageAccordion(this)">Añadir una imagen a una galeria</button>
+			<div class="panel" >
+				<h1>Seleciona la galeria a la que vas a añadir la imagen</h1>
+				<div id="addToGaleryContainer" class="deleteContainer">
+					
+				</div>
+				<form action="Scripts/phpConectionVillages.php" method="post"  enctype="multipart/form-data">
+					<label for="addImageToGaleryText">Texto que acompaña a la imagen</label>
+					<input type="text"  name="addImageToGaleryText" placeholder="...">
+					<br></br>
+					<br></br>
+					<label for="addImageToGalery">Imagen</label>
+					<br></br>
+					<input type="file" name="addImageToGalery" id="addImageToGalery">
+					<br></br>
+					
+					<input type="submit" name="insertImageToGalery" value="Añadir Imagen">
+				</form>
+			</div>
+			<button class="accordion" onclick="manageAccordion(this)">Borrar una imagen de una galeria</button>
+			<div class="panel" >
+				<h1>Seleciona la galeria a la que vas a quitar la imagen</h1>
+				<div id="deleteImageFromGaleryContainer" class="deleteContainer">
+					
+				</div>
+				<h1>Seleciona la imagen</h1>
+				<div id="imageToDeleteContainer" class="deleteContainer">
+					
+				</div>
+			</div>
+			<button class="accordion" onclick="manageAccordion(this)">Borrar una galeria</button>
+			<div class="panel" >
+				<h1>Seleciona la galeria a borrar</h1>
+				<div id="deleteGaleryContainer" class="deleteContainer">
+					
+				</div>
 				
-				<input type="submit" value="Subir Anuncio">
-			</form>
-		
-		</div>
-		<button class="accordion" onclick="manageAccordion(this)">Añade un nuevo negocio</button>
-		<div class="panel">
-			<form action="Scripts/phpConection.php" method="post" action="addBusiness()" enctype="multipart/form-data">
-				<label for="businessName">Nombre del negocio</label>
-				<input type="text"  maxlength="200" name="businessName" placeholder="...">
-				<label for="businessDir">Dirección del negocio</label>
-				<input type="text" maxlength="500"  name="businessDir" placeholder="...">
-				<label for="businessPhone">Teléfono del negocio</label>
-				<input type="tel"  maxlength="9" id="businessPhone" name="businessPhone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
-				<br></br>
-				<label for="businessImage">Logo del negocio</label>
-				<br></br>
-				<input type="file" name="businessImage" id="businessImage">
-				<br></br>
-				<label for="businessText">Descripción breve del negocio</label>
-			    <textarea class="textBox" name="businessText" placeholder="..." ></textarea>
-				<label for="businessTipe">Especialización del negocio</label>
-				<select  name="businessTipe">
-					<option value="hospedaje">Hospedaje</option>
-					<option value="restauración">Restauración</option>
-					<option value="otro">Otro</option>
-				</select>
-				<input type="submit" value="Subir Anuncio">
-			</form>
-		
-		</div>
-		<button class="accordion" onclick="manageAccordion(this)">Editar el apartado "Historia"</button>
-		<div class="panel" >
-			<form action="Scripts/phpConection.php" method="post" action="editHistory()" enctype="multipart/form-data">
-				<label for="historyText">Contenido</label>
-			    <textarea class="textBox" name="historyText" placeholder="Texto..." ></textarea>
-				<input type="submit" value="Subir Texto">
-			</form>
-		</div>
-		<button class="accordion" onclick="manageAccordion(this)">Editar el text de el apartado "Lugares de Interes"</button>
-		<div class="panel" >
-			<form action="Scripts/phpConection.php" method="post" action="editPOIText()" enctype="multipart/form-data">
-				<label for="POIText">Contenido</label>
-			    <textarea class="textBox" name="POIText" placeholder="Texto..." ></textarea>
-				<input type="submit" value="Subir Texto">
-			</form>
-		</div>
-		<button class="accordion" onclick="manageAccordion(this)">Añadir un lugar de interes al tablon de fotos</button>
-		<div class="panel" >
-			<form action="Scripts/phpConection.php" method="post" action="addPOI()" enctype="multipart/form-data">
-				<label for="POIText">Descripción/Pie de pagina breve de la foto</label>
-				<input type="text"  name="POIText" placeholder="...">
-				<br></br>
-				<label for="POIImage">Imagen</label>
-				<br></br>
-				<input type="file" name="POIImage" id="POIImage">
-				<br></br>
-				
-				<input type="submit" value="Subir Anuncio">
-			</form>
-		</div>
-			 
+			</div>
+		</div>	 
 		
 
 	</body>
