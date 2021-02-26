@@ -246,3 +246,96 @@ function fitMapSidenav(){
 	height=$("#mapBackground").height();
 	$("#mapSidenav").height(height);
 }
+//PHP CONECTION
+
+function getArticlesByTag(tags){
+	getAllAds();
+	getAllArticles();
+}
+
+
+function getAllArticlesByTag(tag){
+	   $.ajax({
+        type: "POST",
+        url: "Scripts/phpConectionBoletin.php", //the page containing php script
+        dataType: 'json',
+        data: {
+            functionname: "getAllArticles",
+			arguments: tag,
+        },
+        success: function (response) {
+			
+            var articles=JSON.parse(response);
+			return articles;
+			
+			//console.log(matches.items[0].idMatch);
+            //return  getTitles(articles);
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Status: " + textStatus);
+            alert("Error: " + errorThrown);
+        }
+
+    });
+}
+function getArticlesHtml(articlesJson){
+	var items ="";
+	
+	    for (var k in articlesJson) {
+            if (articlesJson[k]instanceof Object) {
+            
+                for (key in articlesJson[k]) {
+                    var article = articlesJson[k][key];
+					var id=article["id"];
+					var date=article["date"];
+                    var title = article["title"];
+					var text = article["text"];
+					var image = article["image"];
+					var imageDesc=article["imageDesc"];
+					var autor=article["autor"];
+					var tag=article["tag"];
+					
+					rawHTML="<div class=\"article\" onclick=\"location.href=\'"+getArticleDir(title,tag)+"\';\" >"+
+			
+					'<div class="articleTags">'+
+						capitalizeFirstLetter(tag)+
+					"</div>"+
+					'<div class="imageContainer">'+
+						'<img src="Secciones/articleExample/placeholder1.gif"></img>'+
+					'</div>'+
+						'<h1>'+title +'</h1>'+
+					'<div class="articleData">'+
+						'<p class="articleAutor">'+ autor +'</p>'+
+						'<p class="articleDate">'+date+'</p>'+
+					'</div>'+
+					'<p class="articleSample">'+
+						text+
+					'</p>'+
+					'</div>';
+				
+					items+=rawHTML;
+				
+                }
+				return items;
+                
+            } else {
+				return "";
+                //document.write(data[k] + "<br>");
+            };
+        }
+}
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+
+function updateElement(id, rawHTML) {
+
+    var element = document.getElementById(id);
+    element.innerHTML = rawHTML;
+
+}
+function insertElement(id, rawHTML) {
+    $(id).append(rawHTML);
+
+}
