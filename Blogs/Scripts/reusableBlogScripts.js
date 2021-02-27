@@ -161,3 +161,91 @@ function openNav(x) {
     
 
 }
+//db conection
+function getAllGaleries(id){
+   $.ajax({
+		type: "POST",
+		url: "/trabajo-rivera/Blogs/Scripts/phpConectionVilages.php", //the page containing php script
+		dataType: 'json',
+		data: {
+			functionname: "getAllGaleries",
+			arguments: id,
+		},
+		success: function (response) {
+		
+			var galery=JSON.parse(response);
+			return galery;
+			
+			//console.log(matches.items[0].idMatch);
+			//return  getTitles(articles);
+		},
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
+			alert("Status: " + textStatus);
+			alert("Error: " + errorThrown);
+		}
+
+	});
+}
+function getAllImagesFromGalery(id){
+   $.ajax({
+		type: "POST",
+		url: "/trabajo-rivera/Blogs/Scripts/phpConectionVilages.php", //the page containing php script
+		dataType: 'json',
+		data: {
+			functionname: "getAllImagesFromGalery",
+			arguments: id,
+		},
+		success: function (response) {
+		
+			var images=JSON.parse(response);
+			return images;
+			
+			//console.log(matches.items[0].idMatch);
+			//return  getTitles(articles);
+		},
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
+			alert("Status: " + textStatus);
+			alert("Error: " + errorThrown);
+		}
+
+	});
+}
+
+function getAllBussines(id){
+   $.ajax({
+		type: "POST",
+		url: "/trabajo-rivera/Blogs/Scripts/phpConectionVilages.php", //the page containing php script
+		dataType: 'json',
+		data: {
+			functionname: "getAllBussines",
+			arguments: id,
+		},
+		success: function (response) {
+		
+			var bussines=JSON.parse(response);
+			return bussines;
+			
+			//console.log(matches.items[0].idMatch);
+			//return  getTitles(articles);
+		},
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
+			alert("Status: " + textStatus);
+			alert("Error: " + errorThrown);
+		}
+
+	});
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+function updateElement(id, rawHTML) {
+
+    var element = document.getElementById(id);
+    element.innerHTML = rawHTML;
+
+}
+function insertElement(id, rawHTML) {
+    $(id).append(rawHTML);
+
+}
