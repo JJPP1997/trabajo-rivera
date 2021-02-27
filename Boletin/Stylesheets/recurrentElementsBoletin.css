@@ -321,7 +321,7 @@ overlay{
 	}
 	.imageContainer{
 		width:100%;
-		
+		min-height:50px;
 	}
 	.imageContainer>img{
 		max-width:90%;
@@ -529,11 +529,12 @@ overlay{
 	}
 	.imageContainer{
 		width:100%;
-		
+		min-height:50px;
 	}
 	.imageContainer>img{
 		max-width:90%;
 		max-height:400px;
+		
 		
 	}
 	.articleData{
