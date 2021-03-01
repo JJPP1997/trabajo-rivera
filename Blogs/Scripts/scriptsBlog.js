@@ -1,14 +1,11 @@
 var clicked=false;
-function loader(){
-	$.keyframe.define([{
-		name: 'hide',
-		from: {
-			"opacity": "1"
-		},
-		to: {
-			"opacity": "0"
-		}
-	}]);
+var CImageText=[];
+function loader(blogId){
+	getBlog(blogId);
+	getAllAgendas(blogId);
+	getAllCarrouselImages(blogId);
+	
+	
 	//get pertinent measurements
 	var width = $(window).width();
 	var height = $(window).height();
@@ -34,14 +31,7 @@ function loader(){
 		}
 	}, 10000);
 	//fade in
-	$("#overlay").playKeyframe({
-			name: 'hide',
-			duration: '1s',
-			iterationCount: 1,
-			complete: function(){
-				$("#overlay").css("display", "none"); 
-			}
-		});
+	
 	//$("#overlay").delay(1000).display("none");
 	//fit buttons
 	
@@ -65,21 +55,197 @@ function loader(){
 	//fadeBody(true);
 	
 }
+function getAllCarrouselImages(id){
+   $.ajax({
+		type: "POST",
+		url: "/trabajo-rivera/Blogs/Scripts/phpConectionVilages.php", //the page containing php script
+		dataType: 'json',
+		data: {
+			functionname: "getAllCarrouselImages",
+			arguments: id,
+		},
+		success: function (response) {
+		
+			var images=JSON.parse(response);
+
+			getCIData4Main(images);
+		
+			
+			//return  getTitles(articles);
+		},
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
+			alert("Status: " + textStatus);
+			alert("Error: " + errorThrown);
+			return "";
+		}
+
+	});
+	return "";
+}
+function getAllAgendas(id){
+   $.ajax({
+		type: "POST",
+		url: "/trabajo-rivera/Blogs/Scripts/phpConectionVilages.php", //the page containing php script
+		dataType: 'json',
+		data: {
+			functionname: "getAllAgendas",
+			arguments: id,
+		},
+		success: function (response) {
+		
+			var agenda=JSON.parse(response);
+			//console.log(agenda);
+			 getAnouncementData4Main(agenda);
+			
+			
+			//return  getTitles(articles);
+		},
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
+			alert("Status: " + textStatus);
+			alert("Error: " + errorThrown);
+			return "";
+		}
+
+	});
+	return "";
+}
+function getBlog(id){
+   $.ajax({
+		type: "POST",
+		url: "/trabajo-rivera/Blogs/Scripts/phpConectionVilages.php", //the page containing php script
+		dataType: 'json',
+		data: {
+			functionname: "getBlog",
+			arguments: id,
+		},
+		success: function (response) {
+		
+			var blog=JSON.parse(response);
+			//console.log(blog);
+			 getBlogData4Main(blog);
+			
+			
+			//return  getTitles(articles);
+		},
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
+			alert("Status: " + textStatus);
+			alert("Error: " + errorThrown);
+			return "";
+		}
+
+	});
+	return "";
+}
+function getBlogData4Main(blogJson){
+	for (var k in blogJson) {
+		if (blogJson[k]instanceof Object) {
+		
+			for (key in blogJson[k]) {
+				var blog = blogJson[k][key];
+				var id=blog["id"];
+				var name=blog["name"];
+				var desc = blog["desc"];
+				var history = blog["history"];
+				var map = blog["map"];
+				var poiText=blog["poiText"];
+		
+				updateElement("descriptionContainer",desc);
+			}
+			//document.write(data[k] + "<br>");
+		};
+	}
+}
+function getAnouncementData4Main(anouncementsJson){
+	var items="";
+	for (var k in anouncementsJson) {
+		
+		if (anouncementsJson[k]instanceof Object) {
+		
+			for (key in anouncementsJson[k]) {
+				var blog = anouncementsJson[k][key];
+				var id=blog["id"];
+				var title=blog["title"];
+				var image = blog["image"];
+				var text = blog["text"];
+				var rawHtml=
+			'<div class="anouncement">'+
+				'<h1>'+ title+'</h1>'+
+				'<img src="Imagenes/'+image+'"></img>'+
+				'<p class="anouncementDesc">'+
+					text+
+				'</p>'+
+			'</div>';
+				items+=rawHtml;
+			}
+			
+			//document.write(data[k] + "<br>");
+		};		
+	}
+	updateElement("anouncementsContainer",items);
+}
+function getCIData4Main(carrouselImagesJson){
+	
+	var images="";
+	for (var k in carrouselImagesJson) {
+		
+		if (carrouselImagesJson[k]instanceof Object) {
+		
+			for (key in carrouselImagesJson[k]) {
+				var img = carrouselImagesJson[k][key];
+				var src=img["image"];
+				var text=img["text"];
+				
+				var rawHtml=
+				'<div class="mySlides fade">'+
+					'<img class="slidesImage" src="Imagenes/'+src+'">'+
+				'</div>';
+				images+=rawHtml;
+				CImageText.push(text);
+				
+			}
+			
+			//document.write(data[k] + "<br>");
+		};
+	}
+	
+	
+	updateElement("title_background",images);
+	$.keyframe.define([{
+		name: 'hide',
+		from: {
+			"opacity": "1"
+		},
+		to: {
+			"opacity": "0"
+		}
+	}]);
+	$("#overlay").playKeyframe({
+		name: 'hide',
+		duration: '1s',
+		iterationCount: 1,
+		complete: function(){
+			$("#overlay").css("display", "none"); 
+		}
+	});
+	showSlides(1);
+}
 var slideIndex = 1;
-showSlides(slideIndex);
+
 
 function AutoPlusSlides() {
-  showSlides(slideIndex += 1);
-	  triggerTitleAnimation();
+	showSlides(slideIndex += 1);
+	triggerTitleAnimation();
 	
 }
 function plusSlides(n) {
+	
 	showSlides(slideIndex += n);
-	 triggerTitleAnimation();
+	triggerTitleAnimation();
 	clicked=true;
 }
 
 function currentSlide(n) {
+	
   showSlides(slideIndex = n);
  
 }
@@ -93,7 +259,21 @@ function showSlides(n) {
       slides[i].style.display = "none";  
   }
   slides[slideIndex-1].style.display = "block";  
-
+	try{
+		
+		if(n===1){
+			var text="<p>"+CImageText[(n-1)]+"</p>";
+			updateElement("title",text);
+		}else{
+			var text="<p>"+CImageText[(n-2)]+"</p>";
+				updateElement("title",text);
+		}
+		
+	
+	}catch{
+		var text="<p>"+CImageText[0]+"</p>";
+		updateElement("title",text);
+	}
 }
 function fitTitleOverlay(){
 	var width = $(window).width();

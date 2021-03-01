@@ -1,0 +1,176 @@
+<html lang="en">
+	
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Boletinpage" content="Boletin">
+		<meta name="keywords" content="">
+		<meta name="author" content="Jose Juan Porras">
+		
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+		
+		<link rel="stylesheet"  href="../../../Stylesheets/stylesheetArticle.css">
+		<link rel="stylesheet"  href="../../../Stylesheets/recurrentElementsBoletin.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	  
+	  <script type="text/javascript" src="../../../Scripts/scriptsArticle.js"></script> 
+	  <script type="text/javascript" src="../../../Scripts/reusableBoletinScripts.js"></script> 
+	  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	  <script src='http://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
+	  <script type="text/javascript" src="../../../../jQuery.Keyframes-master/dist/jquery.keyframes.js"></script>
+	
+	</head>
+	<body onscroll="scroller()">
+		<div id="wholeHeader">
+			<div id="nonStickHeader" >
+				EL BOLETIN DEL ESCABAS
+			</div>
+			<div id="header" >
+				
+				<div id="headerContainer">
+					<button class="headerBtn">
+						Cultura
+					</button>
+					<button class="headerBtn">
+						Opinión
+					</button>
+					<button class="headerBtn">
+						Deportes
+					</button>
+					<button class="headerBtn">
+						Politica
+					</button>
+					<button class="headerBtn">
+						Entrevistas
+					</button>
+					<button class="headerBtn"  onclick="window.open('Busqueda.html');">
+						Busqueda &#128270;
+					</button>
+					<button class="headerBtn">
+						Conoce Los Pueblos
+					</button>
+				</div>
+					
+				<div id="containerBtn" onclick="openNav(this)">
+					  <div class="bar1"></div>
+					  <div class="bar2"></div>
+					  <div class="bar3"></div>
+				</div>
+			</div>
+			
+			<div id="mapMenu">
+				<a href="javascript:void(0)" id="closeMapBtn" onclick="closeMap()">&times;</a>
+				<h1>Conoce Los Pueblos</h1>
+				<div onclick="openMapNav()" style="font-size:2vw;">Usa el mapa o haz click aqui para ver la lista de pueblos</div>
+				<div id="mapSidenav"  class="sidenav">
+					<a href="javascript:void(0)" class="closebtn" onclick="closeMapNav()">&times;</a>
+					<a href="../Blogs/blogTemplate/BlogTemplatePage.html">
+						Valdeolivas
+					</a>
+					<a href="../Blogs/blogTemplate/BlogTemplatePage.html">
+						Albendea
+					</a>
+					<a href="../Blogs/blogTemplate/BlogTemplatePage.html">
+						Priego
+					</a>
+					<a href="../Blogs/blogTemplate/BlogTemplatePage.html">
+						Cañamares
+					</button>
+					<a href="../Blogs/blogTemplate/BlogTemplatePage.html">
+						Fuertescusa
+					</a>
+					<a href="../Blogs/blogTemplate/BlogTemplatePage.html">
+						Poyatos
+					</a>
+					<a href="../Blogs/blogTemplate/BlogTemplatePage.html">
+						Villaconejos de Trabaque
+					</a>
+				</div>
+				<img id="mapBackground" src="../../../Imagenes/plano_escabas.jpg" usemap="#rivermap"></img>
+				<map id="map" name="rivermap">
+					<area shape="rect" coords="0,0,200,71" alt="Valdeolivas" href="../Blogs/blogTemplate/BlogTemplatePage.html">
+					<area shape="rect" coords="0,71,200,142" alt="Albendea" href="../Blogs/blogTemplate/BlogTemplatePage.html">
+					<area shape="rect" coords="250,200,550,300" alt="Priego" href="../Blogs/blogTemplate/BlogTemplatePage.html">
+					<area shape="rect" coords="550,200,850,300" alt="Cañamares" href="../Blogs/blogTemplate/BlogTemplatePage.html">
+					<area shape="rect" coords="800,100,1000,200" alt="Fuertescusa" href="../Blogs/blogTemplate/BlogTemplatePage.html">
+					<area shape="rect" coords="1050,300,1300,450" alt="Poyatos" href="../Blogs/blogTemplate/BlogTemplatePage.html">
+					<area shape="rect" coords="0,300,250,400" alt="San Pedro Palmiches" href="../Blogs/blogTemplate/BlogTemplatePage.html">
+					<area shape="rect" coords="250,400,500,500" alt="Villaconejos de Trabaque" href="../Blogs/blogTemplate/BlogTemplatePage.html">
+				</map>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div id="mySidenav" class="sidenav">
+		
+			<a href="DondeComer/.html">Cultura</a>
+			<a href="DondeDormir/Indice.html">Opinión</a>
+			<a href="NegociosLocales/Indice.html">Deportes</a>	
+			<a href="AgendaCultural.html">Politica</a>
+			<a href="Galeria.html">Entrevistas</a>
+			<a href="Busqueda.html"> Busqueda &#128270;</a>
+			<a href="javascript:void(0)" onclick="openMap()" >Conoce Los Pueblos</a>
+		</div>
+		<div class="horizontalAd">
+			<a href="javascript:void(0)" class="closeBtnAd" onclick="closeThis(this)">&times;</a>
+		
+			anuncio de ejemplo
+		</div> 
+		
+		
+		<div id="mySidenav" class="sidenav">
+		
+			<a href="DondeComer/.html">Cultura</a>
+			<a href="DondeDormir/Indice.html">Opinión</a>
+			<a href="NegociosLocales/Indice.html">Deportes</a>	
+			<a href="AgendaCultural.html">Politica</a>
+			<a href="Galeria.html">Entrevistas</a>
+			<a href="Busqueda.html"> Busqueda &#128270;</a>
+			<a href="Busqueda.html">Conoce Los Pueblos</a>
+		</div>
+		<div id="arcticleContainer" >
+			<div id="title">
+				yyyy
+			</div>
+			<div id="articleData">
+				<p id="articleAutor">yyyy </p>
+				<p id="articleDate">%DATE%</p>
+				<p id="articleTags">cultura</p>
+			</div>	
+			<div id="imageContainer">
+				<img src="50-50.jpg"></img>
+				<p>asasasasasasasasasa</p>
+			</div>
+			<div id="text">
+				sadasdasd
+			</div>
+		</div>
+	
+		<div id="footer">
+			<div class="nameContainer">
+				Asociación Comarcal Rivera del Escabas
+			</div>
+			<div class="logoContainer">
+				<img src="../../../Imagenes/cuenca.gif" >
+			</div>
+			<div  class="contactContainer footerContainer">
+				<ul>
+					<li><a href="callto:6064378067">Telf:00000000</a></li>
+					<li><a  href="mailto:josejuanytal@gmail.com">Correo:123456@gmail.com</a></li>
+					<li><a href="https://www.google.com/maps/place/Calle+Molina,+10,+16890+Ca%C3%B1amares,+Cuenca/@40.4520548,-2.2389176,17.75z/data=!4m5!3m4!1s0xd5d24b3879c227d:0x808da308e5c1219!8m2!3d40.4534796!4d-2.2382917">
+						Dir:Cª Molina 10, Cañamares Cuenca
+					</a>
+					</li>
+				</ul>
+			</div>
+			<div  class="legalContainer footerContainer">
+				<ul>
+					<li><a href="">Aviso legal</a></li>
+					<li><a href="">Politica de Privacidad</a></li>
+					<li><a  href="">
+						Politica de Cookies
+					</a></li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>

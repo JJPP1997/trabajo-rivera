@@ -45,8 +45,9 @@
 		margin:10px 1% 10px 1%;
 		display:inline;
 	}
-	.agendaEnrty{
-		margin:40px
+	.agendaEntry{
+		margin:40px;
+		margin-top:20px;
 	}
 	h1{
 		text-align:center;
