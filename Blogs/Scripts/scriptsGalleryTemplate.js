@@ -1,15 +1,7 @@
 var currentImg=0;
 	var all =null;
-function loader(){
-	$.keyframe.define([{
-		name: 'hide',
-		from: {
-			"opacity": "1"
-		},
-		to: {
-			"opacity": "0"
-		}
-	}]);
+function loader(name){
+
 	var maxWidth=0;
 	
 	
@@ -23,6 +15,7 @@ function loader(){
 	//$("#focusImage").width(width).height(height);
 	$("#overlay").width(width).height(height);
 	//hide slides
+	getIDGalery(name);
 	
 	/*
    var anchors = document.getElementsByClassName('polaroid');
@@ -36,16 +29,106 @@ function loader(){
 	}*/
 	//fade in
 	
-	$("#overlay").playKeyframe({
-		name: 'hide',
-		duration: '1s',
-		iterationCount: 1,
-		complete: function(){
-			$("#overlay").css("display", "none"); 
-		}
-	});
         
 	
+}
+function getIDGalery(name){
+   $.ajax({
+		type: "POST",
+		url: "/trabajo-rivera/Blogs/Scripts/phpConectionVilages.php", //the page containing php script
+		dataType: 'text',
+		data: {
+			functionname: "getIDGalery",
+			arguments: name,
+		},
+		success: function (response) {
+			
+			var id= response;
+			
+			 $.ajax({
+				type: "POST",
+				url: "/trabajo-rivera/Blogs/Scripts/phpConectionVilages.php", //the page containing php script
+				dataType: 'json',
+				data: {
+					functionname: "getAllImagesFromGalery",
+				arguments: id,
+				},
+				success: function (response) {
+					
+					var g=JSON.parse(response);
+					getImages(g);
+					
+					
+					//return  getTitles(articles);
+				},
+				error: function (XMLHttpRequest, textStatus, errorThrown) {
+					alert("Status: " + textStatus);
+					alert("Error: " + errorThrown);
+					return "";
+				}
+
+			});
+			
+			//return  getTitles(articles);
+		},
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
+			alert("Status: " + textStatus);
+			alert("Error: " + errorThrown);
+			return "0";
+		}
+
+	});
+	
+}
+
+function getImages(blogJson){
+	var items="";
+	for (var k in blogJson) {
+		if (blogJson[k]instanceof Object) {
+		
+			for (key in blogJson[k]) {
+				var blog = blogJson[k][key];
+				var id=blog["id"];
+				var image=blog["image"];
+				var text = blog["text"];
+				if(text==null || text==""){
+					text="";
+				}
+				//console.log(text);
+				var raw='<div class="polaroid " onclick="openImage(\'Imagenes/'+image+'\',\''+text+'\')" >'+
+				
+					'<img class="PolaroidImage" src="Imagenes/'+image+'">'+
+				
+				'<p class="caption">'+text+'</p>'+
+				'<div class="clear"></div>'+
+				'</div>';
+				
+				items+=raw;
+				
+				
+			}
+			//document.write(data[k] + "<br>");
+		};
+	}
+	
+	updateElement("imagesContainer",items);
+	$.keyframe.define([{
+		name: 'hide',
+		from: {
+			"opacity": "1"
+		},
+		to: {
+			"opacity": "0"
+		}
+	}]);
+	$("#overlay").playKeyframe({
+			name: 'hide',
+			duration: '1s',
+			iterationCount: 1,
+			complete: function(){
+				$("#overlay").css("display", "none"); 
+			}
+		});
 }
 function scroller(){
 		var menubar=$("#wholeHeader").height();
@@ -67,7 +150,8 @@ function openImage(src,text){
 		
 		}
 	}
-	$("#focusImagePolaroidContainer").next(".caption").text(text);
+	
+	$("#FICaption").text(text);
 	$("#focusImage").css("display", "inline");
 	fitMargins();
 }

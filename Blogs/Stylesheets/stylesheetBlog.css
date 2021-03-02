@@ -139,6 +139,8 @@
 		text-decoration: none;
 		display: block;
 		cursor: pointer;
+		position:relative;
+		z-index: 100000;
 		font-size: 2vw;
 		border: none;
 		outline:none;

@@ -246,3 +246,21 @@ function fitMapSidenav(){
 	height=$("#mapBackground").height();
 	$("#mapSidenav").height(height);
 }
+//PHP CONECTION
+
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+
+function updateElement(id, rawHTML) {
+
+    var element = document.getElementById(id);
+    element.innerHTML = rawHTML;
+
+}
+function insertElement(id, rawHTML) {
+    $(id).append(rawHTML);
+
+}
