@@ -59,16 +59,20 @@
 	  display: block;
 	}
 	#submitBtn{
-		
-		padding: 15px 32px;
+	
+		margin-bottom:20px;
+		width:20%;
+		margin-left:40%;
+		margin-right:40%;
 		text-align: center;
 		text-decoration: none;
 		display: inline;
 		cursor: pointer;
-		font-size: 1.2vw;
+		font-size: 25px;
 		border:none;
 		background-color:#73c2fb;
 		font-weight:bold;
+		margin-top:10px,
 	}
 	#submitBtn:hover{
 		border:1px solid black;

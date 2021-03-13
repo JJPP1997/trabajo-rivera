@@ -12,11 +12,13 @@ DISEÑO:
 	PAGE INSERT DATA TO BOLETIN
 		check cookies
 		error text
+		
+		 
 BDD:
 	
 	IMPLEMENTAR METODOS
 		hacer update article
-		insertar en objetos
+		revisar borrar;
 		
 	TESTING
 MISC 

@@ -15,72 +15,63 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	  
 	  <script type="text/javascript" src="Scripts/scriptsBoletinSearchPage.js"></script> 
+	  <script type="text/javascript" src="Scripts/reusableScriptsAdmin.js"></script> 
 	  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	  <script src='http://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
+	  <script src='http://code.jquery.com/jquery-3.3.1.min.js'></script>
 	<script type="text/javascript" src="../jQuery.Keyframes-master/dist/jquery.keyframes.js"></script>
 	
 	</head>
 	<body onresize="resizer()">
 		<div id="headerSearch" class="show">
-			<form action="" id="searchBar" >
+			<form  id="searchBar" name="searchBar">
 				<h1>Texto a buscar:</h1>
-				<input type="text" id="textInput" name="ftext"></input>
+				<input type="text" id="textInput" name="searchTextInput" ></input>
 					
 				<h1>Filtrar por secciones:</h1>
 				<label class="inputContainer">Cultura
-				  <input type="checkbox" class="regular-checkbox">
+				  <input type="checkbox" name="searchSectionCU"  value="cultura" class="regular-checkbox">
 				  <span class="checkmark"></span>
 				</label>
 				<label class="inputContainer">Opinion
-				  <input type="checkbox" class="regular-checkbox">
+				  <input type="checkbox" name="searchSectionOP"  value="opinion" class="regular-checkbox">
 				  <span class="checkmark"></span>
 				</label>
 				<label class="inputContainer">Deportes
-				  <input type="checkbox" class="regular-checkbox">
+				  <input type="checkbox" name="searchSectionDE"  value="deportes" class="regular-checkbox">
 				  <span class="checkmark"></span>
 				</label>
 				<label class="inputContainer">Politica
-				  <input type="checkbox" class="regular-checkbox">
+				  <input type="checkbox" name="searchSectionPO" value="politica" class="regular-checkbox">
 				  <span class="checkmark" ></span>
 				</label>
 				<label class="inputContainer">Entrevistas
-				  <input type="checkbox" class="regular-checkbox">
+				  <input type="checkbox" name="searchSectionEN" value="entrevistas" class="regular-checkbox">
 				  <span class="checkmark"></span>
 				</label>
 				<br></br>
-				
+				<!--
 				<h1>Filtrar por fecha:</h1>
-				<label class="inputContainer">Buscar en un día:
-					<input type="date"></input>
+				<label class="inputContainer">Buscar por día:
+					<input  name="searchDate" type="date"></input>
 				</label>
-				<br></br>
-				<label class="inputContainer">Buscar en una semana:
-					<input type="week"></input>
-				</label>
-				<br></br>
-				<label class="inputContainer">Buscar en un mes:
-					<input type="month"></input>
-				</label>
+				<br></br>-->
+				
+				<h1>¿Donde buscar?</h1>
+				<fieldset >
+					<label class="inputContainer">Titulo
+					  <input type="radio" value="0" name="searchType" class="regular-checkbox">
+					  
+					</label>
+					<label class="inputContainer">Contenido
+					  <input type="radio" value="1" name="searchType" class="regular-checkbox">
+					  
+					</label>
+				</fieldset >
 				<br></br>
 				
-				<h1>Filtrar por:</h1>
-				<label class="inputContainer">Autor
-				  <input type="checkbox" class="regular-checkbox">
-				  <span class="checkmark"></span>
-				</label>
-				<label class="inputContainer">Titulo
-				  <input type="checkbox" class="regular-checkbox">
-				  <span class="checkmark"></span>
-				</label>
-				<label class="inputContainer">Contenido
-				  <input type="checkbox" class="regular-checkbox">
-				  <span class="checkmark"></span>
-				</label>
-				<br></br>
 				
-				<input id="submitBtn" onclick="manageHeader(false)"  value="Buscar"></input>
 			</form>
-		
+		<button id="submitBtn" onclick="getArticles()">Buscar</button>
 		</div>
 		<div id="headerButton" onclick="manageHeader(false) " class="show">
 					Cerrar   ˄
@@ -91,102 +82,7 @@
 			
 			</div>
 			<div id="newsContainer">
-				<div class="article">
-					<div class="articleTags">
-						Opinion
-					</div>
-					<div class="imageContainer">
-						<img src="Secciones/articleExample/placeholder1.gif"></img>
-					</div>
-						<h1> titulo de la noticia</h1>
-					<div class="articleData">
-						<p class="articleAutor">nombre del Autor </p>
-						<p class="articleDate">00/00/00</p>
-					</div>	
-					<p class="articleSample">
-						Etiam magna arcu, rhoncus ut felis quis, porta facilisis orci. Nulla efficitur ullamcorper lacus non hendrerit. Cras ipsum nisi, pret
-					</p>
-				</div>	
-				<div class="article">
-					<div class="articleTags">
-						Opinion
-					</div>
-					<div class="imageContainer">
-						<img src="Secciones/articleExample/placeholder1.gif"></img>
-					</div>
-						<h1> titulo de la noticia</h1>
-					<div class="articleData">
-						<p class="articleAutor">nombre del Autor </p>
-						<p class="articleDate">00/00/00</p>
-					</div>	
-					<p class="articleSample">
-						Etiam magna arcu, rhoncus ut felis quis, porta facilisis orci. Nulla efficitur ullamcorper lacus non hendrerit. Cras ipsum nisi, pret
-					</p>
-				</div>	
-				<div class="article">
-					<div class="articleTags">
-						Opinion
-					</div>
-					<div class="imageContainer">
-						<img src="Secciones/articleExample/placeholder1.gif"></img>
-					</div>
-						<h1> titulo de la noticia</h1>
-					<div class="articleData">
-						<p class="articleAutor">nombre del Autor </p>
-						<p class="articleDate">00/00/00</p>
-					</div>	
-					<p class="articleSample">
-						Etiam magna arcu, rhoncus ut felis quis, porta facilisis orci. Nulla efficitur ullamcorper lacus non hendrerit. Cras ipsum nisi, pret
-					</p>
-				</div>	
-				<div class="article">
-					<div class="articleTags">
-						Opinion
-					</div>
-					<div class="imageContainer">
-						<img src="Secciones/articleExample/placeholder1.gif"></img>
-					</div>
-						<h1> titulo de la noticia</h1>
-					<div class="articleData">
-						<p class="articleAutor">nombre del Autor </p>
-						<p class="articleDate">00/00/00</p>
-					</div>	
-					<p class="articleSample">
-						Etiam magna arcu, rhoncus ut felis quis, porta facilisis orci. Nulla efficitur ullamcorper lacus non hendrerit. Cras ipsum nisi, pret
-					</p>
-				</div>	
-					<div class="article">
-					<div class="articleTags">
-						Opinion
-					</div>
-					<div class="imageContainer">
-						<img src="Secciones/articleExample/placeholder1.gif"></img>
-					</div>
-						<h1> titulo de la noticia</h1>
-					<div class="articleData">
-						<p class="articleAutor">nombre del Autor </p>
-						<p class="articleDate">00/00/00</p>
-					</div>	
-					<p class="articleSample">
-						Etiam magna arcu, rhoncus ut felis quis, porta facilisis orci. Nulla efficitur ullamcorper lacus non hendrerit. Cras ipsum nisi, pret
-					</p>
-				</div>	
-				<div class="article">
-					<div class="articleTags">
-						Opinion
-					</div>
-					<div class="imageContainer">
-						<img src="Secciones/articleExample/placeholder1.gif"></img>
-					</div>
-						<h1> titulo de la noticia</h1>
-					<div class="articleData">
-						<p class="articleAutor">nombre del Autor </p>
-						<p class="articleDate">00/00/00</p>
-					</div>	
-					<p class="articleSample">
-						Etiam magna arcu, rhoncus ut felis quis, porta facilisis orci. Nulla efficitur ullamcorper lacus non hendrerit. Cras ipsum nisi, pret
-					</p>
-				</div>	
+				
 			</div>
 		</div>
 			<div id="footer">
@@ -207,15 +103,7 @@
 						</li>
 					</ul>
 				</div>
-				<div  class="legalContainer footerContainer">
-					<ul>
-						<li><a href="">Aviso legal</a></li>
-						<li><a href="">Politica de Privacidad</a></li>
-						<li><a  href="">
-							Politica de Cookies
-						</a></li>
-					</ul>
-				</div>
+				
 		</div>
 	</body>
 	</html>

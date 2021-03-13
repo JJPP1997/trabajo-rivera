@@ -10,49 +10,50 @@
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 		
-		<link rel="stylesheet"  href="Stylesheets/stylesheetBoletin.css">
-		<link rel="stylesheet"  href="Stylesheets/recurrentElementsBoletin.css">
+		<link rel="stylesheet"  href="../../Stylesheets/stylesheetBoletin.css">
+		<link rel="stylesheet"  href="../../Stylesheets/recurrentElementsBoletin.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	  
-		<script type="text/javascript" src="Scripts/scriptsBoletin.js"></script> 
-		<script type="text/javascript" src="Scripts/reusableBoletinScripts.js"></script> 
+		<script type="text/javascript" src="../../Scripts/scriptsBoletin.js"></script> 
+		<script type="text/javascript" src="../../Scripts/reusableBoletinScripts.js"></script> 
 		
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<script src='http://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
+		<script src='http://code.jquery.com/jquery-3.3.1.min.js'></script>
 		
-		<script type="text/javascript" src="../image-map-resizer-master/js/imageMapResizer.min.js"></script>
-		<script type="text/javascript" src="../jQuery.Keyframes-master/dist/jquery.keyframes.js"></script>
+		<script type="text/javascript" src="../../../image-map-resizer-master/js/imageMapResizer.min.js"></script>
+		<script type="text/javascript" src="../../../jQuery.Keyframes-master/dist/jquery.keyframes.js"></script>
 	
 	</head>
 	
-	<body onload="loader()" onscroll="scroller()"  onresize="resizer()">
+	<body onload="loader(4)" onscroll="scroller()"  onresize="resizer()">
 		<div id="overlay">
 			<div class="loader"></div>
 		
 		</div>
 		<div id="wholeHeader">
 			<div id="nonStickHeader" >
-				EL BOLETIN DEL ESCABAS
+			El periodico de la Ribera del Escabas
 			</div>
 			<div id="header" >
 				
 				<div id="headerContainer">
-					<button class="headerBtn">
+					<button class="headerBtn" onclick="window.open('../../Portada.html','_self');">
+							<b>Portada</b>
+					</button>
+					<button class="headerBtn" onclick="window.open('../Cultura/PortadaCultura.html','_self');">
 						Cultura
 					</button>
-					<button class="headerBtn">
+					<button class="headerBtn" onclick="window.open('../Opinion/PortadaOpinion.html','_self');">
 						Opinión
 					</button>
-					<button class="headerBtn">
+					<button class="headerBtn" onclick="window.open('../Deportes/PortadaDeportes.html','_self');">
 						Deportes
 					</button>
-					<button class="headerBtn">
-						Politica
-					</button>
-					<button class="headerBtn">
+				
+					<button class="headerBtn" onclick="window.open('../Entrevistas/PortadaEntrevistas.html','_self');">
 						Entrevistas
 					</button>
-					<button class="headerBtn"  onclick="window.open('Busqueda.html');">
+					<button class="headerBtn"  onclick="window.open('../../Busqueda.html','_self');">
 							 Busqueda &#128270;
 					</button>
 					<button  class="headerBtn mapBTN" onclick="openMap()">
@@ -71,30 +72,43 @@
 				<a href="javascript:void(0)" id="closeMapBtn" onclick="closeMap()">&times;</a>
 				<h1>Conoce Los Pueblos</h1>
 				<div onclick="openMapNav()" style="font-size:2vw;">Usa el mapa o haz click aqui para ver la lista de pueblos</div>
-				<div id="mapSidenav"  class="sidenav">
+			<div id="mapSidenav"  class="sidenav">
 					<a href="javascript:void(0)" class="closebtn" onclick="closeMapNav()">&times;</a>
-					<a href="../Blogs/blogTemplate/BlogTemplatePage.html">
+					<a href="/trabajo-rivera/Blogs/blogTemplate/BlogTemplatePage.html">
 						Valdeolivas
 					</a>
-					<a href="../Blogs/blogTemplate/BlogTemplatePage.html">
+					<a href="/trabajo-rivera/Blogs/blogTemplate/BlogTemplatePage.html">
 						Albendea
 					</a>
-					<a href="../Blogs/blogTemplate/BlogTemplatePage.html">
+					<a href="/trabajo-rivera/Blogs/blogTemplate/BlogTemplatePage.html">
 						Priego
 					</a>
-					<a href="../Blogs/blogTemplate/BlogTemplatePage.html">
+					<a href="/trabajo-rivera/Blogs/blogTemplate/BlogTemplatePage.html">
 						Cañamares
 					</button>
-					<a href="../Blogs/blogTemplate/BlogTemplatePage.html">
+					<a href="/trabajo-rivera/Blogs/blogTemplate/BlogTemplatePage.html">
 						Fuertescusa
 					</a>
-					<a href="../Blogs/blogTemplate/BlogTemplatePage.html">
+					<a href="/trabajo-rivera/Blogs/blogTemplate/BlogTemplatePage.html">
 						Poyatos
 					</a>
-					<a href="../Blogs/blogTemplate/BlogTemplatePage.html">
+					<a href="/trabajo-rivera/Blogs/blogTemplate/BlogTemplatePage.html">
 						Villaconejos de Trabaque
 					</a>
 				</div>
+				<img id="mapBackground" src="/trabajo-rivera/Boletin/Imagenes/plano_escabas.jpg" usemap="#rivermap"></img>
+				<map id="map" name="rivermap">
+					<area shape="rect" coords="0,0,200,71" alt="Valdeolivas" href="/trabajo-rivera/Blogs/blogTemplate/BlogTemplatePage.html">
+					<area shape="rect" coords="0,71,200,142" alt="Albendea" href="/trabajo-rivera/Blogs/blogTemplate/BlogTemplatePage.html">
+					<area shape="rect" coords="250,200,550,300" alt="Priego" href="/trabajo-rivera/Blogs/blogTemplate/BlogTemplatePage.html">
+					<area shape="rect" coords="550,200,850,300" alt="Cañamares" href="/trabajo-rivera/Blogs/blogTemplate/BlogTemplatePage.html">
+					<area shape="rect" coords="800,100,1000,200" alt="Fuertescusa" href="/trabajo-rivera/Blogs/blogTemplate/BlogTemplatePage.html">
+					<area shape="rect" coords="1050,300,1300,450" alt="Poyatos" href="/trabajo-rivera/Blogs/blogTemplate/BlogTemplatePage.html">
+					<area shape="rect" coords="0,300,250,400" alt="San Pedro Palmiches" href="/trabajo-rivera/Blogs/blogTemplate/BlogTemplatePage.html">
+					<area shape="rect" coords="250,400,500,500" alt="Villaconejos de Trabaque" href="/trabajo-rivera/Blogs/blogTemplate/BlogTemplatePage.html">
+				</map>
+				
+			</div>
 				<img id="mapBackground" src="Imagenes/plano_escabas.jpg" usemap="#rivermap"></img>
 				<map id="map" name="rivermap">
 					<area shape="rect" coords="0,0,200,71" alt="Valdeolivas" href="../Blogs/blogTemplate/BlogTemplatePage.html">
@@ -110,267 +124,52 @@
 			</div>
 		</div>
 		<div id="mySidenav" class="sidenav">
-		
-			<a href="DondeComer/.html">Cultura</a>
-			<a href="DondeDormir/Indice.html">Opinión</a>
-			<a href="NegociosLocales/Indice.html">Deportes</a>	
-			<a href="AgendaCultural.html">Politica</a>
-			<a href="Galeria.html">Entrevistas</a>
-			<a href="Busqueda.html"> Busqueda &#128270;</a>
+			<a href="../../../Portada.html">Portada</a>
+			<a href="../Cultura/PortadaCultura.html">Cultura</a>
+			<a href="../Opinion/PortadaOpinion.html">Opinión</a>
+			<a href="../Deportes/PortadaDeportes.html">Deportes</a>	
+			<a href="../Entrevistas/PortadaEntrevistas.html">Entrevistas</a>
+			<a href="../../Busqueda.html"> Busqueda &#128270;</a>
 			<a href="javascript:void(0)" onclick="openMap()" >Conoce Los Pueblos</a>
 		</div>
+		<div class="horizontalAd" id="hAdd1">
+
+		</div> 
+		<div class="verticalAd Left" id="vAdd1">
+	
+			
+		</div> 
+		<div class="verticalAd Right" id="vAdd2">
+		
+		</div> 
 		<div id="recentNews">
 		
-			<h1 class="seccionTitle">Noticias Recientes</h1>
-			<div class="articleContainer">
-				
-				<div class="article" onclick="location.href='Secciones/articleExample/articleTemplate.html';">
-					<div class="articleTags">
-						Opinion
-					</div>
-					<div class="imageContainer">
-						<img src="Secciones/articleExample/placeholder1.gif"></img>
-					</div>
-						<h1> titulo de la noticia</h1>
-					<div class="articleData">
-						<p class="articleAutor">nombre del Autor </p>
-						<p class="articleDate">00/00/00</p>
-						
-					</div>	
-					<p class="articleSample">
-						Etiam magna arcu, rhoncus ut felis quis, porta facilisis orci. Nulla efficitur ullamcorper lacus non hendrerit. Cras ipsum nisi, pret
-					</p>
-				</div>	
-				<div class="article" onclick="location.href='Secciones/articleExample/articleTemplate.html';">
-					<div class="articleTags" >
-						Opinion
-					</div>
-					<div class="imageContainer">
-						<img src="Secciones/articleExample/placeholder1.gif"></img>
-					</div>
-						<h1> titulo de la noticia</h1>
-					<div class="articleData">
-						<p class="articleAutor">nombre del Autor </p>
-						<p class="articleDate">00/00/00</p>
-					</div>	
-					<p class="articleSample">
-						Etiam magna arcu, rhoncus ut felis quis, porta facilisis orci. Nulla efficitur ullamcorper lacus non hendrerit. Cras ipsum nisi, pret
-					</p>
-				</div>	
-				<div class="article" onclick="location.href='Secciones/articleExample/articleTemplate.html';">
-					<div class="articleTags">
-						Opinión
-					</div>
-					<div class="imageContainer">
-						<img src="Secciones/articleExample/placeholder1.gif"></img>
-					</div>
-						<h1> titulo de la noticia</h1>
-					<div class="articleData">
-						<p class="articleAutor">nombre del Autor </p>
-						<p class="articleDate">00/00/00</p>
-					</div>	
-					<p class="articleSample">
-						Etiam magna arcu, rhoncus ut felis quis, porta facilisis orci. Nulla efficitur ullamcorper lacus non hendrerit. Cras ipsum nisi, pret
-					</p>
-				</div>	
-			
-			
+			<h1 class="seccionTitle">Politica</h1>
+			<div class="articleContainer" id="recentNewsContainer" >
+					
 			</div>
 			
 		</div>
+		<div class="horizontalAd" id="hAdd2">
+		
+		</div> 
 		<div id="allNews">
-			<h1 class="seccionTitle">Este Mes</h1>
-			<div class="articleContainer">
+			
+			<div class="articleContainer" id="allNewsContainer">
 				
-				
-				<div class="article" onclick="location.href='Secciones/articleExample/articleTemplate.html';">
-					<div class="articleTags">
-						Opinion
-					</div>
-					<div class="imageContainer">
-						<img src="Secciones/articleExample/placeholder1.gif"></img>
-					</div>
-						<h1> titulo de la noticia</h1>
-					<div class="articleData">
-						<p class="articleAutor">nombre del Autor </p>
-						<p class="articleDate">00/00/00</p>
-					</div>	
-					<p class="articleSample">
-						Etiam magna arcu, rhoncus ut felis quis, porta facilisis orci. Nulla efficitur ullamcorper lacus non hendrerit. Cras ipsum nisi, pret
-					</p>
-				</div>	
-				<div class="article" onclick="location.href='Secciones/articleExample/articleTemplate.html';">
-					<div class="articleTags">
-						Opinion
-					</div>
-					<div class="imageContainer">
-						<img src="Secciones/articleExample/placeholder1.gif"></img>
-					</div>
-						<h1> titulo de la noticia</h1>
-					<div class="articleData">
-						<p class="articleAutor">nombre del Autor </p>
-						<p class="articleDate">00/00/00</p>
-					</div>	
-					<p class="articleSample">
-						Etiam magna arcu, rhoncus ut felis quis, porta facilisis orci. Nulla efficitur ullamcorper lacus non hendrerit. Cras ipsum nisi, pret
-					</p>
-				</div>	
-				<div class="article" onclick="location.href='Secciones/articleExample/articleTemplate.html';" >
-			
-					<div class="articleTags">
-						Opinión
-					</div>
-					<div class="imageContainer">
-						<img src="Secciones/articleExample/placeholder1.gif"></img>
-					</div>
-						<h1> titulo de la noticia</h1>
-					<div class="articleData">
-						<p class="articleAutor">nombre del Autor </p>
-						<p class="articleDate">00/00/00</p>
-					</div>	
-					<p class="articleSample">
-						Etiam magna arcu, rhoncus ut felis quis, porta facilisis orci. Nulla efficitur ullamcorper lacus non hendrerit. Cras ipsum nisi, pret
-					</p>
-				</div>	
-				<div class="article" onclick="location.href='Secciones/articleExample/articleTemplate.html';">
-			
-					<div class="articleTags">
-						Opinión
-					</div>
-					<div class="imageContainer">
-						<img src="Secciones/articleExample/placeholder1.gif"></img>
-					</div>
-						<h1> titulo de la noticia</h1>
-					<div class="articleData">
-						<p class="articleAutor">nombre del Autor </p>
-						<p class="articleDate">00/00/00</p>
-					</div>	
-					<p class="articleSample">
-						Etiam magna arcu, rhoncus ut felis quis, porta facilisis orci. Nulla efficitur ullamcorper lacus non hendrerit. Cras ipsum nisi, pret
-					</p>
-				</div>	
-				<div class="article" onclick="location.href='Secciones/articleExample/articleTemplate.html';">
-			
-					<div class="articleTags">
-						Opinión
-					</div>
-					<div class="imageContainer">
-						<img src="Secciones/articleExample/placeholder1.gif"></img>
-					</div>
-						<h1> titulo de la noticia</h1>
-					<div class="articleData">
-						<p class="articleAutor">nombre del Autor </p>
-						<p class="articleDate">00/00/00</p>
-					</div>	
-					<p class="articleSample">
-						Etiam magna arcu, rhoncus ut felis quis, porta facilisis orci. Nulla efficitur ullamcorper lacus non hendrerit. Cras ipsum nisi, pret
-					</p>
-				</div>	
-			
-			
-			</div>
-			
-		</div>
-		<div id="allNews">
-			<h1 class="seccionTitle">El año en perspectiva</h1>
-			<div class="articleContainer">
-				
-				<h1>11/11/00</h1>
-				<div class="article" onclick="location.href='Secciones/articleExample/articleTemplate.html';">
-					<div class="articleTags">
-						Opinion
-					</div>
-					<div class="imageContainer">
-						<img src="Secciones/articleExample/placeholder1.gif"></img>
-					</div>
-						<h1> titulo de la noticia</h1>
-					<div class="articleData">
-						<p class="articleAutor">nombre del Autor </p>
-						<p class="articleDate">00/00/00</p>
-					</div>	
-					<p class="articleSample">
-						Etiam magna arcu, rhoncus ut felis quis, porta facilisis orci. Nulla efficitur ullamcorper lacus non hendrerit. Cras ipsum nisi, pret
-					</p>
-				</div>	
-				<div class="article" onclick="location.href='Secciones/articleExample/articleTemplate.html';">
-					<div class="articleTags">
-						Opinion
-					</div>
-					<div class="imageContainer">
-						<img src="Secciones/articleExample/placeholder1.gif"></img>
-					</div>
-						<h1> titulo de la noticia</h1>
-					<div class="articleData">
-						<p class="articleAutor">nombre del Autor </p>
-						<p class="articleDate">00/00/00</p>
-					</div>	
-					<p class="articleSample">
-						Etiam magna arcu, rhoncus ut felis quis, porta facilisis orci. Nulla efficitur ullamcorper lacus non hendrerit. Cras ipsum nisi, pret
-					</p>
-				</div>	
-				<h1>11/12/00</h1>
-				<div class="article" onclick="location.href='Secciones/articleExample/articleTemplate.html';">
-				
-					<div class="articleTags">
-						Opinion
-					</div>
-					<div class="imageContainer">
-						<img src="Secciones/articleExample/placeholder1.gif"></img>
-					</div>
-						<h1> titulo de la noticia</h1>
-					<div class="articleData">
-						<p class="articleAutor">nombre del Autor </p>
-						<p class="articleDate">00/00/00</p>
-					</div>	
-					<p class="articleSample">
-						Etiam magna arcu, rhoncus ut felis quis, porta facilisis orci. Nulla efficitur ullamcorper lacus non hendrerit. Cras ipsum nisi, pret
-					</p>
-				</div>	
-				<div class="article" onclick="location.href='Secciones/articleExample/articleTemplate.html';">
-					<div class="articleTags">
-						Opinion
-					</div>
-					<div class="imageContainer">
-						<img src="Secciones/articleExample/placeholder1.gif"></img>
-					</div>
-						<h1> titulo de la noticia</h1>
-					<div class="articleData">
-						<p class="articleAutor">nombre del Autor </p>
-						<p class="articleDate">00/00/00</p>
-					</div>	
-					<p class="articleSample">
-						Etiam magna arcu, rhoncus ut felis quis, porta facilisis orci. Nulla efficitur ullamcorper lacus non hendrerit. Cras ipsum nisi, pret
-					</p>
-				</div>	
-				<div class="article" onclick="location.href='Secciones/articleExample/articleTemplate.html';">
-
-					<div class="articleTags">
-						Opinión
-					</div>
-					<div class="imageContainer">
-						<img src="Secciones/articleExample/placeholder1.gif"></img>
-					</div>
-						<h1> titulo de la noticia</h1>
-					<div class="articleData">
-						<p class="articleAutor">nombre del Autor </p>
-						<p class="articleDate">00/00/00</p>
-					</div>	
-					<p class="articleSample">
-						Etiam magna arcu, rhoncus ut felis quis, porta facilisis orci. Nulla efficitur ullamcorper lacus non hendrerit. Cras ipsum nisi, pret
-					</p>
-				</div>	
-			
 			
 			</div>
 			
 		</div>
 		
+
+			
 		<div id="footer">
 				<div class="nameContainer">
 					Asociación Comarcal Rivera del Escabas
 				</div>
 				<div class="logoContainer">
-					<img src="Imagenes/cuenca.gif" >
+					<img src="/trabajo-rivera/Boletin/Imagenes/cuenca.gif" >
 				</div>
 				<div  class="contactContainer footerContainer">
 					<ul>
@@ -382,7 +181,7 @@
 						</li>
 					</ul>
 				</div>
-				<div  class="legalContainer footerContainer">
+				<!--<div  class="legalContainer footerContainer">
 					<ul>
 						<li><a href="">Aviso legal</a></li>
 						<li><a href="">Politica de Privacidad</a></li>
@@ -390,7 +189,7 @@
 							Politica de Cookies
 						</a></li>
 					</ul>
-				</div>
+				</div>-->
 		</div>
 	
 	</body>

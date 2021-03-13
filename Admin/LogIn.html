@@ -9,39 +9,26 @@
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 		
-		<link rel="stylesheet"  href="Stylesheets/reusableStylesheet.css">
+	<link rel="stylesheet"  href="Stylesheets/reusableStylesheet.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	  
 		<!--<script type="text/javascript" src="Scripts/scriptsBoletin.js"></script>--> 
-		<script type="text/javascript" src="Scripts/reusableScriptsAdmin.js"></script> 
+		<script type="text/javascript" src="Scripts/LogInScripts.js"></script> 
 		
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<script src='http://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
+		<script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src='http://code.jquery.com/jquery-3.3.1.min.js'></script>
 		
 		
 	
 	</head>
-	<body onload="checkCookie()">
-		
-
-		<div>
-		  <form action="/action_page.php">
-			<label for="name">Nombre</label>
+	<body style="width:90%; margin:auto;">
+		 
+			<label for="name" maxlength="100">Nombre</label>
 			<input type="text" id="name" name="name" placeholder="...">
 
-			<label for="pass">Contraseña</label>
+			<label for="pass" maxlength="100">Contraseña</label>
 			<input type="password" id="pass" name="pass" placeholder="...">
-			<!--
-				<label for="country">Country</label>
-				<select id="country" name="country">
-				  <option value="australia">Australia</option>
-				  <option value="canada">Canada</option>
-				  <option value="usa">USA</option>
-				</select>
-			  -->
-			<input type="submit" value="Entrar">
-		  </form>
-		</div>
-
+			<button class="btnSubmit"onclick="checkUser()">Entrar</button>
+		  
 	</body>
 <html>
